@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>如何衡量nlp中label定义的好坏？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/346717635/answer/839049341"><meta name="description" content="我的一个想法是你可以把这两类数据拿出来，用模型输出的最后一层embedding聚类成三个类，看看两个类overlap的部分是什么样子的。
+如果overlap部分的确有一个独立语义，那么可以试图把它拆分出来。
+如果overlap的确可以分到两个类里，那我觉得你可以把这些数据拿出来当hard example，研究一下为什么"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>如何衡量nlp中label定义的好坏？</h1><p class="muted">霍华德 · 发布：<time>2019-09-28T16:18:28+00:00</time> · 更新：2019-09-28T16:18:28+00:00</p>
+<p><a href="https://www.zhihu.com/question/346717635/answer/839049341" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="RfZYsFbN">我的一个想法是你可以把这两类数据拿出来，用模型输出的最后一层embedding聚类成三个类，看看两个类overlap的部分是什么样子的。</p><ul><li data-pid="aSFNtvn3">如果overlap部分的确有一个独立语义，那么可以试图把它拆分出来。</li><li data-pid="VBLOO8Dh">如果overlap的确可以分到两个类里，那我觉得你可以把这些数据拿出来当hard example，研究一下为什么模型会区分不开。</li></ul></article>
+<footer>抓取时间：2026-09-26T08:14:16.508+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

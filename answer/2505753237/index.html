@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>深度学习3080配什么cpu合适，不打游戏会不会有低u高显的问题？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/534926992/answer/2505753237"><meta name="description" content="不赞同说深度学习不需要CPU的说法。
+显然这是和任务强相关的。
+自然语言处理的任务很多时候的确不需要太强的cpu。一方面，文本数据相对其他数据类型，计算机处理起来就快很多，哪怕是曾经的瓶颈大头分词，相比视觉和语音任务都不算很消耗cpu。更别说现在bert已经不需要分词了，基本都是按字处理。一方面，文本的数据增强一般就是"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>深度学习3080配什么cpu合适，不打游戏会不会有低u高显的问题？</h1><p class="muted">霍华德 · 发布：<time>2022-05-28T13:30:25+00:00</time> · 更新：2022-05-28T13:31:18+00:00</p>
+<p><a href="https://www.zhihu.com/question/534926992/answer/2505753237" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="WO9kJ-p2">不赞同说深度学习不需要CPU的说法。</p><p data-pid="5YAd5YUU">显然这是和任务强相关的。</p><p data-pid="2HW62hcE">自然语言处理的任务很多时候的确不需要太强的cpu。一方面，文本数据相对其他数据类型，计算机处理起来就快很多，哪怕是曾经的瓶颈大头分词，相比视觉和语音任务都不算很消耗cpu。更别说现在bert已经不需要分词了，基本都是按字处理。一方面，文本的数据增强一般就是增删改，比cv五花八门的数据增强算子轻量。</p><p data-pid="9Uh1rDpi">但对于计算机视觉任务，充分的数据增强几乎是必不可少。而计算机视觉的数据增强基本都是一边训练一边增强，提前增强好，存储上太不划算。现在绝大多数训练过程中的数据增强都是放在CPU上的，所以需要一个强劲的CPU。免得拖累你GPU的吞吐量。</p><p data-pid="RvGstdhF">如果你是做深度强化学习类的任务。那CPU就太重要太重要了，因为算法在与环境交互采样的过程中需要大量的CPU计算。</p><p data-pid="gMtFNCoA">而且大量实践过程中，也总结出了一个神奇数字4，就是一个GPU配四个CPU核心进行数据处理，这个时候的训练效率最高。</p><p data-pid="VW5i0bTW">再考虑到如果使用<b>DistributedDataParallel</b> (简称DDP)进行单机多卡训练，每个卡起一个单独的进程，一个进程独占一个cpu核心的资源，那么这样需要两个CPU核心。这样总共就<b>需要十个cpu核心</b>。</p><p data-pid="Ts37VTtA">为了避免带货的嫌疑，我就不具体推荐哪家的产品，但是答案已经很明显了，对你的而言，最优解是配一个10核及以上的cpu。</p></article>
+<footer>抓取时间：2026-09-26T07:29:48.427+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

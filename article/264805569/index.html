@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>ETL best practices with Airflow</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://zhuanlan.zhihu.com/p/264805569"><meta name="description" content="ETL principles
+在使用airflow的具体工具前，我们先来看看ETL最佳实践应该遵循的原则。
+当你面对一个大数据场景时，遵循合理的原则意义重大。‘solving it quick to get going‘的方法最终会导致一大堆数据问题，及种种下游问题。
+对于该如何结构化管理好ETL工作，Airflow提"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>ETL best practices with Airflow</h1><p class="muted">霍华德 · 发布：<time>2020-10-12T13:28:34+00:00</time> · 更新：2020-11-06T06:40:52+00:00</p>
+<p><a href="https://zhuanlan.zhihu.com/p/264805569" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><img src="https://picx.zhimg.com/v2-6ffd05e85ce595960c25f2cfa56f8503_720w.jpg?source=172ae18b" alt="文章封面" referrerpolicy="no-referrer"><h2>ETL principles</h2><p data-pid="SEFAlp5X">在使用airflow的具体工具前，我们先来看看ETL最佳实践应该遵循的原则。</p><p data-pid="Sb6irloR">当你面对一个大数据场景时，遵循合理的原则意义重大。‘solving it quick to get going‘的方法最终会导致一大堆数据问题，及种种下游问题。</p><p data-pid="7qHSWoZ2">对于该如何结构化管理好ETL工作，Airflow提供了一种很好的思考方式。这种理念使Airflow能够并行化作业，根据相关性适当地安排作业，并在需要时历来重新处理数据。这种哲学植根于几个简单的原则：</p><ol><li data-pid="UjtnF1mb"><b>增量加载数据：</b>当表或数据集较小时，可以整体加载数据。但是随着数据的增长，以固定的时间间隔增量提取数据才是ETL的常态，仅加载一个小时，一天，一周数据的需求非常普遍。Airflow可以容易地以特定的时间间隔的数据。</li><li data-pid="xLkdMyKH"><b>处理历史数据：</b>在某些情况下，您刚刚完成一个新的工作流程并且需要回溯到将新代码投入生产的日期的数据。在这种情况下，您只需使用DAG中的start_date参数以指定开始日期。然后，Airflow将回填任务到开始日期。此外，还可以使用DAG的参数来处理数周、数月或数年的数据。</li><li data-pid="XcOQdT0i"><b>分区提取的数据：</b>通过对数据的目的地进行分区，可以并行运行dag，避免对提取的数据进行锁定，并在读取相同数据时优化性能。不再相关的数据可以存档并从数据库中删除。</li><li data-pid="bqLm7VBC"><b>强制幂等约束</b>：DAG运行的结果应始终具有幂等特性。这意味着当您使用相同的参数多次运行某个流程时（即使在不同的日期），结果也将完全相同。您最终不会在您的环境中获得同一数据的多个副本或其他不良后果。显然，这仅在处理脚本尚未修改时才有效。如果业务规则在流程中发生更改，则目标数据将不同。此外，某些流程需要在一定天数后对数据进行自动处理，因为并非总是被允许永久保留客户的历史数据。</li><li data-pid="byjIOqpB"><b>强制确定性</b>：如果对于给定的输入，所产生的输出始终完全相同，则认为该函数是确定性的。函数行为可能不确定的情况的示例：1）在函数中使用外部状态，例如全局变量，随机值，存储的磁盘数据，硬件计时器。2）以时间敏感的方式操作函数，例如多线程的不正确使用。3）依赖于输入变量的顺序而不是显式地对输入变量进行排序，而是依赖于随机的顺序。4）函数内部结构的实现问题（例如，隐式依赖于python dict中的顺序）5）异常处理不当或异常后处理不当。6）中途提交和意外情况。</li><li data-pid="voX-FWd-"><b>有条件地执行</b>：Airflow具有一些选项，可根据之前的实例的成功来控制DAG中任务的运行方式。例如，<i>depends_on_past</i>参数指定在执行一个任务之前，必须先成功执行所有任务实例，然后才能执行当前任务。如果不是最新执行，最近引入的<i>LatestOnlyOperator</i>允许您有条件地跳过DAG中的下游任务。还有一个<i>BranchPythonOperator</i>，它可以基于某些决策函数选择在DAG中进行哪个执行分支。</li><li data-pid="-1Y6x6XW"><b>同时编码工作流和应用程序</b>：大多数调度程序和工作流工具都允许您创建步骤，然后在UI或XML中定义如何将步骤连接在一起。最终，总会有特定的工作受到限制，因为工作流的逻辑与工具中可以执行的操作不兼容。在Airflow中，您不仅可以对应用程序进行编码，还可以对流程本身进行编码。您可以从DAG内部动态启动新的DAG，以编程方式跳过下游任务，使用python函数有条件地执行其他代码，运行sub-dag等。</li><li data-pid="hoUjiuHb"><b>保持数据静止</b>：为了能让Airflow多线程并行，您需要考虑清楚任务步骤之间如何保存数据。Airflow的操作符通常会从一个系统读取，创建一个临时的本地文件，然后将该文件写入某个目标系统。您不应该让上游任务依赖其他下游任务中创建的临时数据（文件等）。原因是同一DAG的任务可以在不同的worker上执行，对于那些worker一些本地资源可能并不存在。当您使用Sequential或LocalExecutor时，您似乎可以摆脱它，但是如果将来需要使用分布式执行方法并且您具有这些依赖关系，则为解决这些依赖关系可能会非常痛苦。因此，最好确保从所有worker都可以访问的服务（services）中读取数据，并且在任务开始和终止时这些服务中的数据保持静止。</li><li data-pid="xl9R7e5N"><b>理解SLA和警报</b>：服务水平协议（Service Level Agreements）可用于检测长时间运行的任务实例，并让Airflow采取进一步的措施。默认情况下，Airflow将通过电子邮件发送错过的SLA，并且可以从Web服务器进一步检查。在DAG中，您可以指定一个SLA缺失时要调用的函数，方便将问题广而告之。</li><li data-pid="TZE5U3Ia"><b>动态运行任务</b>：由于工作流是代码，因此可以通过该代码动态创建任务或者结束任务。在一些例子中，人们拥有一个文本文件，其中包含需要处理的指令，Airflow仅使用该文件就可以动态生成DAG和任务。</li><li data-pid="0mGKnqs5"><b>集中资源</b>：调度程序（schedulers）是无法控制脚本中资源的使用的。在Airflow中，您实际上可以创建资源池，并要求任务在执行任何工作之前都需要从该池中获取token。如果资源池已完全用完，则直到另一个任务完成释放token后，才会调度需要token的其他任务。如果要管理对共享资源（例如数据库，GPU，CPU等）的访问，这将非常有用。</li><li data-pid="i-Lr8u0H"><b>探测任务起始时间</b>：许多调度程序在经过特定的日期/时间后开始执行任务，这正是cron所做的。Airflow可以实现这种简单的功能，但是通过使用任务探测器作为在dag中的第一项任务，Airflow可以感知dag中其他任务所需的前置条件。任务探测器包括：dag依赖探测器，探测由另一个dag中的任务实例结果如何，HTTP传感器可以调用URL并解析其结果，文件探测器可以探测文件是否存在，数据库探测器可以探测数据是否存在数据库中等等。这提供了很多工具来保证整个ETL管道的一致性。</li><li data-pid="yf8iErDV"><b>统一登录</b>：Airflow在其自己的数据库中维护外部服务的登录信息。</li><li data-pid="xlpG17Nn"><b>统一配置</b>：遵循Don't repeat yourself原理，只在一个地方指定一次配置，即可避免重复配置。每个Airflow实例都有“Variables”，可以对其进行设置以指定运行任务的环境。</li><li data-pid="sxWKRSV6"><b>统一保存元数据</b>：您无需在此处做任何事情。Airflow将在一个地方管理日志，工作时间，着陆时间，从而减少了人们收集元数据以分析问题的开销。</li><li data-pid="UlPMX821"><b>开发自己的工作流框架</b>：将代码作为工作流，还可以根据需要重用DAG的某些部分，从而减少代码重复，并从长远来看使工作变简单。这降低了整个系统的复杂性，并为开发人员腾出时间来处理更重要和更具影响力的任务。</li></ol><h2>Airflow 抽象理解</h2><p data-pid="1-MYVmg-">在介绍Airflow之前，我们需要了解任务依赖的概念</p><h2>任务依赖</h2><p data-pid="im6H7YwI">通常，在一个运维系统，数据分析系统，或测试系统等大型系统中，我们会有各种各样的依赖需求。比如，</p><ul><li data-pid="ykDJ6Mjx"><b>时间依赖</b>：任务需要等待某一个时间点触发</li><li data-pid="WrwNwwzh"><b>外部系统依赖</b>：任务依赖Mysql中的数据，HDFS中的数据等等，这些不同的外部系统需要调用接口去访问</li><li data-pid="P3CUYmdH"><b>机器依赖</b>：任务的执行只能在特定的某一台机器的环境中，可能这台机器内存比较大，也可能只有那台机器上有特殊的库文件</li><li data-pid="V6bFptcK"><b>任务间依赖</b>：任务A需要在任务B完成后启动，两个任务互相间会产生影响</li><li data-pid="na9l_2Xi"><b>资源依赖</b>：任务消耗资源非常多，使用同一个资源的任务需要被限制，比如跑个数据转换任务要10个G，机器一共就30个G，最多只能跑两个，我希望类似的任务排个队</li><li data-pid="t2e7_re4"><b>权限依赖</b>：某种任务只能由某个权限的用户启动</li></ul><p data-pid="eLjQaFmU">也许大家会觉得这些是在任务程序中的逻辑需要处理的部分，但是我认为，这些逻辑可以抽象为<b>任务控制逻辑</b>的部分，和实际<b>任务执行逻辑</b>解耦合</p><h2>如何理解Crontab</h2><p data-pid="JeixB8x8">现在让我们来看下最常用的依赖管理系统，Crontab</p><p data-pid="jlRzrVCQ">在各种系统中，总有些定时任务需要处理，每当在这个时候，我们第一个想到的总是crontab。</p><p data-pid="1Hg81FRE">确实，crontab可以很好的处理定时执行任务的需求，但是对于crontab来说，执行任务，只是调用一个程序如此简单，而程序中的各种逻辑都不属于crontab的管辖范围（很好的遵循了KISS）</p><p data-pid="K7vdfnOE">所以我们可以抽象的认为：</p><blockquote data-pid="VDx6MOGk"><b>crontab是一种依赖管理系统，而且只管理时间上的依赖。</b></blockquote><h2>Airflow的处理依赖的方式</h2><p data-pid="sMmaHPNr">现在重点Airflow来了，看下它是怎么处理我们遇到的依赖问题。</p><ul><li data-pid="e81ssM6S">Airflow的核心概念，是DAG(有向无环图)，DAG由一个或多个TASK组成，而这个DAG正是解决了上文所说的任务间依赖。Task A 执行完成后才能执行 Task B，多个Task之间的依赖关系可以很好的用DAG表示完善</li><li data-pid="SAZBnpZz">Airflow完整的支持crontab表达式，也支持直接使用python的datatime表述时间，还可以用datatime的delta表述时间差。这样可以解决任务的时间依赖问题。</li><li data-pid="8S41iOVv">Airflow在CeleryExecuter下可以使用不同的用户启动Worker，不同的Worker监听不同的Queue，这样可以解决用户权限依赖问题。Worker也可以启动在多个不同的机器上，解决机器依赖的问题。</li><li data-pid="GGHy3KE5">Airflow可以为任意一个Task指定一个抽象的Pool，每个Pool可以指定一个Slot数。每当一个Task启动时，就占用一个Slot，当Slot数占满时，其余的任务就处于等待状态。这样就解决了资源依赖问题。</li><li data-pid="pF_jnTNi">Airflow中有Hook机制(其实我觉得不应该叫Hook)，作用时建立一个与外部数据系统之间的连接，比如Mysql，HDFS，本地文件系统(文件系统也被认为是外部系统)等，通过拓展Hook能够接入任意的外部系统的接口进行连接，这样就解决的外部系统依赖问题。</li></ul><p data-pid="HWnD_TtX">坑：</p><p data-pid="Y6Rtxmny">dags_are_paused_at_creation = True</p><p data-pid="u6i6DuaM">airflow pause dag_id</p><h2>To Keep in Mind</h2><ul><li data-pid="NhLCrQJJ">Marking task instances as failed can be done through the UI. This can be used to stop running task instances.</li><li data-pid="PflcBMs8">Marking task instances as successful can be done through the UI. This is mostly to fix false negatives, or for instance, when the fix has been applied outside of Airflow.</li></ul><h2>Catchup</h2><p data-pid="LxfEFU4P">In the example above, if the DAG is picked up by the scheduler daemon on 2016-01-02 at 6 AM, (or from the command line), a single DAG Run will be created, with an execution_date of 2016-01-01, and the next one will be created just after midnight on the morning of 2016-01-03 with an execution date of 2016-01-02.</p><p data-pid="9ZJQotA6">If the <code>dag.catchup</code> value had been <code>True</code> instead, the scheduler would have created a DAG Run for each completed interval between 2015-12-01 and 2016-01-02 (but not yet one for 2016-01-02, as that interval hasn’t completed) and the scheduler will execute them sequentially.</p><p data-pid="Ias6JtxE">Catchup is also triggered when you turn off a DAG for a specified period and then re-enable it.</p><p data-pid="GlxOxzXE">This behavior is great for atomic datasets that can easily be split into periods. Turning catchup off is great if your DAG performs catchup internally.</p><h2>Backfill</h2><p data-pid="Kvwe5FUF">There can be the case when you may want to run the dag for a specified historical period e.g., A data filling DAG is created with <code>start_date</code> <b>2019-11-21</b>, but another user requires the output data from a month ago i.e., <b>2019-10-21</b>. This process is known as Backfill.</p><p data-pid="eWcwebsd">You may want to backfill the data even in the cases when catchup is disabled. This can be done through CLI. Run the below command</p><blockquote data-pid="JQRCrXA_">airflow dags backfill  --start-date START_DATE --end-date END_DATE dag_id</blockquote><p data-pid="SrwvA9lE">The <a class="wrap external" href="https://airflow.readthedocs.io/en/latest/cli-ref.html#backfill" rel="noopener noreferrer" target="_blank">backfill command</a> will re-run all the instances of the dag_id for all the intervals within the start date and end date.</p><p data-pid="qdvZwNFB"><b>建议安装Airflow 1.8</b>，而不是最新版的apache-airflow 1.9，主要原因是1.9版本的所有运行都是基于UTC时间的，这样导致在配置调度信息的时候不够直观，时间换算也非常头疼。</p><p class="ztext-empty-paragraph"><br/></p><p data-pid="rDd-G3Th">MySQL 5.6 ：使用LocalExcutor模式，所有DAG信息保存在后端数据库中。</p><h2><b>创建数据库</b></h2><p data-pid="1Yf9Qq9W">后端使用MySQL数据库来保存任务信息，先在数据库中建立database和user。如下</p><div class="highlight"><pre><code class="language-mysql"><span class="k">create</span> <span class="k">database</span> <span class="n">airflow</span><span class="p">;</span>
+
+<span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="n">airflow</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="s1">'airflow'</span><span class="o">@</span><span class="s1">'%'</span> <span class="k">identified</span> <span class="k">by</span> <span class="s1">'airflow'</span><span class="p">;</span>
+
+<span class="k">flush</span> <span class="k">privileges</span><span class="p">;</span></code></pre></div><h2>环境变量</h2><p data-pid="UCipurAF">Airflow在运行过程中会使用全局环境变量，所以必须先在~/.bash_profile 中增加变量如下</p><div class="highlight"><pre><code class="language-text">export AIRFLOW_HOME=/home/etl/airflow</code></pre></div><h2><b>启用Web权限</b></h2><p data-pid="4dAzvKrl">默认情况下airflow的web管理台是没有用户密码的，在迁移到正式环境之前，我们需要启用权限机制。</p><p data-pid="qEgfIlbx">在<b>airflow.cfg</b>中设置如下选项</p><div class="highlight"><pre><code class="language-text">[webserver]
+authenticate = True
+auth_backend = airflow.contrib.auth.backends.password_auth</code></pre></div><p data-pid="0WXt6XpL">启用权限之后，在第一次登录之前必须手动通过python REPL来设置初始用户</p><div class="highlight"><pre><code class="language-python"><span class="kn">import</span> <span class="nn">airflow</span>
+<span class="kn">from</span> <span class="nn">airflow</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">airflow.contrib.auth.backends.password_auth</span> <span class="kn">import</span> <span class="n">PasswordUser</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="n">PasswordUser</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">User</span><span class="p">())</span>
+<span class="n">user</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="s1">'airflow'</span>
+<span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s1">'airflow@xxx.com'</span>
+<span class="n">user</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="s1">'airflow'</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nb">exit</span><span class="p">()</span></code></pre></div><h2>修改数据库连接</h2><p data-pid="NLAWs0U3">因为使用MySQL作为元数据库，所以还需要配置数据库的连接参数。在<b>airflow.cfg</b>中设置如下选项</p><div class="highlight"><pre><code class="language-text">[core]
+executor = LocalExecutor
+sql_alchemy_conn = mysql://airflow:airflow@192.168.100.57:3306/airflow?charset=utf8</code></pre></div><p data-pid="gqT-GYGB">更改数据库连接方式之后，需要重新执行一次初始化操作。</p><div class="highlight"><pre><code class="language-text">airflow initdb</code></pre></div><p data-pid="oIoPrUT-">默认情况下，Web界面会把样例DAG都显示出来非常混乱。除了在数据库中删除样例DAG之外，也可以通过配置不显示这部分样例。</p><div class="highlight"><pre><code class="language-text"># 不显示样例DAG
+load_examples = False</code></pre></div><p data-pid="lPG6ZSLU">Airflow的catchup机制，会在你启动一个DAG的时候，把当前时间之前未执行的job依次执行一次。这个好处是可以把遗漏的调度任务进行补足，但是在很多时候我们并不需要这个特性。通过修改配置，可以禁止catchup，如下</p><div class="highlight"><pre><code class="language-text">[scheduler]
+# 避免执行catchup，即避免把当前时间之前未执行的job都执行一次
+catchup_by_default = False</code></pre></div><h2>WEB界面</h2><p data-pid="QcKXRESu">在默认的8080端口页面上，可以对DAG进行日常操作，包括但不限于启动，停止，查看日志等。界面如下图</p><figure data-size="normal"><img class="origin_image zh-lightbox-thumb" data-caption="" data-original="https://pic4.zhimg.com/v2-44dc3a4f15fecde1c882ecd2c81e2e2d_r.jpg" data-original-token="v2-57d9de8da762fda03a95eca85d3d8956" data-rawheight="555" data-rawwidth="1233" data-size="normal" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic4.zhimg.com/v2-44dc3a4f15fecde1c882ecd2c81e2e2d_r.jpg" width="1233"/></figure><h2>管理脚本</h2><p data-pid="4aRyvG3n">当前版本Airflow没有提供关闭脚本，也没有提供一个便捷的办法来彻底删除DAG。为了方便测试，我写了一个管理脚本来处理相关的任务。</p><p data-pid="cDhDn2BB">脚本调用方式如下</p><div class="highlight"><pre><code class="language-text">$ ./airflow_util.py -h
+usage: airflow_util.py [-h] [-k] [-s] [--clear CLEAR] [--delete DELETE]
+
+optional arguments:
+  -h, --help       show this help message and exit
+  -k, --kill       关闭Airflow
+  -s, --start      启动Airflow
+  --clear CLEAR    删除历史日志
+  --delete DELETE  提供需要删除的DAG ID</code></pre></div><p data-pid="PrpX_6eD">管理脚本源代码如下</p><div class="highlight"><pre><code class="language-python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1">#连接配置信息</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="s1">'host'</span><span class="p">:</span><span class="s1">'127.0.0.1'</span><span class="p">,</span>
+     <span class="s1">'port'</span><span class="p">:</span><span class="mi">3306</span><span class="p">,</span>
+     <span class="s1">'user'</span><span class="p">:</span><span class="s1">'airflow'</span><span class="p">,</span>
+     <span class="s1">'password'</span><span class="p">:</span><span class="s1">'airflow'</span><span class="p">,</span>
+     <span class="s1">'db'</span><span class="p">:</span><span class="s1">'airflow'</span><span class="p">,</span>
+     <span class="s1">'charset'</span><span class="p">:</span><span class="s1">'utf8'</span><span class="p">,</span>
+     <span class="p">}</span>
+
+<span class="c1"># 删除历史日志</span>
+<span class="k">def</span> <span class="nf">clear_log</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"Clear logs before {0} days ..."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">"find </span><span class="si">%s</span><span class="s2"> -maxdepth 1 -type d -mtime +</span><span class="si">%d</span><span class="s2"> | xargs -i rm -rf {}"</span> 
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd</span> <span class="o">%</span> <span class="p">(</span><span class="s1">'./logs'</span><span class="p">,</span><span class="n">num</span><span class="p">),</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd</span> <span class="o">%</span> <span class="p">(</span><span class="s1">'./logs/scheduler'</span><span class="p">,</span><span class="n">num</span><span class="p">),</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># 通过杀掉后台进程来关闭Airflow</span>
+<span class="k">def</span> <span class="nf">kill_airflow</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">"Stoping Airflow ..."</span><span class="p">)</span>
+    <span class="c1"># exclude current file in case the file name contains keyword 'airflow'</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s2">"ps -ef | grep -Ei 'airflow' | grep -v 'grep' | grep -v '</span><span class="si">%s</span><span class="s2">' | awk '{print $2}' | xargs -i kill -9 {}"</span> <span class="o">%</span> <span class="p">(</span><span class="vm">__file__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># 启动Airflow </span>
+<span class="k">def</span> <span class="nf">start_airflow</span><span class="p">():</span>
+    <span class="n">kill_airflow</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s2">"Starting Airflow Webserver ..."</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">"rm logs/webserver.log"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">"nohup airflow webserver &gt;&gt;logs/webserver.log 2&gt;&amp;1 &amp;"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="k">print</span><span class="p">(</span><span class="s2">"Starting Airflow Scheduler ..."</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">"rm logs/scheduler.log"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">"nohup airflow scheduler &gt;&gt;logs/scheduler.log 2&gt;&amp;1 &amp;"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># 删除指定DAG ID在数据库中的全部信息。</span>
+<span class="c1"># PS：因为SubDAG的命名方式为 parent_id.child_id ，所以也会把符合这种规则的SubDAG删除！</span>
+<span class="k">def</span> <span class="nf">delete_dag</span><span class="p">(</span><span class="n">dag_id</span><span class="p">):</span>
+    <span class="c1"># 创建连接</span>
+    <span class="n">connection</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="n">sql</span><span class="o">=</span><span class="s2">"select dag_id from airflow.dag where (dag_id like '{}.%' and is_subdag=1) or dag_id='{}'"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dag_id</span><span class="p">,</span> <span class="n">dag_id</span><span class="p">)</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+    <span class="n">rs</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="n">dags</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rs</span> <span class="p">]</span> 
+
+    <span class="k">for</span> <span class="n">dag</span> <span class="ow">in</span> <span class="n">dags</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">tab</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"xcom"</span><span class="p">,</span> <span class="s2">"task_instance"</span><span class="p">,</span> <span class="s2">"sla_miss"</span><span class="p">,</span> <span class="s2">"log"</span><span class="p">,</span> <span class="s2">"job"</span><span class="p">,</span> <span class="s2">"dag_run"</span><span class="p">,</span> <span class="s2">"dag_stats"</span><span class="p">,</span> <span class="s2">"dag"</span> <span class="p">]:</span>
+            <span class="n">sql</span><span class="o">=</span><span class="s2">"delete from airflow.{} where dag_id='{}'"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">dag</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">)</span>
+
+    <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1">#</span>
+<span class="k">def</span> <span class="nf">main_process</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"-k"</span><span class="p">,</span> <span class="s2">"--kill"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"关闭Airflow"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">'store_true'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"-s"</span><span class="p">,</span> <span class="s2">"--start"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"启动Airflow"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">'store_true'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--clear"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"删除历史日志"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"--delete"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">"提供需要删除的DAG ID"</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">kill</span><span class="p">:</span>
+        <span class="n">kill_airflow</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">start</span><span class="p">:</span>
+        <span class="n">start_airflow</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">clear</span><span class="p">:</span>
+        <span class="n">clear_log</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">clear</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">delete</span><span class="p">:</span>
+        <span class="n">delete_dag</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">delete</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">main_process</span><span class="p">()</span></code></pre></div><h2>编写DAG</h2><p data-pid="kLQQd0mS">原生Airflow的工作流通过简单的python脚本来进行定义（有一些第三方扩展可以实现拖放模式的定义）。</p><p data-pid="BnH9JKCJ"><b>普通DAG</b></p><p data-pid="5Ctoj46H">对于task不是特别多的场景，把所有task都定义在同一个py文件里面即可。如下，定义了4个task</p><figure data-size="normal"><img class="origin_image zh-lightbox-thumb" data-caption="" data-original="https://picx.zhimg.com/v2-833dbfa610effcdfef24c0aa9c9320ed_r.jpg" data-original-token="v2-7a23fa48609b612a185f564646755d79" data-rawheight="323" data-rawwidth="518" data-size="normal" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://picx.zhimg.com/v2-833dbfa610effcdfef24c0aa9c9320ed_r.jpg" width="518"/></figure><div class="highlight"><pre><code class="language-python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">airflow</span>
+<span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.bash_operator</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">datetime</span>
+
+<span class="n">template_caller</span> <span class="o">=</span> <span class="s2">"sh /home/etl/jupyter_home/etl_script/spark_scheduler/subdir/caller_spark.sh -m {0} -f {1} "</span>
+<span class="n">template_file</span> <span class="o">=</span> <span class="s1">'/home/etl/jupyter_home/etl_script/spark_scheduler/subdir/{0}'</span>
+<span class="n">default_spark_master</span> <span class="o">=</span> <span class="s1">'spark://192.168.100.51:7077'</span>
+
+<span class="c1">#-------------------------------------------------------------------------------</span>
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'owner'</span><span class="p">:</span> <span class="s1">'测试'</span><span class="p">,</span>
+    <span class="s1">'depends_on_past'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="s1">'start_date'</span><span class="p">:</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+    <span class="s1">'email'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'xxx@xxx.com'</span><span class="p">],</span>
+    <span class="s1">'email_on_failure'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1">#-------------------------------------------------------------------------------</span>
+<span class="n">dag</span> <span class="o">=</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">'demo_spark_normal'</span><span class="p">,</span>
+    <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">'测试-调用Spark'</span><span class="p">,</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">'*/20 * * * *'</span><span class="p">)</span>
+
+<span class="c1">#-------------------------------------------------------------------------------</span>
+<span class="c1"># spark operator</span>
+<span class="n">cmd</span> <span class="o">=</span> <span class="n">template_caller</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_spark_master</span><span class="p">,</span> <span class="n">template_file</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">'hive_rw.ipynb'</span><span class="p">))</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span> <span class="n">task_id</span><span class="o">=</span><span class="s1">'spark_hive'</span><span class="p">,</span> <span class="n">bash_command</span><span class="o">=</span><span class="n">cmd</span> <span class="p">,</span> <span class="n">dag</span><span class="o">=</span><span class="n">dag</span><span class="p">)</span>
+
+<span class="n">cmd</span> <span class="o">=</span> <span class="n">template_caller</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_spark_master</span><span class="p">,</span> <span class="n">template_file</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">'jdbc_rw.ipynb'</span><span class="p">))</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span> <span class="n">task_id</span><span class="o">=</span><span class="s1">'spark_jdbc'</span><span class="p">,</span> <span class="n">bash_command</span><span class="o">=</span><span class="n">cmd</span> <span class="p">,</span> <span class="n">dag</span><span class="o">=</span><span class="n">dag</span><span class="p">)</span>
+
+<span class="n">cmd</span> <span class="o">=</span> <span class="n">template_caller</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_spark_master</span><span class="p">,</span> <span class="n">template_file</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">'csv_relative.py'</span><span class="p">))</span>
+<span class="n">t3</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span> <span class="n">task_id</span><span class="o">=</span><span class="s1">'spark_csv'</span><span class="p">,</span> <span class="n">bash_command</span><span class="o">=</span><span class="n">cmd</span> <span class="p">,</span> <span class="n">dag</span><span class="o">=</span><span class="n">dag</span><span class="p">)</span>
+
+<span class="n">cmd</span> <span class="o">=</span> <span class="n">template_caller</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_spark_master</span><span class="p">,</span> <span class="n">template_file</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">'pure_sql.sql'</span><span class="p">))</span>
+<span class="n">t4</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span> <span class="n">task_id</span><span class="o">=</span><span class="s1">'spark_sql'</span><span class="p">,</span> <span class="n">bash_command</span><span class="o">=</span><span class="n">cmd</span> <span class="p">,</span> <span class="n">dag</span><span class="o">=</span><span class="n">dag</span><span class="p">)</span>
+<span class="c1">#-------------------------------------------------------------------------------</span>
+<span class="c1"># dependencies</span>
+<span class="n">t1</span> <span class="o">&gt;&gt;</span> <span class="n">t2</span> <span class="o">&gt;&gt;</span> <span class="n">t4</span>
+<span class="n">t1</span> <span class="o">&gt;&gt;</span> <span class="n">t3</span> <span class="o">&gt;&gt;</span> <span class="n">t4</span>
+</code></pre></div><p data-pid="nVT7izf3"><b>SubDAG</b></p><p data-pid="rShZUKUz">当一个工作流里面的task过多，UI显示会比较拥挤，这种场景下可以通过把task分类到不同SubDAG中的办法来实现。在具体编写上，又可以分为单一py文件和多个py文件的方案。</p><h3>单一文件</h3><p data-pid="3Uz5LNR4">这种情况下，我们把DAG和SubDAG都写在一个py文件里面。优点是只有一个文件易于编写，缺点是如果task比较多的话，文件不易管理。</p><div class="highlight"><pre><code class="language-python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.subdag_operator</span> <span class="kn">import</span> <span class="n">SubDagOperator</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.bash_operator</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">PARENT_DAG_NAME</span> <span class="o">=</span> <span class="s1">'atest_04'</span>
+<span class="c1">#CHILD_DAG_NAME = 'child_dag'</span>
+
+<span class="n">default_args</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'owner'</span><span class="p">:</span> <span class="s1">'测试'</span><span class="p">,</span>
+        <span class="s1">'depends_on_past'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">main_dag</span> <span class="o">=</span> <span class="n">DAG</span><span class="p">(</span>
+  <span class="n">dag_id</span><span class="o">=</span><span class="n">PARENT_DAG_NAME</span><span class="p">,</span>
+  <span class="n">default_args</span><span class="o">=</span><span class="n">default_args</span><span class="p">,</span>
+  <span class="n">description</span><span class="o">=</span><span class="s1">'测试-内嵌SubDAG'</span><span class="p">,</span>
+  <span class="n">start_date</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+  <span class="n">schedule_interval</span><span class="o">=</span><span class="s1">'*/30 * * * *'</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Dag is returned by a factory method</span>
+<span class="k">def</span> <span class="nf">sub_dag</span><span class="p">(</span><span class="n">parent_dag_name</span><span class="p">,</span> <span class="n">child_dag_name</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">schedule_interval</span><span class="p">):</span>
+  <span class="n">dag</span> <span class="o">=</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">'</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">parent_dag_name</span><span class="p">,</span> <span class="n">child_dag_name</span><span class="p">),</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="n">schedule_interval</span><span class="p">,</span>
+    <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span>
+  <span class="p">)</span>
+
+  <span class="n">t1</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+      <span class="n">task_id</span><span class="o">=</span><span class="s1">'print_{}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">child_dag_name</span><span class="p">),</span>
+      <span class="n">bash_command</span><span class="o">=</span><span class="s1">'echo sub key_{}  `date` &gt;&gt; /home/etl/airflow/test.log'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">child_dag_name</span><span class="p">),</span>
+      <span class="n">dag</span><span class="o">=</span><span class="n">dag</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">dag</span>
+
+<span class="c1">#</span>
+<span class="n">sub_dag_1</span> <span class="o">=</span> <span class="n">SubDagOperator</span><span class="p">(</span>
+  <span class="n">subdag</span><span class="o">=</span><span class="n">sub_dag</span><span class="p">(</span><span class="n">PARENT_DAG_NAME</span><span class="p">,</span> <span class="s1">'child_01'</span><span class="p">,</span> <span class="n">main_dag</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span> <span class="n">main_dag</span><span class="o">.</span><span class="n">schedule_interval</span><span class="p">),</span>
+  <span class="n">task_id</span><span class="o">=</span><span class="s1">'child_01'</span><span class="p">,</span>
+  <span class="n">dag</span><span class="o">=</span><span class="n">main_dag</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">sub_dag_2</span> <span class="o">=</span> <span class="n">SubDagOperator</span><span class="p">(</span>
+  <span class="n">subdag</span><span class="o">=</span><span class="n">sub_dag</span><span class="p">(</span><span class="n">PARENT_DAG_NAME</span><span class="p">,</span> <span class="s1">'child_02'</span><span class="p">,</span> <span class="n">main_dag</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span> <span class="n">main_dag</span><span class="o">.</span><span class="n">schedule_interval</span><span class="p">),</span>
+  <span class="n">task_id</span><span class="o">=</span><span class="s1">'child_02'</span><span class="p">,</span>
+  <span class="n">dag</span><span class="o">=</span><span class="n">main_dag</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1">#</span>
+<span class="n">sub_dag_1</span> <span class="o">&gt;&gt;</span> <span class="n">sub_dag_2</span>
+</code></pre></div><h3>多个文件</h3><p data-pid="M1xPBcqT">当SubDAG比较多的场景下，把DAG文件保存在独立的py文件中是一种更好的方法。文件目录结构如下</p><p data-pid="hNK4K0b3"><b>PS</b>：因为在airflow中调用其他文件的过程中会出现找不到model的错误，所以在主文件中增加了一句处理路径的语句。如果有更好的办法，可以对这个进行替换。</p><div class="highlight"><pre><code class="language-text">sys.path.append(os.path.abspath(os.path.dirname(__file__)))</code></pre></div><p class="ztext-empty-paragraph"><br/></p><div class="highlight"><pre><code class="language-text">#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import sys, os
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
+from datetime import datetime, timedelta
+from airflow.models import DAG
+from airflow.operators.subdag_operator import SubDagOperator
+from datetime import datetime
+
+from sub.subdag import sub_dag
+
+PARENT_DAG_NAME = 'atest_03'
+CHILD_DAG_NAME = 'child_dag'
+
+default_args = {
+        'owner': '测试',
+        'depends_on_past': False,
+}
+
+main_dag = DAG(
+  dag_id=PARENT_DAG_NAME,
+  default_args=default_args,
+  description='测试-独立SubDAG',
+  start_date=datetime(2018,4,14,19,0,0),
+  schedule_interval='*/10 * * * *',
+  catchup=False
+)
+
+sub_dag = SubDagOperator(
+  subdag=sub_dag(PARENT_DAG_NAME, CHILD_DAG_NAME, main_dag.start_date,
+                 main_dag.schedule_interval),
+  task_id=CHILD_DAG_NAME,
+  dag=main_dag,
+)
+</code></pre></div><p data-pid="WlAUpMnC"><b>子文件如下</b></p><div class="highlight"><pre><code class="language-python"><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">airflow.models</span> <span class="kn">import</span> <span class="n">DAG</span>
+<span class="kn">from</span> <span class="nn">airflow.operators.bash_operator</span> <span class="kn">import</span> <span class="n">BashOperator</span>
+
+<span class="c1"># Dag is returned by a factory method</span>
+<span class="k">def</span> <span class="nf">sub_dag</span><span class="p">(</span><span class="n">parent_dag_name</span><span class="p">,</span> <span class="n">child_dag_name</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">schedule_interval</span><span class="p">):</span>
+  <span class="n">dag</span> <span class="o">=</span> <span class="n">DAG</span><span class="p">(</span>
+    <span class="s1">'</span><span class="si">%s</span><span class="s1">.</span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">parent_dag_name</span><span class="p">,</span> <span class="n">child_dag_name</span><span class="p">),</span>
+    <span class="n">schedule_interval</span><span class="o">=</span><span class="n">schedule_interval</span><span class="p">,</span>
+    <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span>
+  <span class="p">)</span>
+
+  <span class="n">t1</span> <span class="o">=</span> <span class="n">BashOperator</span><span class="p">(</span>
+      <span class="n">task_id</span><span class="o">=</span><span class="s1">'print_1'</span><span class="p">,</span>
+      <span class="n">bash_command</span><span class="o">=</span><span class="s1">'echo sub 1 `date` &gt;&gt; /home/etl/airflow/test.log'</span><span class="p">,</span>
+      <span class="n">dag</span><span class="o">=</span><span class="n">dag</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">dag</span>
+</code></pre></div><h2>Schedule和Trigger</h2><p data-pid="VxU8HWmn">在DAG上，任务的触发由两个主要参数定义，<b>start_date</b>和<b>schedule_interval</b>。一个DAG第一次被触发的时间点是 start_date + schedule_interval。举例如下：</p><div class="highlight"><pre><code class="language-text">start_date         2018-04-20 14:00:00 
+schedule_interval  */30 * * * *</code></pre></div><p data-pid="1ZWI3f8u">那第一次触发会在14:30发生，但是执行的是14:00的任务。根据激活DAG时间的不同，会发生不同的触发。<br/> </p><ul><li data-pid="kFgz2SOb">如果激活时间还不到第一次触发时间（如14:10激活），那第一次触发在14:30会准时进行。</li><li data-pid="vax2nEQt">如果激活时间超过第一次触发（如15:40激活），那根据catchup=True配置，会发生多次backfill操作，即把<b>所有空缺</b>的部分进行依次触发，具体就是14:00, 14:30, 15:00这几次任务。为啥最后一次不是15:30？因为在15:30这个时间点执行的其实是15:00的那一次任务。</li><li data-pid="7o8wWQ2K">如果激活时间超过第一次触发（如15:40激活），那根据catchup=False配置，会把<b>空缺的最后一次</b>进行触发。</li></ul><p data-pid="d5lJ044Y"> 综上，如果希望每30分钟触发一次，并且第一次触发发生在14:00，那么设置的start_date就应该是 13:30:00，这样在14:00的时候，就会触发第一次任务。</p></article>
+<footer>抓取时间：2026-09-26T05:49:20.862+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

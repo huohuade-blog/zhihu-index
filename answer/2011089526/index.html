@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>NLP文本分类的本质是不是其实是找相似，对于要分类的句子，在训练集里找最相似的句子？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/473632892/answer/2011089526"><meta name="description" content="我觉得这个问题很好，我来谈一谈自己的一些想法，抛砖引玉。
+找最相似的句子
+这个想法超朴素的。是不是找训练集里最相似的句子，然后把最相似的句子的label给要预测的句子不就好了吗？
+在图里面，这叫做single link。但这个问题也是很明显的。如果这样本的标签有错误怎么办？那你预测是不是错了？如果你相似度的衡量有问题怎"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>NLP文本分类的本质是不是其实是找相似，对于要分类的句子，在训练集里找最相似的句子？</h1><p class="muted">霍华德 · 发布：<time>2021-07-21T05:43:35+00:00</time> · 更新：2021-07-21T05:43:35+00:00</p>
+<p><a href="https://www.zhihu.com/question/473632892/answer/2011089526" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="0iqFqKwe">我觉得这个问题很好，我来谈一谈自己的一些想法，抛砖引玉。</p><ol><li data-pid="DOqF7XHG"><b>找最相似的句子</b></li></ol><p data-pid="cwmW18QP">这个想法超朴素的。是不是找训练集里最相似的句子，然后把最相似的句子的label给要预测的句子不就好了吗？</p><p data-pid="p5iMlL9a">在图里面，这叫做single link。但这个问题也是很明显的。如果这样本的标签有错误怎么办？那你预测是不是错了？如果你相似度的衡量有问题怎么办？那是不是预测也错啦？</p><p data-pid="gIlyl-Kk">机器学习时代有无数的科学家，验证过这种一言堂式的分类方法，效果并不好。</p><p data-pid="zO8QKuck">2.<b> 找topk个最相似的句子</b></p><p data-pid="zDP5ruoe">一言堂不好，那咱们就来民主投票嘛。找topk最相似的句子。根据每个句子所具有的标签进行投票，获得票数最多的那个标签就是预测句子的标签。这就是knn classifier，Sklearn那里面都有实现。</p><p data-pid="X8Gcvaa4">但一般实践下来，效果也不是最好的。只考虑topk个最相似的句子，那其他样本的意见就不考虑了吗？</p><p data-pid="yxlo9aB0">3. <b>找到所有样本的中心</b></p><p data-pid="KOIA4bP7">既然要考虑所有样本的意见。最简单的办法就是把所有样本的表示都拿出来，然后求一个他们的中心喽。然后预测的句子和所有类的中心计算距离，距离最近的那个中心就是句子的标签。</p><p data-pid="iBRjp09t">这其实就是现在一般深度学习分类模型的框架。底层模型学习句子的表示。最后一层hidden layer就是每个类的中心。</p><p data-pid="EK5uUSh4">分类学习的过程，一方面是调节底层表示，进而调整与中心的距离。一方面是不断调整中心的位置，使得训练集的所有样本与中心的距离都接近。</p><p data-pid="DySgCYQd">抛砖引玉就到此为止，欢迎大家分享一些最新的进展。</p></article>
+<footer>抓取时间：2026-09-26T07:40:55.680+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

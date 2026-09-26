@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>word2vec缺少单词怎么办？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/329708785/answer/739525740"><meta name="description" content="1. unk技巧
+在训练word2vec之前，预留一个&lt;unk&gt;符号，把所有stopwords或者低频词都替换成unk，之后使用的时候，也要保留一份词表，对于不在word2vec词表内的词先替换为unk。
+2. subword技巧
+这个技巧出自fasttext，简而言之就是对oov词进行分词，分词之后再查找，找到的就保"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>word2vec缺少单词怎么办？</h1><p class="muted">霍华德 · 发布：<time>2019-07-06T07:56:20+00:00</time> · 更新：2019-07-06T07:56:20+00:00</p>
+<p><a href="https://www.zhihu.com/question/329708785/answer/739525740" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="qx-REZx_">1. unk技巧</p><p data-pid="UfmetBrT">在训练word2vec之前，预留一个&lt;unk&gt;符号，把所有stopwords或者低频词都替换成unk，之后使用的时候，也要保留一份词表，对于不在word2vec词表内的词先替换为unk。</p><p data-pid="lg-kPJwe">2. subword技巧</p><p data-pid="UX_5t48h">这个技巧出自fasttext，简而言之就是对oov词进行分词，分词之后再查找，找到的就保留，找不到的继续分词，直到最后分到字级别，肯定是可以找到的对应字向量的。</p><p data-pid="Y2xU5T86">3. BPE技巧</p><p data-pid="siW2SdSN">BPE(byte pair encoder)，字节对编码，也可以叫做digram coding双字母组合编码。BPE首先把一个完整的句子分割为单个的字符，频率最高的相连字符对合并以后加入到词表中，直到达到目标词表大小。对测试句子采用相同的subword分割方式。BPE分割的优势是它可以较好的平衡词表大小和需要用于句子编码的token数量。BPE的缺点在于，它不能提供多种分割的概率。</p><p data-pid="y5zO3VSh">此外还有很多技巧啦，如word2vec的增量学习，这里就不赘述了。</p><p></p></article>
+<footer>抓取时间：2026-09-26T07:45:40.112+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>深度学习神经网络对于尺寸不同的图片如何处理？resize？crop？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/360010590/answer/1697449851"><meta name="description" content="图片预处理对模型效果影响是巨大的，而且根据任务不用，预处理的方式也会不同。这里分享几个办法吧。以下方法，均基于PIL实现。
+from
+PIL
+import
+Image
+,
+ImageChops
+中心裁剪center crop：先比较长边和短边，以短边为边长从图片中心裁剪出一个正方形。
+def
+center_crop_o"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>深度学习神经网络对于尺寸不同的图片如何处理？resize？crop？</h1><p class="muted">霍华德 · 发布：<time>2021-01-25T12:52:56+00:00</time> · 更新：2021-01-25T12:52:56+00:00</p>
+<p><a href="https://www.zhihu.com/question/360010590/answer/1697449851" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="OVwsRuca">图片预处理对模型效果影响是巨大的，而且根据任务不用，预处理的方式也会不同。这里分享几个办法吧。以下方法，均基于PIL实现。</p><div class="highlight"><pre><code class="language-python"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageChops</span></code></pre></div><ol><li data-pid="ilmqDaY6">中心裁剪center crop：先比较长边和短边，以短边为边长从图片中心裁剪出一个正方形。</li></ol><div class="highlight"><pre><code class="language-python"><span class="k">def</span> <span class="nf">center_crop_obj_arr</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
+    <span class="n">iw</span><span class="p">,</span> <span class="n">ih</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">if</span> <span class="n">iw</span> <span class="o">&gt;</span> <span class="n">ih</span><span class="p">:</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">iw</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">ih</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">iw</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">ih</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">bottom</span> <span class="o">=</span> <span class="n">ih</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">iw</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">ih</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">iw</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">bottom</span> <span class="o">=</span> <span class="n">ih</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">iw</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">im</span></code></pre></div><p data-pid="b7C7jJVQ">2. 四周填充：先比较长边和短边，以长边为边长，对图片周围进行填充，从而得到一个带黑边的正方形。</p><div class="highlight"><pre><code class="language-python"><span class="k">def</span> <span class="nf">expand2square</span><span class="p">(</span><span class="n">pil_img</span><span class="p">,</span> <span class="n">background_color</span><span class="p">):</span>
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">pil_img</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">if</span> <span class="n">width</span> <span class="o">==</span> <span class="n">height</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pil_img</span>
+    <span class="k">elif</span> <span class="n">width</span> <span class="o">&gt;</span> <span class="n">height</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">pil_img</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">width</span><span class="p">),</span> <span class="n">background_color</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">pil_img</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">height</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">pil_img</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">background_color</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">pil_img</span><span class="p">,</span> <span class="p">((</span><span class="n">height</span> <span class="o">-</span> <span class="n">width</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span></code></pre></div><p data-pid="JIXwBssA">3. 三重裁剪three crop：类比pytorch里的fivecrop和tencrop，从图片中裁剪左中右（横屏）或者上中下（竖屏）三个正方形图片</p><div class="highlight"><pre><code class="language-python"><span class="k">def</span> <span class="nf">three_crop</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
+    <span class="s1">'''
+</span><span class="s1">    three crop
+</span><span class="s1">    '''</span>
+
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">if</span> <span class="n">width</span> <span class="o">&gt;</span> <span class="n">height</span><span class="p">:</span>
+        <span class="n">center_img_left</span> <span class="o">=</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">center_img_right</span> <span class="o">=</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">center_img_top</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">center_img_bottom</span> <span class="o">=</span> <span class="n">height</span>
+        <span class="n">center_img</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">center_img_left</span><span class="p">,</span> <span class="n">center_img_top</span><span class="p">,</span>
+                              <span class="n">center_img_right</span><span class="p">,</span> <span class="n">center_img_bottom</span><span class="p">))</span>
+        <span class="n">left_img_left</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">left_img_right</span> <span class="o">=</span> <span class="n">height</span>
+        <span class="n">left_img_top</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">left_img_bottom</span> <span class="o">=</span> <span class="n">height</span>
+        <span class="n">left_img</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">left_img_left</span><span class="p">,</span> <span class="n">left_img_top</span><span class="p">,</span>
+                            <span class="n">left_img_right</span><span class="p">,</span> <span class="n">left_img_bottom</span><span class="p">))</span>
+        <span class="n">right_img_left</span> <span class="o">=</span> <span class="n">width</span> <span class="o">-</span> <span class="n">height</span>
+        <span class="n">right_img_right</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="n">right_img_top</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">right_img_bottom</span> <span class="o">=</span> <span class="n">height</span>
+        <span class="n">right_img</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">right_img_left</span><span class="p">,</span> <span class="n">right_img_top</span><span class="p">,</span>
+                             <span class="n">right_img_right</span><span class="p">,</span> <span class="n">right_img_bottom</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">left_img</span><span class="p">,</span> <span class="n">center_img</span><span class="p">,</span> <span class="n">right_img</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">center_img_left</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">center_img_right</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="n">center_img_top</span> <span class="o">=</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">center_img_bottom</span> <span class="o">=</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">center_img</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">center_img_left</span><span class="p">,</span> <span class="n">center_img_top</span><span class="p">,</span>
+                              <span class="n">center_img_right</span><span class="p">,</span> <span class="n">center_img_bottom</span><span class="p">))</span>
+        <span class="n">top_img_left</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">top_img_right</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="n">top_img_top</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">top_img_bottom</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="n">top_img</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">crop</span><span class="p">((</span><span class="n">top_img_left</span><span class="p">,</span> <span class="n">top_img_top</span><span class="p">,</span>
+                           <span class="n">top_img_right</span><span class="p">,</span> <span class="n">top_img_bottom</span><span class="p">))</span>
+        <span class="n">bottom_img_left</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">bottom_img_right</span> <span class="o">=</span> <span class="n">width</span>
+        <span class="n">bottom_img_top</span> <span class="o">=</span> <span class="n">height</span> <span class="o">-</span> <span class="n">width</span>
+        <span class="n">bottom_img_bottom</span> <span class="o">=</span> <span class="n">height</span>
+        <span class="n">bottom_img</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">crop</span><span class="p">([</span><span class="n">bottom_img_left</span><span class="p">,</span> <span class="n">bottom_img_top</span><span class="p">,</span>
+                              <span class="n">bottom_img_right</span><span class="p">,</span> <span class="n">bottom_img_bottom</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">top_img</span><span class="p">,</span> <span class="n">center_img</span><span class="p">,</span> <span class="n">bottom_img</span></code></pre></div><p data-pid="X5_B6Atc">以后遇到其他更好的方法，再回来补充</p></article>
+<footer>抓取时间：2026-09-26T07:02:04.537+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

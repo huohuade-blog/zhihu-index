@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>Python 科学计算有哪些提高运算速度的技巧？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/67310504/answer/252179088"><meta name="description" content="说到矩阵运算，最简单的粗暴的就是三重循环直接遍历：
+def
+matrix_multiplication_loop
+(
+A
+,
+B
+):
+m
+=
+A
+.
+shape
+[
+0
+]
+n
+=
+A
+.
+shape
+[
+1
+]
+l
+=
+B
+.
+shape
+[
+1
+]
+C
+=
+np
+.
+zeros
+([
+m
+,
+l
+])
+for
+i"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>Python 科学计算有哪些提高运算速度的技巧？</h1><p class="muted">霍华德 · 发布：<time>2017-10-30T02:28:51+00:00</time> · 更新：2017-11-03T04:07:30+00:00</p>
+<p><a href="https://www.zhihu.com/question/67310504/answer/252179088" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="SSOLIZ4G">说到矩阵运算，最简单的粗暴的就是三重循环直接遍历：</p><div class="highlight"><pre><code class="language-python"><span class="k">def</span> <span class="nf">matrix_multiplication_loop</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">m</span><span class="p">,</span><span class="n">l</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">C</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">C</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span><span class="mi">12</span><span class="p">])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span><span class="mi">256</span><span class="p">])</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">C</span> <span class="o">=</span> <span class="n">matrix_multiplication_loop</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="mi">1</span> <span class="n">loop</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">2.22</span> <span class="n">s</span> <span class="n">per</span> <span class="n">loop</span></code></pre></div><p data-pid="gSKznzg9">简直龟速了，可不可再快一点？当然，上numpy</p><div class="highlight"><pre><code class="language-python"><span class="o">%</span><span class="n">timeit</span> <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="mi">10000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">105</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span></code></pre></div><p data-pid="Ynk92mn_">numpy还是牛牛哒，一下子快了2万倍～</p><p data-pid="uAzC4jv1">可不可再快一点？当然，JIT听过吗？just in time-即时编译。我第一次听到这个词是在工业工程的精益制造里，它的含义是生产线上即时生产，需要什么马上预定什么，没有库存。numba就是just in time的一个编译器，让我们来试试：</p><div class="highlight"><pre><code class="language-python"><span class="kn">import</span> <span class="nn">numba</span>
+<span class="nd">@numba.autojit</span>
+<span class="k">def</span> <span class="nf">matrix_multiplication_numba</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">C</span> <span class="o">=</span> <span class="n">matrix_multiplication_numba</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">E</span><span class="p">)</span>
+<span class="mi">10000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">55</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span></code></pre></div><p data-pid="AlDcBFor">又快了将近一倍～</p><p data-pid="bScdLXcy">可不可再快一点？当然，只是今天没时间了，未完待续。</p><hr/><p data-pid="52nEtgA1">numpy本身是非常优秀的，把速度优化就极佳了，要打败它并不容易，我们需要借助上古的力量C语言和blas库。cython是python里实现C语言的一座桥梁，下面是用cython实现的矩阵乘法：</p><div class="highlight"><pre><code class="language-python"><span class="o">%</span><span class="n">load_ext</span> <span class="n">Cython</span>
+<span class="o">%%</span><span class="n">cython</span>
+<span class="c1">#!python</span>
+<span class="c1">#cython: boundscheck=False, wraparound=False, nonecheck=False</span>
+<span class="c1">#cython: cdivision=True</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg.cython_blas</span> <span class="nn">cimport</span> <span class="nn">dgemm</span>
+
+<span class="n">cpdef</span> <span class="n">void</span> <span class="n">cython_blas_MatrixMul</span><span class="p">(</span><span class="n">double</span><span class="p">[::</span><span class="mi">1</span><span class="p">,:]</span> <span class="n">a</span><span class="p">,</span> <span class="n">double</span><span class="p">[::</span><span class="mi">1</span><span class="p">,:]</span> <span class="n">b</span><span class="p">,</span> <span class="n">double</span><span class="p">[::</span><span class="mi">1</span><span class="p">,:]</span> <span class="n">out</span><span class="p">,</span> <span class="n">char</span><span class="o">*</span> <span class="n">TransA</span><span class="p">,</span> <span class="n">char</span><span class="o">*</span> <span class="n">TransB</span><span class="p">)</span> <span class="n">nogil</span><span class="p">:</span>
+
+    <span class="n">cdef</span><span class="p">:</span>
+        <span class="n">char</span><span class="o">*</span> <span class="n">Trans</span><span class="o">=</span><span class="s1">'T'</span>
+        <span class="n">char</span><span class="o">*</span> <span class="n">No_Trans</span><span class="o">=</span><span class="s1">'N'</span>
+        <span class="nb">int</span> <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">lda</span><span class="p">,</span> <span class="n">ldb</span><span class="p">,</span> <span class="n">ldc</span>
+        <span class="nb">int</span> <span class="n">col_a</span><span class="p">,</span> <span class="n">col_b</span>
+        <span class="n">double</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span>
+
+    <span class="c1">#dimensions of input arrays</span>
+    <span class="n">lda</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">col_a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">ldb</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">col_b</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  
+    <span class="n">ldc</span> <span class="o">=</span> <span class="n">m</span>
+
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">dgemm</span><span class="p">(</span><span class="n">TransA</span><span class="p">,</span> <span class="n">TransB</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">k</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">alpha</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">lda</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">ldb</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">beta</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">ldc</span><span class="p">)</span>
+
+<span class="o">%</span><span class="n">timeit</span> <span class="n">cython_blas_MatrixMul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="sa">b</span><span class="s2">"T"</span><span class="p">,</span><span class="sa">b</span><span class="s2">"T"</span><span class="p">)</span>
+<span class="mi">100000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">9.34</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span></code></pre></div><p data-pid="K2KtcQhz">厉害吧！又快了五倍，比最开始的实现方法已经快了20万倍！这性能也已经逼近C语言了。</p><p data-pid="6naR1ZVb">可不可以再快一点？嘿嘿，当然！现在已经接近CPU的极限了，要更快我们就要买入GPU的世界了～</p><p data-pid="SvQFka_M">你们感兴趣，超过一百赞，我就写怎么使用python做GPU计算，让计算速度快破天际</p><hr/><p data-pid="heaRB8Rk">谢谢大家捧场，这么快就过100赞了。来来来，让我们继续飙车～</p><p data-pid="RnJjq-ML">GPU相比CPU并非在所有情况下都更快，小矩阵时，矩阵可以直接存储在CPU的cache里，CPU可以快速访问，这个时候CPU会比GPU快。但是当遇到大矩阵时，GPU的威力就显示出来了。让我们先把矩阵扩大一千倍来看看：</p><div class="highlight"><pre><code class="language-python"><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="mi">3000</span><span class="p">,</span><span class="mi">1280</span><span class="p">])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">([</span><span class="mi">1280</span><span class="p">,</span><span class="mi">2560</span><span class="p">])</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3000</span><span class="p">,</span><span class="mi">2560</span><span class="p">])</span></code></pre></div><p data-pid="h0CCfGpL">先用numpy做baseline：</p><div class="highlight"><pre><code class="language-bro">%timeit C = np.dot(A,B)
+1 loop, best of 3: 582 ms per loop</code></pre></div><p data-pid="Kq7jYY_E">可怕，一下子慢了5000倍。来试试，cython:</p><div class="highlight"><pre><code class="language-python"><span class="o">%</span><span class="n">timeit</span> <span class="n">cython_blas_MatrixMul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="sa">b</span><span class="s2">"T"</span><span class="p">,</span><span class="sa">b</span><span class="s2">"T"</span><span class="p">)</span>
+<span class="mi">1</span> <span class="n">loop</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">280</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span></code></pre></div><p data-pid="i-c0hvN1">快了一倍，可是还要280ms。让我们来试试GPU吧。先用pyculib走一波，pyculib是cuda在Python里的一个开源库，集成了cudablas一系列算法，非常好用：</p><div class="highlight"><pre><code class="language-python"><span class="kn">from</span> <span class="nn">pyculib</span> <span class="kn">import</span> <span class="n">blas</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">Cres</span> <span class="o">=</span> <span class="n">blas</span><span class="o">.</span><span class="n">gemm</span><span class="p">(</span><span class="s1">'N'</span><span class="p">,</span> <span class="s1">'N'</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="mi">1</span> <span class="n">loop</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">140</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span></code></pre></div><p data-pid="uOVXEPAb">哇塞，一下快了一倍，GPU果然厉害～</p><p data-pid="EdXVWTuW">可不可以再快一点？那是必须的。tensorflow是Google开源的深度学习框架，矩阵方面内部优化很多：</p><div class="highlight"><pre><code class="language-python"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">3000</span><span class="p">,</span><span class="mi">1280</span><span class="p">])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="mi">1280</span><span class="p">,</span><span class="mi">2560</span><span class="p">])</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="o">%</span><span class="n">timeit</span> <span class="n">result</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="mi">100</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">4.83</span> <span class="n">ms</span> <span class="n">per</span> <span class="n">loop</span></code></pre></div><p data-pid="am4_Q4vb">哇咔咔，比numpy快了100倍！tensorflow果然是Google的技术名不虚传！</p><p data-pid="usmKF73K">这就是终点了吗？还能更快吗？答案是肯定的，我听NVIDIA的工程师说，如果你用C语言编写的cuDNN直接操作GPU指针还能比tensorflow快３倍～但那就脱离python的范畴了。看了这么多，有木有觉得计算机真是博大精深！勇敢的少年们，快来拥抱CS吧～</p></article>
+<footer>抓取时间：2026-09-26T05:56:28.584+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

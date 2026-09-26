@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>自然语言处理中如何在短文本中进行内容过滤？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/61225419/answer/548101752"><meta name="description" content="来来来，手把手送干货了。
+1.找/准备一份场景相似的数据集
+你问题中提到的是问题-求助，我简单就理解为问答模式了，那么第一步就是找\准备一份问答数据集，如百度推出的中文问答数据集WebQA:
+百度的中文问答数据集WebQA
+密码: 6fbf
+2. 用问题和答案组成&quot;问题-答案对&quot;
+把数据集里的问题和答案配对，并抽取他们"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>自然语言处理中如何在短文本中进行内容过滤？</h1><p class="muted">霍华德 · 发布：<time>2018-12-08T15:00:21+00:00</time> · 更新：2018-12-08T15:05:23+00:00</p>
+<p><a href="https://www.zhihu.com/question/61225419/answer/548101752" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="rQ0lCPJu">来来来，手把手送干货了。</p><h2><b>1.找/准备一份场景相似的数据集</b></h2><p data-pid="Eoj-XHBq">你问题中提到的是问题-求助，我简单就理解为问答模式了，那么第一步就是找\准备一份问答数据集，如百度推出的中文问答数据集WebQA:</p><p data-pid="B1g9j5MC"><a class="wrap external" href="https://pan.baidu.com/share/init?surl=pLXEYtd" rel="noopener noreferrer" target="_blank">百度的中文问答数据集WebQA</a>   密码: 6fbf</p><h2><b>2. 用问题和答案组成"问题-答案对"</b></h2><p data-pid="BS5Fr2ru">把数据集里的问题和答案配对，并抽取他们的配对特征，如tf-idf相似度，词向量相似度，标题n-gram相似度，句向量相似度等等。</p><p data-pid="WbwaQ6Uh">更有效的是直接用QA数据训练一个相似度计算模型，这方面深度学习的进展如火如荼，你可以参考一下中科院提出的文本匹配开源工具MatchZoo：</p><p data-pid="gzDc2x_A"><a class="wrap external" href="https://github.com/NTMC-Community/MatchZoo" rel="noopener noreferrer" target="_blank">NTMC-Community/MatchZoo</a></p><p data-pid="BCCkKKpr">同时，可以随机抽取不相关答案与问题组成负例。想更有效一些，可以做一下hard example mining，把那些用简单相似度解决不了的例子抽出来，人工整理为负例。</p><h2>3. 训练一个"问题-答案对"的相关性分类器</h2><p data-pid="hvtdAT-K">用上面准备好的数据训练一个二分类器，简单就是判断，问题-答案是否相关。你可以尝试各种模型啦，但在小数据下强烈推荐SVM。SVM的泛化能力真心强。数据比较多的话，可以试试深度学习。</p><h2>4. 垃圾内容过滤器</h2><p data-pid="jcJ946qK">"问题-答案对"的相关性分类器训练好之后，可以用使用了。对输入的文本进行分句或分段，看你的实际场景。然后一一和问题组成"问题-答案对"，然后用分类器对其进行分类，如果是相关的，就保留，是不相关的，就过滤。</p><p class="ztext-empty-paragraph"><br/></p><p data-pid="0bhSl-44">完美解决~纯干货，我觉得我可以找你收1000块咨询费！</p></article>
+<footer>抓取时间：2026-09-26T08:00:55.754+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

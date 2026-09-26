@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>CNN 网络应该如何设计？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/279077251/answer/405037989"><meta name="description" content="为什么卷积核都是奇数？
+设原始图像为
+维，卷积核尺寸为
+，在没有padding和stride为1的情况下，输出尺寸为
+在有padding的情况下，padding尺寸为
+，输出尺寸为：
+在有same padding的情况下，我们希望输出尺寸与输入尺寸一致，所以
+所以我们可以看出，为了使得
+取整数，我们需要使用奇数的卷积核"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>CNN 网络应该如何设计？</h1><p class="muted">霍华德 · 发布：<time>2018-05-30T05:26:52+00:00</time> · 更新：2018-05-30T06:28:11+00:00</p>
+<p><a href="https://www.zhihu.com/question/279077251/answer/405037989" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><h2>为什么卷积核都是奇数？</h2><ol><li data-pid="VoKpAL2Z">设原始图像为 <img alt="n\times n" decoding="async" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=n%5Ctimes+n"/> 维，卷积核尺寸为 <img alt="f \times f " decoding="async" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=f+%5Ctimes+f+"/> ，在没有padding和stride为1的情况下，输出尺寸为 <img alt="(n-f+1) \times (n-f+1)" decoding="async" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%28n-f%2B1%29+%5Ctimes+%28n-f%2B1%29"/></li><li data-pid="uOwYGlzn">在有padding的情况下，padding尺寸为 <img alt="p" decoding="async" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=p"/> ，输出尺寸为： <img alt="(n+2p-f+1) \times (n+2p-f+1) " decoding="async" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=%28n%2B2p-f%2B1%29+%5Ctimes+%28n%2B2p-f%2B1%29+"/></li><li data-pid="Oc009MN0">在有same padding的情况下，我们希望输出尺寸与输入尺寸一致，所以 <img alt="n+2p-f+1= n \Rightarrow p=\frac{f-1}{2}" decoding="async" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=n%2B2p-f%2B1%3D+n+%5CRightarrow+p%3D%5Cfrac%7Bf-1%7D%7B2%7D"/></li><li data-pid="X8Z2uIRq">所以我们可以看出，为了使得 <img alt="p" decoding="async" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=p"/> 取整数，我们需要使用奇数的卷积核尺寸，否则我们可能会面临非对称padding的情况，既左边多一点，或者右边多一点，这样是不合理的。</li><li data-pid="h0Z0f-NZ">另外一个重要原因是奇数卷积核尺寸，我们有对称中心点，中心点左边和右边是对称的，上面和下面是对称的。而偶数卷积核则没有这样的中心点。</li></ol></article>
+<footer>抓取时间：2026-09-26T08:05:13.944+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

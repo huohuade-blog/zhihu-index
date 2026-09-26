@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>请问如何不使用 Python 等工具找出英文文档中出现次数最多的单词？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/269355202/answer/347346420"><meta name="description" content="来个shell一行流，工科生就是这么傲骄：
+tr &#x27;A-Z&#x27; &#x27;a-z&#x27; &lt; SomeText.txt|tr –sc &#x27;A-Za-z&#x27; &#x27;\n&#x27;|sort|uniq –c|sort –nr|head -1"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>请问如何不使用 Python 等工具找出英文文档中出现次数最多的单词？</h1><p class="muted">霍华德 · 发布：<time>2018-03-21T14:53:34+00:00</time> · 更新：2018-03-21T14:55:39+00:00</p>
+<p><a href="https://www.zhihu.com/question/269355202/answer/347346420" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="c6iUIqV-">来个shell一行流，工科生就是这么傲骄：</p><div class="highlight"><pre><code class="language-ps1con">tr 'A-Z' 'a-z' &lt; SomeText.txt|tr –sc 'A-Za-z' '\n'|sort|uniq –c|sort –nr|head -1</code></pre></div></article>
+<footer>抓取时间：2026-09-26T07:56:37.214+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

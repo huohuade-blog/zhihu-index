@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict');
+const search=require('../archive-search/engine.js');
+const docs=search.prepare([{title:'Alpha',body:'芯片与大学研究 <script>',date:'2020-01-01',type:'answer',url:'./1.html'},{title:'芯片',body:'另一篇',date:'2019-01-01',type:'article',url:'./2.html'}]);
+assert.equal(search.search(docs,'芯片','all','relevance')[0].url,'./2.html');
+assert.equal(search.search(docs,'芯片 大学','all','relevance').length,1);
+assert.equal(search.search(docs,'芯片','article','relevance').length,1);
+assert.equal(search.search(docs,'芯片','all','date')[0].url,'./1.html');
+assert.equal(search.search(docs,'','all','date').length,2);
+assert.equal(search.search(docs,'missing','all','date').length,0);
+assert(!search.highlight('<script>','<script>').includes('<script>'));
+assert.equal(search.highlight('[','['),'<mark>[</mark>');
+assert.equal(search.search(docs,'ALPHA','all','relevance').length,1);
+assert(search.highlight(search.snippet(docs[0],'大学'),'大学').includes('<mark>大学</mark>'));
+console.log('Search engine: body-only matches, multiword AND, ranking, filter, date, empty, literal punctuation, escaping: PASS');

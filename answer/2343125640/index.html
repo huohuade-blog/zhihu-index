@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>机器学习中的机器是如何分辨哪些是有用的知识，哪些是没用的信息呢？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/514064983/answer/2343125640"><meta name="description" content="最直观的还是特征筛选那几个指标，p-value、互信息、chi2等，说到底还是靠统计出来的。直白点，就是看信息和label的相关性。
+很多领域早期的研究，最有用的知识（特征）是由研究者不断观察总结得出的，最明显的就是计算机视觉领域设计出的各种算子和filter。
+让机器学习深入探索陌生领域，简单粗暴的方法就是深度学习，"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>机器学习中的机器是如何分辨哪些是有用的知识，哪些是没用的信息呢？</h1><p class="muted">霍华德 · 发布：<time>2022-02-11T01:15:01+00:00</time> · 更新：2022-02-11T01:27:21+00:00</p>
+<p><a href="https://www.zhihu.com/question/514064983/answer/2343125640" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="Uh8-CBqH">最直观的还是特征筛选那几个指标，p-value、互信息、chi2等，说到底还是靠统计出来的。直白点，就是看信息和label的相关性。</p><p data-pid="yQOi7kIy">很多领域早期的研究，最有用的知识（特征）是由研究者不断观察总结得出的，最明显的就是计算机视觉领域设计出的各种算子和filter。</p><p data-pid="JU7nUu06">让机器学习深入探索陌生领域，简单粗暴的方法就是深度学习，标足够多的数据，让模型自己去学该如何抽取特征。但有些情况下，不见得效果很好。大家都想用深度学习预测股市，然后赚大钱。把股价扔给模型直接去学，大概率学了个寂寞。最终靠谱的，还是融入了大量的人类先验知识。</p><p data-pid="IVvdoDd-">如果真有什么办法，可以让机器提前知道那些知识有用，计算广告也就没有那么难做了。实际情况是，大家也不知道什么东西有用，都是猜想某类特征可能有用，然后上线去跑ab验证，有用就留下，没用就继续分析迭代。本质上，依然离不开label。</p></article>
+<footer>抓取时间：2026-09-26T07:41:29.130+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

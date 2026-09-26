@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>机器学习是一种认识世界的方式</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://zhuanlan.zhihu.com/p/35321651"><meta name="description" content="首先，要感谢机智又有漂亮女朋友的
+@张子浩
+，听君一席话，胜读十年书。
+今天，无意中想要看一看，每个学校各个专业毕业后的薪资水平，能找到各个学校的平均薪酬，也能找到各个专业的平均薪酬，可找不到每个学校按专业统计的薪酬数据。因此，这个问题就变成了：如图所示，已知道专业的平均薪酬和学校的平均薪酬，如何估计学校对应专业的平均"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>机器学习是一种认识世界的方式</h1><p class="muted">霍华德 · 发布：<time>2018-04-04T20:03:38+00:00</time> · 更新：2018-04-04T20:05:53+00:00</p>
+<p><a href="https://zhuanlan.zhihu.com/p/35321651" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><img src="https://picx.zhimg.com/v2-9499ccf59241751f02b25025d8b40f51_720w.jpg?source=172ae18b" alt="文章封面" referrerpolicy="no-referrer"><p data-pid="_WAXWDbw">首先，要感谢机智又有漂亮女朋友的 <a class="member_mention" data-hash="07ebd9bac209e42fc7f06e6ae7fb4471" data-hovercard="p$b$07ebd9bac209e42fc7f06e6ae7fb4471" href="https://www.zhihu.com/people/07ebd9bac209e42fc7f06e6ae7fb4471" rel="noopener noreferrer">@张子浩</a> ，听君一席话，胜读十年书。</p><p data-pid="3vCPkCiT">今天，无意中想要看一看，每个学校各个专业毕业后的薪资水平，能找到各个学校的平均薪酬，也能找到各个专业的平均薪酬，可找不到每个学校按专业统计的薪酬数据。因此，这个问题就变成了：如图所示，已知道专业的平均薪酬和学校的平均薪酬，如何估计学校对应专业的平均薪酬？</p><figure data-size="normal"><img class="origin_image zh-lightbox-thumb" data-original="https://pic3.zhimg.com/v2-785f5dec56a8153ab5dcba8cbd9b736e_r.jpg" data-original-token="v2-785f5dec56a8153ab5dcba8cbd9b736e" data-rawheight="149" data-rawwidth="700" data-size="normal" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic3.zhimg.com/v2-785f5dec56a8153ab5dcba8cbd9b736e_r.jpg" width="700"/><figcaption>数据纯属虚构</figcaption></figure><p data-pid="JD6Yv2Zx">最简单的思路就是高中数学，联立方程求解，可是题目中有20个未知数 <img alt="x_{i}" decoding="async" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=x_%7Bi%7D"/> ，却仅有9个方程。约束条件不足，无法求出准确解。</p><p data-pid="67Fz7WuR">可是就没办法了吗？NO～我们可以用神经网络的视角来思考这个问题。求平均可以看作是，权重 <img alt="w_{i}" decoding="async" eeimg="1" loading="lazy" referrerpolicy="no-referrer" src="https://www.zhihu.com/equation?tex=w_%7Bi%7D"/> 固定为1/N（N为相应的维度）的神经网络。矩阵里的变量初始化，然后以神经网络的输出与平均值的<b>均方误差</b>作为损失函数，然后训练网络，让误差反向传播，则可给出<b>满足该约束条件且使得损失函数最小的解</b>。</p><figure data-size="normal"><img class="origin_image zh-lightbox-thumb" data-caption="" data-original="https://pic2.zhimg.com/v2-9499ccf59241751f02b25025d8b40f51_r.jpg" data-original-token="v2-9499ccf59241751f02b25025d8b40f51" data-rawheight="508" data-rawwidth="735" data-size="normal" decoding="async" loading="lazy" referrerpolicy="no-referrer" src="https://pic2.zhimg.com/v2-9499ccf59241751f02b25025d8b40f51_r.jpg" width="735"/></figure><p data-pid="VPkQgkNq">而专业和学校可以分别看作两个神经网络，而这个问题则可以转化为<b>共享参数的两个神经网络的多任务的学习问题。</b></p><p data-pid="gyx_NgxI">下面用一个玩具模型来阐述多任务学习。</p><p data-pid="Z7-zO8YX">假设我们一开始，知道正确答案：我们有3个学校，4个专业，分别的薪资用下面这个矩阵表示：</p><div class="highlight"><pre><code class="language-python"><span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">15000</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">14000</span><span class="p">,</span> <span class="mi">11000</span><span class="p">,</span> <span class="mi">9000</span><span class="p">,</span> <span class="mi">7000</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">13000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">]])</span></code></pre></div><p data-pid="DEFHRdTh">我们沿不同轴求平均值当作回归目标：</p><p data-pid="RUKVYtrm">行平均： [11250,   10250,   9250]</p><p data-pid="4UBY1zwz">列平均： [14000， 11000 ，9000 ，7000]</p><p data-pid="0S_9a14u">矩阵变量初始化，然后分别计算行的损失函数和列的损失函数，然后加在一起共同优化。下面是代码：</p><div class="highlight"><pre><code class="language-python"><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="s2">"""
+</span><span class="s2">Spyder Editor
+</span><span class="s2">
+</span><span class="s2">This is a temporary script file.
+</span><span class="s2">"""</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
+
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">15000</span><span class="p">,</span> <span class="mi">12000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">14000</span><span class="p">,</span> <span class="mi">11000</span><span class="p">,</span> <span class="mi">9000</span><span class="p">,</span> <span class="mi">7000</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">13000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">]])</span>
+
+<span class="n">col_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">row_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">global_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+
+<span class="c1">#init x with random variable</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span><span class="o">*</span><span class="n">global_avg</span>
+
+<span class="c1">#make x varible</span>
+<span class="n">x_var</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">([</span><span class="n">x_var</span><span class="p">],</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">train_step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">):</span>
+    <span class="n">row_loss</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_var</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="c1">#print (x_var[i,:])</span>
+        <span class="n">x_row_avg</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_var</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
+        <span class="n">row_loss</span> <span class="o">+=</span> <span class="p">(</span><span class="n">x_row_avg</span> <span class="o">-</span> <span class="n">row_avg</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">row_loss</span> <span class="o">=</span> <span class="n">row_loss</span><span class="o">/</span><span class="n">x_var</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="n">col_loss</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x_var</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="c1">#print (x_var[i,:])</span>
+        <span class="n">x_col_avg</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_var</span><span class="p">[:,</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">col_loss</span> <span class="o">+=</span> <span class="p">(</span><span class="n">x_col_avg</span> <span class="o">-</span> <span class="n">col_avg</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">col_loss</span> <span class="o">=</span> <span class="n">col_loss</span><span class="o">/</span><span class="n">x_var</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">total_loss</span> <span class="o">=</span> <span class="n">col_loss</span> <span class="o">+</span> <span class="n">row_loss</span>
+    <span class="k">if</span> <span class="n">train_step</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span> <span class="p">(</span><span class="n">total_loss</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">numpy</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>   <span class="c1"># 清空上一步的残余更新参数值</span>
+    <span class="n">total_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>         <span class="c1"># 误差反向传播, 计算参数更新值</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    
+<span class="k">print</span> <span class="p">(</span><span class="n">x_var</span><span class="p">)</span></code></pre></div><p data-pid="O__gHuH_">用SGD训练五百轮后，参数就已经非常接近正确答案了：</p><div class="highlight"><pre><code class="language-python"><span class="n">Variable</span> <span class="n">containing</span><span class="p">:</span>
+ <span class="mf">14998.9463</span>  <span class="mf">11999.6104</span>  <span class="mf">10000.0537</span>   <span class="mf">8000.4980</span>
+ <span class="mf">13999.1533</span>  <span class="mf">10999.8330</span>   <span class="mf">9000.2881</span>   <span class="mf">7000.7261</span>
+ <span class="mf">12999.3818</span>  <span class="mf">10000.0547</span>   <span class="mf">8000.5024</span>   <span class="mf">6000.9580</span>
+<span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">3</span><span class="n">x4</span><span class="p">]</span></code></pre></div><p data-pid="vOkrFi9G">一个看似和神经网络完全无关的问题，通过合理的分析和转化，变成一个神经网络问题，从而得到解决。机器学习实在是太酷炫了！</p><p data-pid="59IOrr57">机器学习不止是调参，更是一种认识世界的方式！</p></article>
+<footer>抓取时间：2026-09-26T05:44:49.698+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

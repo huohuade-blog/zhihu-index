@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>如何看待顶尖材料学家崔屹团队Nature Catalysis文章撤稿，因原始数据丢失，噪声无法重复？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/458152727/answer/1875410335"><meta name="description" content="反对用random函数来制造噪音的说法，完全就是误人子弟。random函数产生的随机数一般符合均匀分布或正态分布。但真实测量仪器产生噪音根本不是简单的均匀分布或者正态分布。只要算一下真实仪器的噪音能量谱，马上就露馅了。
+学化学和材料的不学信号与系统，根本无法理解测量仪器的噪音是如何产生的。做个假也做的不伦不类。比较靠谱"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>如何看待顶尖材料学家崔屹团队Nature Catalysis文章撤稿，因原始数据丢失，噪声无法重复？</h1><p class="muted">霍华德 · 发布：<time>2021-05-08T11:27:26+00:00</time> · 更新：2021-05-08T11:31:02+00:00</p>
+<p><a href="https://www.zhihu.com/question/458152727/answer/1875410335" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="nZvKzOTB">反对用random函数来制造噪音的说法，完全就是误人子弟。random函数产生的随机数一般符合均匀分布或正态分布。但真实测量仪器产生噪音根本不是简单的均匀分布或者正态分布。只要算一下真实仪器的噪音能量谱，马上就露馅了。</p><p data-pid="jwyIeNxw">学化学和材料的不学信号与系统，根本无法理解测量仪器的噪音是如何产生的。做个假也做的不伦不类。比较靠谱的做法，要先根据测量仪器的真实数据，把噪声的能量分布计算出来。然后做System identification，当然学化学和材料的也是不会懂的，因为这是自动化专业学的东西。当然也有比较方便的工具，MATLAB的核心工具箱simulink就是干这个事的。</p><p data-pid="6sinBRXE">最后，霍华德来教你天衣无缝的图谱造假：1. 先弄清楚峰背后的物理原理，共振产生的一般是洛伦兹型峰，多种因素叠加一般是高斯型峰。2. 计算系统阻尼及峰强度，如果强阻尼可能会造成峰位偏移，最好解一下偏微分方程，不要直接套公式。3. 如果两个峰比较近，还需要考虑模式耦合，可能会有能级劈裂。4.确定噪音类型，白噪音、1/f噪音，棕噪音、粉噪音及其多种混合。5. 分解噪声源，分别测量噪音能量谱，根据噪音类型及强度重新生成背景噪音。以上，是我做梦的时候梦到的[惊喜]</p></article>
+<footer>抓取时间：2026-09-26T06:22:44.908+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

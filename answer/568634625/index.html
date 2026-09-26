@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>什么时候对数据进行[0,1]归一化，什么时候[-1,1]归一化，二者分别在什么场景？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/307748349/answer/568634625"><meta name="description" content="我觉得关键差别在于数据负值对你重不重要 非常简单的一个角度 [0,1]归一化的cosine值在0-1之间 [-1,1]归一化的cosine在-1到1之间
+以文本为例，你出现单词的记数都是正的，非负的，你归一化到-1什么意思？少于平均出现次数出现的单词就是负的，多于是正的？恐怕不合理的。
+另外一个例子，例如你感情分类，你"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>什么时候对数据进行[0,1]归一化，什么时候[-1,1]归一化，二者分别在什么场景？</h1><p class="muted">霍华德 · 发布：<time>2019-01-07T11:37:20+00:00</time> · 更新：2019-01-07T11:37:20+00:00</p>
+<p><a href="https://www.zhihu.com/question/307748349/answer/568634625" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="eVLtG-5B">我觉得关键差别在于数据负值对你重不重要 非常简单的一个角度 [0,1]归一化的cosine值在0-1之间 [-1,1]归一化的cosine在-1到1之间</p><p data-pid="QqUHiCLH">以文本为例，你出现单词的记数都是正的，非负的，你归一化到-1什么意思？少于平均出现次数出现的单词就是负的，多于是正的？恐怕不合理的。</p><p data-pid="pDlAJmYR">另外一个例子，例如你感情分类，你的感情词向量，开心和悲伤，极性相反，你归一化到[-1,1]，我觉得蛮有道理的。</p><p data-pid="3rxiha-O">一家之言，更深入的探讨有请大佬 <a class="member_mention" data-hash="e3f5794fa10022aa07c05b0b9e6dc537" data-hovercard="p$b$e3f5794fa10022aa07c05b0b9e6dc537" href="https://www.zhihu.com/people/e3f5794fa10022aa07c05b0b9e6dc537" rel="noopener noreferrer">@微调</a> </p></article>
+<footer>抓取时间：2026-09-26T08:13:28.890+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

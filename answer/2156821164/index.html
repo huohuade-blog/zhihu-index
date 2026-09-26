@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>你写过哪些真正生产可用的 Python 装饰器？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/350078061/answer/2156821164"><meta name="description" content="分享一个炼丹的模块注册装饰器。这个装饰器的作用在于，可以使用外部config，快速切换代码中需要用到的模块，非常适合快速实验或者并行实验。
+首先的基本的类。
+class
+PluginManager
+:
+&quot;&quot;&quot;Plugin manager&quot;&quot;&quot;
+def
+__init__
+(
+self
+):
+self
+.
+plugin_c"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>你写过哪些真正生产可用的 Python 装饰器？</h1><p class="muted">霍华德 · 发布：<time>2021-10-06T06:21:30+00:00</time> · 更新：2021-10-06T06:25:28+00:00</p>
+<p><a href="https://www.zhihu.com/question/350078061/answer/2156821164" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="0s6pnD1F">分享一个炼丹的模块注册装饰器。这个装饰器的作用在于，可以使用外部config，快速切换代码中需要用到的模块，非常适合快速实验或者并行实验。</p><p data-pid="PVBlySi-">首先的基本的类。</p><div class="highlight"><pre><code class="language-python"><span class="k">class</span> <span class="nc">PluginManager</span><span class="p">:</span>
+    <span class="s2">"""Plugin manager"""</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_container</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">:</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">:</span><span class="nb">object</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">plugin_cls</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">plugin_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_container</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plugin_container</span><span class="p">[</span><span class="n">plugin_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">plugin_container</span><span class="p">[</span><span class="n">plugin_type</span><span class="p">][</span><span class="n">plugin_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">plugin_cls</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">plugin_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_container</span> <span class="ow">and</span> <span class="n">plugin_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_container</span><span class="p">[</span><span class="n">plugin_type</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plugin_container</span><span class="p">[</span><span class="n">plugin_type</span><span class="p">][</span><span class="n">plugin_name</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">None</span></code></pre></div><p data-pid="K3HAMd4E">然后封装两个函数，其中register_plugin便是装饰器。</p><div class="highlight"><pre><code class="language-python"><span class="n">DefaultPluginManager</span> <span class="o">=</span> <span class="n">PluginManager</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">register_plugin</span><span class="p">(</span><span class="n">plugin_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="n">DefaultPluginManager</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">plugin_type</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span>
+
+    <span class="k">return</span> <span class="n">decorator</span>
+
+<span class="k">def</span> <span class="nf">get_plugin</span><span class="p">(</span><span class="n">plugin_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">DefaultPluginManager</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_type</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">)</span></code></pre></div><p data-pid="-iCbrG87">写好一个模块，通过装饰器，把它注册一下。例如下面的BCELoss</p><div class="highlight"><pre><code class="language-python"><span class="kn">import</span> <span class="nn">plugin</span>
+
+<span class="nd">@plugin.register_plugin</span><span class="p">(</span><span class="s2">"model_loss"</span><span class="p">,</span> <span class="s1">'BCELoss'</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">BCELoss</span><span class="p">:</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">cfg</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">BCEWithLogitsLoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">'sum'</span><span class="p">)</span></code></pre></div><p data-pid="u2tRRNir">使用的时候，从注册表里取出来即可</p><div class="highlight"><pre><code class="language-python"><span class="n">loss</span> <span class="o">=</span> <span class="n">plugin</span><span class="o">.</span><span class="n">get_plugin</span><span class="p">(</span><span class="s2">"model_loss"</span><span class="p">,</span> <span class="s2">"BCELoss"</span><span class="p">)</span></code></pre></div></article>
+<footer>抓取时间：2026-09-26T06:53:02.940+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

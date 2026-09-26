@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>在电商搜索基于分词的搜索引擎中，怎么做到输入部分品牌名称可以搜索出结果？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/53664316/answer/435663047"><meta name="description" content="你这个问题和query suggestion非常类似。最好的办法是用trie tree做前缀树:
+雅 -&gt;雅诗-&gt;雅诗兰-&gt;雅诗兰黛
+当用户搜索到雅诗兰的时候自动显示提示框雅诗兰黛，让用户点，这样query既完整，又免去了做纠错。"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>在电商搜索基于分词的搜索引擎中，怎么做到输入部分品牌名称可以搜索出结果？</h1><p class="muted">霍华德 · 发布：<time>2018-07-06T09:56:21+00:00</time> · 更新：2018-07-06T17:13:29+00:00</p>
+<p><a href="https://www.zhihu.com/question/53664316/answer/435663047" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="rzCtMZHX">你这个问题和query suggestion非常类似。最好的办法是用trie tree做前缀树:</p><p data-pid="ESqq_iYX">雅 -&gt;雅诗-&gt;雅诗兰-&gt;雅诗兰黛</p><p data-pid="ZiBcJbqz">当用户搜索到雅诗兰的时候自动显示提示框雅诗兰黛，让用户点，这样query既完整，又免去了做纠错。</p></article>
+<footer>抓取时间：2026-09-26T08:23:28.282+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

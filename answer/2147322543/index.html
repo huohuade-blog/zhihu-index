@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>为什么Transformer适合做多模态任务？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/441073210/answer/2147322543"><meta name="description" content="真的吗 真的吗
+有些任务transformer不见得是最优解吧
+transformer敢拿出来在youtube8m上和nextvlad比比吗？
+终究还是要看任务目标吧
+多模态识别主要是挖掘不同模态之间的互补性，其核心在于怎么做图像和文本的融合。
+多模态匹配的重点在于如何将图像和文本这两种模态特征进行对齐。
+首先，tra"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>为什么Transformer适合做多模态任务？</h1><p class="muted">霍华德 · 发布：<time>2021-09-29T16:40:11+00:00</time> · 更新：2021-09-30T01:10:50+00:00</p>
+<p><a href="https://www.zhihu.com/question/441073210/answer/2147322543" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="kP9lBLGG">真的吗 真的吗 </p><p data-pid="G7hLQxEL">有些任务transformer不见得是最优解吧</p><p data-pid="14oPf0km">transformer敢拿出来在youtube8m上和nextvlad比比吗？</p><p data-pid="W-A6xVuT">终究还是要看任务目标吧</p><p data-pid="Cf_dfm1G">多模态识别主要是挖掘不同模态之间的互补性，其核心在于怎么做图像和文本的融合。</p><p data-pid="rIJEKp--">多模态匹配的重点在于如何将图像和文本这两种模态特征进行对齐。</p><p data-pid="U8ZsKiYL">首先，transformer这个结构最先提出是用在机器翻译上的，它诞生之初就只是单一模态的模型。并且是经典的encoder decoder结构是设计来为sequence to sequence任务服务的。你很难看出他有什么针对多模态的特殊设计。</p><p data-pid="Nf9h0NLL">然后bert火了，成为了最强文本模型。然后多模态火了，为了不失去bert这个最强文本模型，同时把单一模态的bert扩展到多模态比较容易，就诞生了一批基于transformer的多模态模型。</p><p data-pid="l1yNvaUv">但这些模型设计在我看来并不是最优，文本一侧是bert，图像一侧是resnet提特征，怎么看都比较别扭。最明显一点就是两侧的粒度都没有对齐，文本侧是token字或词，而图像侧是全局特征。比较好的建模方式，应该把图像的局部特征也转化为视觉词，形成一个类似SIFT时代码表的东西，这样文本词就可以和视觉词对齐。这样的模型就非常漂亮了。</p><p data-pid="2cmoYDE1">显然有不少研究者也发现了这个问题。所以用ViT的方式来表征是视觉，把图片分割成16×16的patch来代表视觉词，此时粒度上就有了对齐的感觉了。但依然还比较粗糙，图片里各种大大小小的物体，不可能用一个固定大小的patch来准确捕捉所有语义。</p><p data-pid="YOXVlMKi">到此为止，在transformer基础上进行了一系列改进，才使得transformer开始适合多模态任务，但依然有很多需要改进的点。但总体上来说，我对transformer多模态模型依然还是很乐观的。</p></article>
+<footer>抓取时间：2026-09-26T07:22:15.112+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>

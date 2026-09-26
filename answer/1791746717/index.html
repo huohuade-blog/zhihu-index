@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; img-src &#x27;self&#x27; https: http: data:; media-src &#x27;self&#x27; https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>神经网络，分类和回归问题，在网络结构上的区别是什么？分类比回归多一层softmax吗？诚心求教？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/415245797/answer/1791746717"><meta name="description" content="感觉现在已有的回答还没说到点上。例如，0-1的回归，我把0-1分成100个bin，每0.01当作一个类，然后用变成100类的分类任务，是不是就只是精度差异呢？进一步可以衍生几个问题：
+为什么回归任务常使用mse作为损失函数？
+为什么分类任务常用交叉熵作为损失函数?
+首先，我们要知道，
+使用特定损失函数的前提是我们对标签"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>神经网络，分类和回归问题，在网络结构上的区别是什么？分类比回归多一层softmax吗？诚心求教？</h1><p class="muted">霍华德 · 发布：<time>2021-03-21T05:45:53+00:00</time> · 更新：2021-03-21T06:24:43+00:00</p>
+<p><a href="https://www.zhihu.com/question/415245797/answer/1791746717" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p data-pid="IeOUKoZP">感觉现在已有的回答还没说到点上。例如，0-1的回归，我把0-1分成100个bin，每0.01当作一个类，然后用变成100类的分类任务，是不是就只是精度差异呢？进一步可以衍生几个问题：</p><ul><li data-pid="btZnQz8H">为什么回归任务常使用mse作为损失函数？</li><li data-pid="gP18NWAT">为什么分类任务常用交叉熵作为损失函数?</li></ul><p data-pid="qzz9BWfa">首先，我们要知道，<b>使用特定损失函数的前提是我们对标签的分布进行了某种假设</b>。</p><p data-pid="0RQJ38si">二分类问题的常见假设就是标签服从伯努利分布，多分类问题背后的假设是多项分布（Multinomial Distribution）。根据数据分布，结合最大似然估计<b>，</b>就可以推导出交叉墒的公式。</p><p data-pid="0K0jf3bU">同样的，回归问题背后的假设是标签服从正态分布，这时候根据数据分布，结合最大似然估计<b>，</b>就可以推导出mse的公式。</p><p data-pid="fozG4qUY">然后实际问题中，我们遇到的标签不一定真的服从正态分布。根据样本分布不同，大家还提出了tweedie loss、possion loss等损失函数替代mse。我说这么多，只是抛砖引玉，详细的推到大家可以看看 <a class="member_mention" data-hash="00d4fa7cf35353044264950354827fba" data-hovercard="p$b$00d4fa7cf35353044264950354827fba" href="https://www.zhihu.com/people/00d4fa7cf35353044264950354827fba" rel="noopener noreferrer">@马东什么</a> 的文章</p><a class="internal" data-draft-node="block" data-draft-type="link-card" data-entity-type="article" data-size="small" href="https://zhuanlan.zhihu.com/p/304462034" rel="noopener noreferrer"><span class="invisible">https://</span><span class="visible">zhuanlan.zhihu.com/p/30</span><span class="invisible">4462034</span><span class="ellipsis"></span></a><p></p></article>
+<footer>抓取时间：2026-09-26T06:43:58.608+00:00。本页保留来源标识；外链媒体可能失效。页面正文来自源站可见内容，不保证历史版本未被修改。</footer></body></html>
