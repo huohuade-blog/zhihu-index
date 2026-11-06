@@ -1,0 +1,16 @@
+{
+  "id": "1900636422383309667",
+  "title": "我深表怀疑 transformer如果把kv cache压缩到33个token 和rwkv的state 一样大 …",
+  "source_url": "https://www.zhihu.com/pin/1900636422383309667",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-04-29T19:43:00+08:00",
+  "votes": 15,
+  "captured_at": "2026-11-06T16:37:09.751Z",
+  "body_html": "<div><span><span>我深表怀疑 transformer如果把kv cache压缩到33个token 和rwkv的state 一样大 还能剩多少性能 <br> <a href=\"https://zhuanlan.zhihu.com/p/1900501131328755136\" rel=\"noopener noreferrer\">上交大等探索键值压缩的边界：MILLION开源框架定义模型量化推理新范式，入选顶会DAC 2025</a></span></span></div>",
+  "body_text": "我深表怀疑 transformer如果把kv cache压缩到33个token 和rwkv的state 一样大 还能剩多少性能 上交大等探索键值压缩的边界：MILLION开源框架定义模型量化推理新范式，入选顶会DAC 2025",
+  "images": [],
+  "related": []
+}

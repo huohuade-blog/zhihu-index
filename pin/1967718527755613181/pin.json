@@ -1,0 +1,21 @@
+{
+  "id": "1967718527755613181",
+  "title": "无论怎么说，很多小trick（小到几乎不可能单独发paper），例如token-shift和lora-mlp都已…",
+  "source_url": "https://www.zhihu.com/pin/1967718527755613181",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-10-31T22:27:00+08:00",
+  "votes": 17,
+  "captured_at": "2026-11-06T16:35:54.688Z",
+  "body_html": "<div><span><span>无论怎么说，很多小trick（小到几乎不可能单独发paper），例如token-shift和lora-mlp都已经潜移默化地影响到社区，该给的credit应该给到RWKV。 <a href=\"https://zhuanlan.zhihu.com/p/1967712037028238104?share_code=sZV3kD2wCaxb&amp;utm_psn=1967718513088102582\" rel=\"noopener noreferrer\">RWKV-7之小参数设计</a> </span></span></div><p>引用：<a href=\"https://zhuanlan.zhihu.com/p/1967712037028238104?share_code=sZV3kD2wCaxb&amp;utm_psn=1967718513088102582\" rel=\"noopener noreferrer\">查看被引用的知乎内容</a></p>",
+  "body_text": "无论怎么说，很多小trick（小到几乎不可能单独发paper），例如token-shift和lora-mlp都已经潜移默化地影响到社区，该给的credit应该给到RWKV。 RWKV-7之小参数设计",
+  "images": [],
+  "related": [
+    {
+      "title": "查看被引用的知乎内容",
+      "url": "https://zhuanlan.zhihu.com/p/1967712037028238104?share_code=sZV3kD2wCaxb&utm_psn=1967718513088102582"
+    }
+  ]
+}

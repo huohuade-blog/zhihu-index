@@ -1,0 +1,16 @@
+{
+  "id": "1755743174642180096",
+  "title": "teacher forcing是假问题 | 讨论下一个token预测时，我们可能正在走进陷阱 一边诟病teach…",
+  "source_url": "https://www.zhihu.com/pin/1755743174642180096",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2024-03-25T23:49:00+08:00",
+  "votes": 2,
+  "captured_at": "2026-11-06T16:37:42.724Z",
+  "body_html": "<div><span><span>teacher forcing是假问题 | <a href=\"https://zhuanlan.zhihu.com/p/688892002?utm_psn=1755742879903825920\" rel=\"noopener noreferrer\">讨论下一个token预测时，我们可能正在走进陷阱</a> <br>一边诟病teacher forcing 一边gpt高歌猛进  我就觉得很好笑 </span></span></div>",
+  "body_text": "teacher forcing是假问题 | 讨论下一个token预测时，我们可能正在走进陷阱 一边诟病teacher forcing 一边gpt高歌猛进 我就觉得很好笑",
+  "images": [],
+  "related": []
+}

@@ -1,0 +1,16 @@
+{
+  "id": "1967333516728566029",
+  "title": "失败小节：基于state的度量学习 | 我之前的idea，我用RWKV提取query的state，和doc的st…",
+  "source_url": "https://www.zhihu.com/pin/1967333516728566029",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-10-30T20:59:00+08:00",
+  "votes": 15,
+  "captured_at": "2026-11-06T16:35:54.625Z",
+  "body_html": "<div><span><span>失败小节：基于state的度量学习 | 我之前的idea，我用RWKV提取query的state，和doc的state，然后用小网络学一个metric function。<br>然后我就可以用state做各种事情了，岂不妙哉？<br>模型能收敛，但效果始终差 10 个点。<br>我猜测是没有MLP层还是不行，缺乏世界知识，state里只有上下文知识。<br>另外state里的矩阵是有结构的，这个结构和模型架构高度关联。试图用神经网络作为万能逼近器，是没有办法完全充分利用状态里的信息的。</span></span></div>",
+  "body_text": "失败小节：基于state的度量学习 | 我之前的idea，我用RWKV提取query的state，和doc的state，然后用小网络学一个metric function。 然后我就可以用state做各种事情了，岂不妙哉？ 模型能收敛，但效果始终差 10 个点。 我猜测是没有MLP层还是不行，缺乏世界知识，state里只有上下文知识。 另外state里的矩阵是有结构的，这个结构和模型架构高度关联。试图用神经网络作为万能逼近器，是没有办法完全充分利用状态里的信息的。",
+  "images": [],
+  "related": []
+}

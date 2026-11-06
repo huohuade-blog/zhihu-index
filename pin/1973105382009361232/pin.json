@@ -1,0 +1,29 @@
+{
+  "id": "1973105382009361232",
+  "title": "帮前同事宣传一下他们最近的工作 | 他们的研究藏着两大颠覆认知的关键发现：一是足够大的Rollout数量是模型训…",
+  "source_url": "https://www.zhihu.com/pin/1973105382009361232",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-11-15T19:19:00+08:00",
+  "votes": 115,
+  "captured_at": "2026-11-06T16:35:08.532Z",
+  "body_html": "<div><span><span>帮前同事宣传一下他们最近的工作 | 他们的研究藏着两大颠覆认知的关键发现：一是足够大的Rollout数量是模型训练的核心前提，样本不足直接导致模型 “学不会”，而当前多数尝试中Rollout的缩放潜力仍未被充分挖掘，这无疑为后续研究打开了新方向；二是针对真正的难题，聚焦单题深耕训练竟能实现效果跃升，打破了 “数据越多越好” 的固有认知，在强化学习领域走出了 “少而精” 的新路径，值得行业反复探讨借鉴！</span></span></div><figure><img src=\"https://pic2.zhimg.com/100/v2-2ab8271d12d5c2d294e1d1c7e9108d19_r.jpg\" alt=\"想法配图\" loading=\"lazy\" width=\"1230\" height=\"1012\"></figure><figure><img src=\"https://pica.zhimg.com/100/v2-c1e9419426db08db6aadfa78c69bec54_r.jpg\" alt=\"想法配图\" loading=\"lazy\" width=\"944\" height=\"677\"></figure>",
+  "body_text": "帮前同事宣传一下他们最近的工作 | 他们的研究藏着两大颠覆认知的关键发现：一是足够大的Rollout数量是模型训练的核心前提，样本不足直接导致模型 “学不会”，而当前多数尝试中Rollout的缩放潜力仍未被充分挖掘，这无疑为后续研究打开了新方向；二是针对真正的难题，聚焦单题深耕训练竟能实现效果跃升，打破了 “数据越多越好” 的固有认知，在强化学习领域走出了 “少而精” 的新路径，值得行业反复探讨借鉴！",
+  "images": [
+    {
+      "alt": "cover",
+      "height": "1012",
+      "src": "https://pic2.zhimg.com/100/v2-2ab8271d12d5c2d294e1d1c7e9108d19_r.jpg",
+      "width": "1230"
+    },
+    {
+      "alt": "cover",
+      "height": "677",
+      "src": "https://pica.zhimg.com/100/v2-c1e9419426db08db6aadfa78c69bec54_r.jpg",
+      "width": "944"
+    }
+  ],
+  "related": []
+}

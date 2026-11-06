@@ -1,0 +1,23 @@
+{
+  "id": "2082252194083087736",
+  "title": "原项目pen + 参考项目apple + 可验证的结果 = SuperPower | 经验之谈，给模型一个可验证…",
+  "source_url": "https://www.zhihu.com/pin/2082252194083087736",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-09-12T23:45:00+08:00",
+  "votes": 15,
+  "captured_at": "2026-11-06T16:31:58.740Z",
+  "body_html": "<div><span><span>原项目pen + 参考项目apple + 可验证的结果 = SuperPower | <p>经验之谈，给模型一个可验证的结果会非常有助于它把事情干好</p><p>把EmbeddingRWKV迁移到纯C了，参考了kaparthy的llm.c</p><p>依赖非常少，基本任何平台都可以快速编译并运行</p><p><a href=\"https://link.zhihu.com/?target=https%3A//github.com/howard-hou/EmbeddingRWKV/tree/main/rwkv-emb.c\" rel=\"noopener noreferrer\">链接</a></p></span></span></div><figure><img src=\"https://pic2.zhimg.com/100/v2-7e6ea42a80531be150b164a02918349d_r.jpg\" alt=\"想法配图\" loading=\"lazy\" width=\"1322\" height=\"605\"></figure>",
+  "body_text": "原项目pen + 参考项目apple + 可验证的结果 = SuperPower | 经验之谈，给模型一个可验证的结果会非常有助于它把事情干好 把EmbeddingRWKV迁移到纯C了，参考了kaparthy的llm.c 依赖非常少，基本任何平台都可以快速编译并运行 链接",
+  "images": [
+    {
+      "alt": "cover",
+      "height": "605",
+      "src": "https://pic2.zhimg.com/100/v2-7e6ea42a80531be150b164a02918349d_r.jpg",
+      "width": "1322"
+    }
+  ],
+  "related": []
+}

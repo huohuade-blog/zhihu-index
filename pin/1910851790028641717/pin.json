@@ -1,0 +1,29 @@
+{
+  "id": "1910851790028641717",
+  "title": "In parameters we trust | 随着Gemma被反向工程，Gemini的架构设计也浮出水面。",
+  "source_url": "https://www.zhihu.com/pin/1910851790028641717",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-05-28T00:17:00+08:00",
+  "votes": 50,
+  "captured_at": "2026-11-06T16:37:07.730Z",
+  "body_html": "<div><span><span>In parameters we trust | 随着Gemma被反向工程，Gemini的架构设计也浮出水面。<br>直接说最重要的创新点：<br>Gemini用了Per Layer Embeddings。具体而言，每一层FNN都会增加一个emb，残差连接会被下投影到 256 维（emb的维度），与对应的 PLE 向量进行逐元素乘法操作，然后再上投影回 2048 维的主通道。<br>简直和RWKV-8不谋而合，只能说英雄所见略同。<br>与此同时，三篇论文也浮出水面。分别是<br>1. MatFormer：通过在FFN模块引入层级子结构，可从单一模型中免费提取多个高精度子模型。简单说直接训练一个72B模型，然后32B，14B，7B模型全都可以从里提取出来，而且效果有保证。属实是一次训练一整个全家桶了。<br>2. LAuReL（ Learned Augmented Residual Layers）：通过引入可学习的线性变换增强残差连接。这是小改动，增加少量参数可以提升点性能。<br>3. AltUp：可以在不增加计算成本的前提下拓宽的模型维度，提升模型容量。<br> <a href=\"https://www.zhihu.com/topic/25402720\" rel=\"noopener noreferrer\">#大模型</a> </span></span></div><figure><img src=\"https://pic2.zhimg.com/100/v2-3f73592739bf3585fc8778372aba8aa5_r.jpg\" alt=\"想法配图\" loading=\"lazy\" width=\"1344\" height=\"244\"></figure><figure><img src=\"https://picx.zhimg.com/100/v2-fdf594093dff3130f8bf3afdaaea0f79_r.jpg\" alt=\"想法配图\" loading=\"lazy\" width=\"518\" height=\"833\"></figure>",
+  "body_text": "In parameters we trust | 随着Gemma被反向工程，Gemini的架构设计也浮出水面。 直接说最重要的创新点： Gemini用了Per Layer Embeddings。具体而言，每一层FNN都会增加一个emb，残差连接会被下投影到 256 维（emb的维度），与对应的 PLE 向量进行逐元素乘法操作，然后再上投影回 2048 维的主通道。 简直和RWKV-8不谋而合，只能说英雄所见略同。 与此同时，三篇论文也浮出水面。分别是 1. MatFormer：通过在FFN模块引入层级子结构，可从单一模型中免费提取多个高精度子模型。简单说直接训练一个72B模型，然后32B，14B，7B模型全都可以从里提取出来，而且效果有保证。属实是一次训练一整个全家桶了。 2. LAuReL（ Learned Augmented Residual Layers）：通过引入可学习的线性变换增强残差连接。这是小改动，增加少量参数可以提升点性能。 3. AltUp：可以在不增加计算成本的前提下拓宽的模型维度，提升模型容量。 #大模型",
+  "images": [
+    {
+      "alt": "cover",
+      "height": "244",
+      "src": "https://pic2.zhimg.com/100/v2-3f73592739bf3585fc8778372aba8aa5_r.jpg",
+      "width": "1344"
+    },
+    {
+      "alt": "cover",
+      "height": "833",
+      "src": "https://picx.zhimg.com/100/v2-fdf594093dff3130f8bf3afdaaea0f79_r.jpg",
+      "width": "518"
+    }
+  ],
+  "related": []
+}

@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>失败小节：基于state的度量学习 | 我之前的idea，我用RWKV提取query的state，和doc的st…</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/pin/1967333516728566029">
+<meta name="description" content="失败小节：基于state的度量学习 | 我之前的idea，我用RWKV提取query的state，和doc的state，然后用小网络学一个metric function。 然后我就可以用state做各种事情了，岂不妙哉？ 模型能收敛，但效果始终差 10 个点。 我猜测是没有MLP层还是不行，缺乏世界知识，state里只"></head>
+<body><nav><a href="../../?type=pin">← 返回想法索引</a></nav>
+<header><h1>失败小节：基于state的度量学习 | 我之前的idea，我用RWKV提取query的state，和doc的st…</h1><p class="muted">momo · 发布：<time>2025-10-30T20:59:00+08:00</time></p>
+<p><a href="https://www.zhihu.com/pin/1967333516728566029" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><div><span><span>失败小节：基于state的度量学习 | 我之前的idea，我用RWKV提取query的state，和doc的state，然后用小网络学一个metric function。<br>然后我就可以用state做各种事情了，岂不妙哉？<br>模型能收敛，但效果始终差 10 个点。<br>我猜测是没有MLP层还是不行，缺乏世界知识，state里只有上下文知识。<br>另外state里的矩阵是有结构的，这个结构和模型架构高度关联。试图用神经网络作为万能逼近器，是没有办法完全充分利用状态里的信息的。</span></span></div></article>
+<footer>抓取时间：2026-11-06T16:35:54.625Z。外链媒体由原站提供，可能失效。</footer></body></html>

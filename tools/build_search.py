@@ -43,7 +43,7 @@ class ArticleText(HTMLParser):
 
 def collect(root=ROOT):
     documents = []
-    for kind in ('answer', 'article'):
+    for kind in ('answer', 'article', 'pin'):
         for path in sorted((root / kind).glob('*/index.html')):
             if not path.parent.name.isdecimal():
                 continue
@@ -63,8 +63,9 @@ def build(root=ROOT):
     documents = collect(root)
     (root / 'archive-search/data.js').write_text('window.ARCHIVE_DOCS=' + json.dumps(documents, ensure_ascii=False, separators=(',', ':')) + ';\n', encoding='utf-8')
     homepage = root / 'index.html'
-    counts = {kind: sum(doc['type'] == kind for doc in documents) for kind in ('answer', 'article')}
-    stats = f'<p id="archive-stats">{counts["answer"]:,} 个回答 · {counts["article"]:,} 篇文章<br>使用真实归档正文搜索</p>'
+    counts = {kind: sum(doc['type'] == kind for doc in documents) for kind in ('answer', 'article', 'pin')}
+    stats = (f'<p id="archive-stats">{counts["answer"]:,} 个回答 · {counts["article"]:,} 篇文章'
+             f' · {counts["pin"]:,} 条想法<br>使用真实归档正文搜索</p>')
     updated, replacements = re.subn(r'<p id="archive-stats">.*?</p>', lambda _: stats, homepage.read_text(encoding='utf-8'), flags=re.S)
     if replacements != 1:
         raise ValueError('Homepage must have exactly one archive-stats element')

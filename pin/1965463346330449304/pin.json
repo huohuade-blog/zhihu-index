@@ -1,0 +1,16 @@
+{
+  "id": "1965463346330449304",
+  "title": "传统 NLP 对 tokenizer 的设计是保证一致性的。",
+  "source_url": "https://www.zhihu.com/pin/1965463346330449304",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-10-25T17:02:00+08:00",
+  "votes": 10,
+  "captured_at": "2026-11-06T16:35:55.863Z",
+  "body_html": "<div><span><span>传统 NLP 对 tokenizer 的设计是保证一致性的。那个时候真正重要的是词，词是特征的根本。所以每一段话会先根据空格分词，空格是不保留的，还有很多其他分割都是不保留的。而词本身还会做词源化的处理，把它们尽量的归一化到同一个词上去，而不会说一个词会保留很多种形态，这其实都是为了保证特征的一致性。这个case下，不知道为什么分词的时候，没有坚持贪心原则只保留最长匹配的子词（HAV） <br> <a href=\"https://zhuanlan.zhihu.com/p/1965067274642785725\" rel=\"noopener noreferrer\">Agent RL 训练中一个容易被忽视的坑：Retokenization Drift</a></span></span></div>",
+  "body_text": "传统 NLP 对 tokenizer 的设计是保证一致性的。那个时候真正重要的是词，词是特征的根本。所以每一段话会先根据空格分词，空格是不保留的，还有很多其他分割都是不保留的。而词本身还会做词源化的处理，把它们尽量的归一化到同一个词上去，而不会说一个词会保留很多种形态，这其实都是为了保证特征的一致性。这个case下，不知道为什么分词的时候，没有坚持贪心原则只保留最长匹配的子词（HAV） Agent RL 训练中一个容易被忽视的坑：Retokenization Drift",
+  "images": [],
+  "related": []
+}

@@ -1,0 +1,16 @@
+{
+  "id": "2015445079112843997",
+  "title": "OpenClaw里为何会每一轮都会把所有上下文发送？",
+  "source_url": "https://www.zhihu.com/pin/2015445079112843997",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-03-12T15:12:00+08:00",
+  "votes": 11,
+  "captured_at": "2026-11-06T16:33:45.875Z",
+  "body_html": "<div><span><span><a href=\"https://zhuanlan.zhihu.com/p/2015443839939269922?share_code=EwF8E9bI7PC1&amp;utm_psn=2015444127928575719\" rel=\"noopener noreferrer\">OpenClaw里为何会每一轮都会把所有上下文发送？</a><br>1. 我又确认了一下，openai api是stateful的，可以传一个previous response id<br>2. 小龙虾没有这么做，而是每次会发送所有历史上下文，因为小龙虾内部做了大量context engineering，导致和api的kv cache已经对不上了。</span></span></div>",
+  "body_text": "OpenClaw里为何会每一轮都会把所有上下文发送？ 1. 我又确认了一下，openai api是stateful的，可以传一个previous response id 2. 小龙虾没有这么做，而是每次会发送所有历史上下文，因为小龙虾内部做了大量context engineering，导致和api的kv cache已经对不上了。",
+  "images": [],
+  "related": []
+}

@@ -1,0 +1,16 @@
+{
+  "id": "2015205234067129539",
+  "title": "现在的大模型服务都是无状态的。",
+  "source_url": "https://www.zhihu.com/pin/2015205234067129539",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-03-11T23:25:00+08:00",
+  "votes": 31,
+  "captured_at": "2026-11-06T16:33:45.818Z",
+  "body_html": "<div><span><span>现在的大模型服务都是无状态的。因为云端服务不可能为每个用户维护一个状态。所以小龙虾 token 消耗量巨大。<br>端侧小龙虾完全可以做成有状态的，效率更高，同时 token 消耗量更小。<br> <a href=\"https://www.zhihu.com/topic/1985301838258541353\" rel=\"noopener noreferrer\">#大模型服务</a> </span></span></div>",
+  "body_text": "现在的大模型服务都是无状态的。因为云端服务不可能为每个用户维护一个状态。所以小龙虾 token 消耗量巨大。 端侧小龙虾完全可以做成有状态的，效率更高，同时 token 消耗量更小。 #大模型服务",
+  "images": [],
+  "related": []
+}

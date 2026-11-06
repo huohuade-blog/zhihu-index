@@ -13,13 +13,14 @@ class ArchiveTests(unittest.TestCase):
     def test_archive_counts_and_paths(self):
         root = Path(__file__).resolve().parents[1]
         docs = collect(root)
-        self.assertEqual(len(docs), 2187)
+        self.assertEqual(len(docs), 2847)
         self.assertEqual(sum(d['type'] == 'article' for d in docs), 107)
+        self.assertEqual(sum(d['type'] == 'pin' for d in docs), 660)
         for doc in docs:
             self.assertTrue((root / doc['url']).is_file())
         catalog = (root / 'catalog.html').read_text(encoding='utf-8')
         self.assertEqual(catalog.count('title="原页已失效，仅保留索引"'), 8)
-        self.assertEqual(catalog.count('/index.html"'), 2187)
+        self.assertEqual(catalog.count('/index.html"'), 2847)
 
 if __name__ == '__main__':
     unittest.main()

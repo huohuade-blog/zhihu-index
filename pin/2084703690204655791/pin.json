@@ -1,0 +1,29 @@
+{
+  "id": "2084703690204655791",
+  "title": "Jev 模型架构猜想 | 当然还有可能有其他变种。",
+  "source_url": "https://www.zhihu.com/pin/2084703690204655791",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-09-19T18:01:00+08:00",
+  "votes": 13,
+  "captured_at": "2026-11-06T16:31:57.503Z",
+  "body_html": "<div><span><span>Jev 模型架构猜想 | <p>当然还有可能有其他变种。例如说，对于第一个方案，在最后加一个 CLS token。或者就保留原本的 LM head，直接输出 ABCD。对于第二个方案，也可能更进一步，使用 listwise model。</p></span></span></div><figure><img src=\"https://picx.zhimg.com/100/v2-b0ad9c3c0fc1bad5548da7ac3bc4c343_r.jpg\" alt=\"想法配图\" loading=\"lazy\" width=\"1448\" height=\"1086\"></figure><figure><img src=\"https://pic4.zhimg.com/100/v2-145be5a9a0307d00a1174333fa6f93b7_r.jpg\" alt=\"想法配图\" loading=\"lazy\" width=\"1448\" height=\"1086\"></figure>",
+  "body_text": "Jev 模型架构猜想 | 当然还有可能有其他变种。例如说，对于第一个方案，在最后加一个 CLS token。或者就保留原本的 LM head，直接输出 ABCD。对于第二个方案，也可能更进一步，使用 listwise model。",
+  "images": [
+    {
+      "alt": "cover",
+      "height": "1086",
+      "src": "https://picx.zhimg.com/100/v2-b0ad9c3c0fc1bad5548da7ac3bc4c343_r.jpg",
+      "width": "1448"
+    },
+    {
+      "alt": "cover",
+      "height": "1086",
+      "src": "https://pic4.zhimg.com/100/v2-145be5a9a0307d00a1174333fa6f93b7_r.jpg",
+      "width": "1448"
+    }
+  ],
+  "related": []
+}

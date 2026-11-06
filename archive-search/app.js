@@ -6,6 +6,7 @@
   const status = document.querySelector('#status');
   const pagination = document.querySelector('#pagination');
   const retry = document.querySelector('#retry');
+  const typeLabels = new Map([['answer','回答'], ['article','文章'], ['pin','想法']]);
   const pageSize = 20;
   let documents = null;
   let loading = false;
@@ -13,7 +14,7 @@
   function readURL() {
     const params = new URLSearchParams(location.search);
     const page = Number(params.get('page'));
-    state = {query:(params.get('q') || '').slice(0,300), type:['answer','article'].includes(params.get('type')) ? params.get('type') : 'all', sort:params.get('sort') === 'date' ? 'date' : 'relevance', page:Number.isSafeInteger(page) && page > 0 ? page : 1};
+    state = {query:(params.get('q') || '').slice(0,300), type:typeLabels.has(params.get('type')) ? params.get('type') : 'all', sort:params.get('sort') === 'date' ? 'date' : 'relevance', page:Number.isSafeInteger(page) && page > 0 ? page : 1};
     input.value = state.query;
     document.querySelector('#sort').value = state.sort;
   }
@@ -33,9 +34,9 @@
     const pages = Math.max(1,Math.ceil(matches.length/pageSize));
     state.page = Math.min(state.page,pages);
     writeURL(true);
-    status.textContent = `${state.query ? '“'+state.query+'” · ' : ''}找到 ${matches.length.toLocaleString()} 篇 · 搜索范围包含标题与完整正文`;
+    status.textContent = `${state.query ? '“'+state.query+'” · ' : ''}找到 ${matches.length.toLocaleString()} 条 · 搜索范围包含标题与完整正文`;
     const start = (state.page-1)*pageSize;
-    results.innerHTML = matches.length ? matches.slice(start,start+pageSize).map(doc => `<article class="result"><div class="meta"><span class="badge">${doc.type === 'answer' ? '回答' : '文章'}</span>${engine.escape(doc.date.slice(0,10))} · ${doc.body.length.toLocaleString()} 字</div><h2><a href="${engine.escape(doc.url)}">${engine.highlight(doc.title,state.query)}</a></h2><p>${doc.body ? engine.highlight(engine.snippet(doc,state.query),state.query) : '此归档正文为图片或媒体，可打开查看。'}</p></article>`).join('') : '<p class="empty">没有找到匹配的正文。试试更短的词，或切换到“全部”。</p>';
+    results.innerHTML = matches.length ? matches.slice(start,start+pageSize).map(doc => `<article class="result"><div class="meta"><span class="badge">${typeLabels.get(doc.type)}</span>${engine.escape(doc.date.slice(0,10))} · ${doc.body.length.toLocaleString()} 字</div><h2><a href="${engine.escape(doc.url)}">${engine.highlight(doc.title,state.query)}</a></h2><p>${doc.body ? engine.highlight(engine.snippet(doc,state.query),state.query) : '此归档正文为图片或媒体，可打开查看。'}</p></article>`).join('') : '<p class="empty">没有找到匹配的正文。试试更短的词，或切换到“全部”。</p>';
     pagination.innerHTML = pages > 1 ? `<button data-page="${state.page-1}" ${state.page === 1 ? 'disabled' : ''}>上一页</button><span>${state.page} / ${pages}</span><button data-page="${state.page+1}" ${state.page === pages ? 'disabled' : ''}>下一页</button>` : '';
     results.setAttribute('aria-busy','false');
   }
@@ -51,7 +52,7 @@
       loading = false;
       try {
         const raw = window.ARCHIVE_DOCS;
-        if (!Array.isArray(raw) || raw.some(doc => !['title','body','date','url','type'].every(key => typeof doc[key] === 'string') || !/^(?:\.\/)?(?:\d+\.html|(?:answer|article)\/\d+\/index\.html)$/.test(doc.url))) throw Error('Invalid search data');
+        if (!Array.isArray(raw) || raw.some(doc => !['title','body','date','url','type'].every(key => typeof doc[key] === 'string') || !typeLabels.has(doc.type) || !/^(?:\.\/)?(?:\d+\.html|(?:answer|article|pin)\/\d+\/index\.html)$/.test(doc.url))) throw Error('Invalid search data');
         documents = engine.prepare(raw);
         delete window.ARCHIVE_DOCS;
         render();
