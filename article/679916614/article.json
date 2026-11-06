@@ -1,0 +1,15 @@
+{
+  "id": "679916614",
+  "title": "那些年做过的失败的科研（一）",
+  "source_url": "https://zhuanlan.zhihu.com/p/679916614",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2024-01-26T03:02:28+00:00",
+  "updated_at": "2024-12-18T14:13:42+00:00",
+  "votes": 7,
+  "captured_at": "2026-11-06T15:03:22.271Z",
+  "body_html": "<p>本来想填一个超大的坑的，但想想算了</p><p>实际上，也没啥，就是当年看到这个工作，觉得挺棒的，然后做法也挺简单。</p><div><a href=\"https://zhuanlan.zhihu.com/p/625440016\" rel=\"noopener noreferrer\"><span class=\"LinkCard-image LinkCard-image--default\"></span><span class=\"LinkCard-contents\"><span class=\"LinkCard-title loading\"></span><span class=\"LinkCard-desc loading\"></span></span></a></div><p>我马上就想到了，可以做成<span>instruction-aware</span>的方式来压缩prompt，效果肯定更好</p><p>然后，就马上做了个工作，结果投了个坑爹的WWW，然后说我topic不适合，把我拒了</p><p>但实际上同时期，马上就看到<span>LLMLingua</span>出来了，后面就知道完犊子了</p><p>一方面，LLMLingua和我的思路非常相近</p><p>一方面，实验也比我丰富</p><p>一方面，写的也比我好，看看人家的切入点Lingua，高下立判</p><p>确实也让我感受了一会，相似的出发点（idea），最后会结出什么样不同的果子</p><p>可以顺藤摸瓜，反思一下，造成最终结果的差异到底在哪里。</p><p>另外，paper就扔arxiv了，也不想完善了，因为已经没得救了。</p><p>最后，从这个教训中我学到了，<b>不要老想着去做那些短平快的idea</b></p><p><b>还是应该有耐心和学术taste去找那些真正重要的topic来做</b></p><p></p>",
+  "body_text": "本来想填一个超大的坑的，但想想算了 实际上，也没啥，就是当年看到这个工作，觉得挺棒的，然后做法也挺简单。 我马上就想到了，可以做成 instruction-aware 的方式来压缩prompt，效果肯定更好 然后，就马上做了个工作，结果投了个坑爹的WWW，然后说我topic不适合，把我拒了 但实际上同时期，马上就看到 LLMLingua 出来了，后面就知道完犊子了 一方面，LLMLingua和我的思路非常相近 一方面，实验也比我丰富 一方面，写的也比我好，看看人家的切入点Lingua，高下立判 确实也让我感受了一会，相似的出发点（idea），最后会结出什么样不同的果子 可以顺藤摸瓜，反思一下，造成最终结果的差异到底在哪里。 另外，paper就扔arxiv了，也不想完善了，因为已经没得救了。 最后，从这个教训中我学到了， 不要老想着去做那些短平快的idea 还是应该有耐心和学术taste去找那些真正重要的topic来做"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "2020877629490771822",
+  "title": "锐评M2RNN",
+  "source_url": "https://zhuanlan.zhihu.com/p/2020877629490771822",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-03-27T06:59:51+00:00",
+  "updated_at": "2026-03-27T06:59:51+00:00",
+  "votes": 13,
+  "captured_at": "2026-11-06T15:02:55.895Z",
+  "body_html": "<p>这篇的核心就是这里了。没理解错的话，W是一个可训练的参数，所以叫<span>Matrix-to-Matrix</span>。RWKV-7的参数是wt、alpha_t, <span>k_t向量</span>。然后<span>对角化</span>+外积 +<span>element-wise product</span>。表达能力似乎是比<span>矩阵乘法</span>弱一点。但矩阵乘法很慢的，之前大家不做就是因为慢。</p><p>但好像从结果上看，加一层这个东西似乎确实有效果上的显著提升。感觉这篇最大的价值就在这里。</p><figure><div><img loading=\"lazy\" src=\"https://pica.zhimg.com/v2-4df64f08dd19a305ba07f8fff4993586_r.jpg\" width=\"1151\"></div></figure>",
+  "body_text": "这篇的核心就是这里了。没理解错的话，W是一个可训练的参数，所以叫 Matrix-to-Matrix 。RWKV-7的参数是wt、alpha_t, k_t向量 。然后 对角化 +外积 + element-wise product 。表达能力似乎是比 矩阵乘法 弱一点。但矩阵乘法很慢的，之前大家不做就是因为慢。 但好像从结果上看，加一层这个东西似乎确实有效果上的显著提升。感觉这篇最大的价值就在这里。"
+}

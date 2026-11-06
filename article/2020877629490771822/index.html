@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>锐评M2RNN</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://zhuanlan.zhihu.com/p/2020877629490771822">
+<meta name="description" content="这篇的核心就是这里了。没理解错的话，W是一个可训练的参数，所以叫 Matrix-to-Matrix 。RWKV-7的参数是wt、alpha_t, k_t向量 。然后 对角化 +外积 + element-wise product 。表达能力似乎是比 矩阵乘法 弱一点。但矩阵乘法很慢的，之前大家不做就是因为慢。 但好像从结"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>锐评M2RNN</h1><p class="muted">momo · 发布：<time>2026-03-27T06:59:51+00:00</time> · 更新：2026-03-27T06:59:51+00:00</p>
+<p><a href="https://zhuanlan.zhihu.com/p/2020877629490771822" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>这篇的核心就是这里了。没理解错的话，W是一个可训练的参数，所以叫<span>Matrix-to-Matrix</span>。RWKV-7的参数是wt、alpha_t, <span>k_t向量</span>。然后<span>对角化</span>+外积 +<span>element-wise product</span>。表达能力似乎是比<span>矩阵乘法</span>弱一点。但矩阵乘法很慢的，之前大家不做就是因为慢。</p><p>但好像从结果上看，加一层这个东西似乎确实有效果上的显著提升。感觉这篇最大的价值就在这里。</p><figure><div><img loading="lazy" src="https://pica.zhimg.com/v2-4df64f08dd19a305ba07f8fff4993586_r.jpg" width="1151"></div></figure></article>
+<footer>抓取时间：2026-11-06T15:02:55.895Z。外链图片由原站提供，可能失效。</footer></body></html>

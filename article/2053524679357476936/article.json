@@ -1,0 +1,15 @@
+{
+  "id": "2053524679357476936",
+  "title": "SSD 存储起飞的基础逻辑就只有一个",
+  "source_url": "https://zhuanlan.zhihu.com/p/2053524679357476936",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-06-25T09:14:39+00:00",
+  "updated_at": "2026-06-27T08:02:08+00:00",
+  "votes": 62,
+  "captured_at": "2026-11-06T15:02:36.433Z",
+  "body_html": "<p><span>AI系统</span>并不是只有GPU<span>显存</span>，还需要SSD存放：</p><ul><li><b> 推理KV缓存；最最最最核心的逻辑</b></li></ul><p>其他哪些，根本不是增量，例如：</p><ul><li> 训练语料和清洗后的<span>数据集</span>； </li><li> 模型checkpoint； </li><li> 多版本模型权重</li></ul><p>这些之前的服务器一样需要，根本没道理需要增加特别多的SSD</p><p>用SSD存<span>KV cache</span>，是可以加速的，已经有一系列工作了，最出名的就是Deepseek的<span>dual path</span></p><p><a href=\"https://link.zhihu.com/?target=https%3A//arxiv.org/abs/2602.21548\" rel=\"noopener noreferrer\">DualPath: Breaking the Storage Bandwidth Bottleneck in Agentic LLM Inference</a></p><figure><div><img loading=\"lazy\" src=\"https://pica.zhimg.com/v2-3172f6b0f75b6df6fb62490f0e1cb362_r.jpg\" width=\"699\"></div></figure><p>另外就是这个</p><p><a href=\"https://zhuanlan.zhihu.com/p/2038938063070607023\" rel=\"noopener noreferrer\">Fast26 | KV Cache 的两层存储(内存+SSD)到底卡在哪？</a></p><p>说SSD用来存训练轨迹数据用于在线强化学习，根本没道理，根本不适合存储KV cache的形式，而是应该转成文本。</p><div><pre><code class=\"language-text\">错误的想法：\n用户agent数据 -&gt; KV cache -&gt; SSD -&gt; <span>Online RL</span>\n正确的想法：\n用户agent数据 -&gt; 文本 -&gt; SSD</code></pre></div><p>错在哪里，错在存训练数据的KV cache，是非常不明智的设计选择；看似省了一点GPU计算时间。</p><p>但是：</p><ol><li>模型版本被固定，和版本号严重耦合，换个版本这批数据就用不了了</li><li>占用巨量存储，根本没这个必要，跟压缩的文本相比，SSD占用量恐怕是1万倍，何必呢？</li></ol>",
+  "body_text": "AI系统 并不是只有GPU 显存 ，还需要SSD存放： 推理KV缓存；最最最最核心的逻辑 其他哪些，根本不是增量，例如： 训练语料和清洗后的 数据集 ； 模型checkpoint； 多版本模型权重 这些之前的服务器一样需要，根本没道理需要增加特别多的SSD 用SSD存 KV cache ，是可以加速的，已经有一系列工作了，最出名的就是Deepseek的 dual path DualPath: Breaking the Storage Bandwidth Bottleneck in Agentic LLM Inference 另外就是这个 Fast26 | KV Cache 的两层存储(内存+SSD)到底卡在哪？ 说SSD用来存训练轨迹数据用于在线强化学习，根本没道理，根本不适合存储KV cache的形式，而是应该转成文本。 错误的想法：\n用户agent数据 -> KV cache -> SSD -> Online RL 正确的想法：\n用户agent数据 -> 文本 -> SSD 错在哪里，错在存训练数据的KV cache，是非常不明智的设计选择；看似省了一点GPU计算时间。 但是： 模型版本被固定，和版本号严重耦合，换个版本这批数据就用不了了 占用巨量存储，根本没这个必要，跟压缩的文本相比，SSD占用量恐怕是1万倍，何必呢？"
+}

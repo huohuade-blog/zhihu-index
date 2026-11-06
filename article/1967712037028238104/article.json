@@ -1,0 +1,15 @@
+{
+  "id": "1967712037028238104",
+  "title": "RWKV-7之小参数设计",
+  "source_url": "https://zhuanlan.zhihu.com/p/1967712037028238104",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-10-31T14:20:10+00:00",
+  "updated_at": "2025-11-02T00:19:08+00:00",
+  "votes": 16,
+  "captured_at": "2026-11-06T15:03:14.573Z",
+  "body_html": "<p>我今天回答到<span>RWKV-7</span>的主要贡献在于小参数设计，DPLR(diagonal plus low rank matrix)在RWKV-7之前就有了，但相对于RWKV-7的设计相当克制（如<span>delta-net</span>），因为引入大量调制性的小参数，会使得公式非常丑陋，在学术上显得很不优雅。大家可一看截图感受下：</p><figure><div><img loading=\"lazy\" src=\"https://pic1.zhimg.com/v2-6ddd4a77cd5f73d37078e09fa0c16ef0_r.jpg\" width=\"884\"></div></figure><p>但为何这样设计，当然是为了speed-run，在训练早期<span>快速收敛</span>，获得相比其他架构更低的ppl。这点试过RWKV的都应该承认，RWKV为了speed-run做了相当多的优化，还有一系列神奇的magic-number来初始化，让模型一开始几乎几乎不浪费样本，进入收敛快速通道。</p><p>这一点，对后面很多工作都有影响，例如<span>LoRA-MLP</span>，RWKV-6里就提出，RWKV-7延续；<span>KDA</span>里也有LoRA-MLP的变种，说是“抄作业”也没问题吧。当然，后面我也意识到这个说法容易让人误解，所以我已经把那段话删了。衷心祝愿Linear Attention社区少些火药味，多些合作交流，求同存异。毕竟<span>Linear Attention</span>还有不少固有缺陷，如果真的有雄心研究出可以取代<span>Transformer</span>的大模型架构，还有很长的路要走！</p><figure><div><img loading=\"lazy\" src=\"https://pic4.zhimg.com/v2-85b33f863d810883888a96d99ea69fa5_r.jpg\" width=\"1125\"></div></figure>",
+  "body_text": "我今天回答到 RWKV-7 的主要贡献在于小参数设计，DPLR(diagonal plus low rank matrix)在RWKV-7之前就有了，但相对于RWKV-7的设计相当克制（如 delta-net ），因为引入大量调制性的小参数，会使得公式非常丑陋，在学术上显得很不优雅。大家可一看截图感受下： 但为何这样设计，当然是为了speed-run，在训练早期 快速收敛 ，获得相比其他架构更低的ppl。这点试过RWKV的都应该承认，RWKV为了speed-run做了相当多的优化，还有一系列神奇的magic-number来初始化，让模型一开始几乎几乎不浪费样本，进入收敛快速通道。 这一点，对后面很多工作都有影响，例如 LoRA-MLP ，RWKV-6里就提出，RWKV-7延续； KDA 里也有LoRA-MLP的变种，说是“抄作业”也没问题吧。当然，后面我也意识到这个说法容易让人误解，所以我已经把那段话删了。衷心祝愿Linear Attention社区少些火药味，多些合作交流，求同存异。毕竟 Linear Attention 还有不少固有缺陷，如果真的有雄心研究出可以取代 Transformer 的大模型架构，还有很长的路要走！"
+}
