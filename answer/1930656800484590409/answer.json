@@ -1,0 +1,15 @@
+{
+  "id": "1930656800484590409",
+  "title": "Transformer的ffn对于所有token参数共享吗?",
+  "source_url": "https://www.zhihu.com/question/1889261792838005326/answer/1930656800484590409",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-07-21T07:54:11+00:00",
+  "updated_at": "2025-07-21T07:54:11+00:00",
+  "votes": 14,
+  "captured_at": "2026-11-06T15:55:58.012Z",
+  "body_html": "<p>最早的attention is all you need里</p><h3>FFN为啥叫Position-wise Feed Forward</h3><p>仔细品味一下position-wise是什么意思</p>",
+  "body_text": "最早的attention is all you need里 FFN为啥叫Position-wise Feed Forward 仔细品味一下position-wise是什么意思"
+}

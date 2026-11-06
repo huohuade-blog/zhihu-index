@@ -1,0 +1,15 @@
+{
+  "id": "110683521425",
+  "title": "如何评价DeepSeek开源周第三天开源的DeepGEMM，有哪些技术亮点？",
+  "source_url": "https://www.zhihu.com/question/13400923954/answer/110683521425",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-02-26T02:36:25+00:00",
+  "updated_at": "2025-02-26T02:46:19+00:00",
+  "votes": 158,
+  "captured_at": "2026-11-06T15:57:05.234Z",
+  "body_html": "<p>尤洋之前说，部署deepseek 671B每个月亏损4个亿。</p><p>尤洋还是太草率了，他估计都没想过dpsk做了这么多深度优化。</p><figure><div><img height=\"2392\" loading=\"lazy\" src=\"https://picx.zhimg.com/v2-c7b76840b0359450b063991eff62369c_r.jpg?source=2c26e567\" width=\"1440\"></div></figure><p></p>",
+  "body_text": "尤洋之前说，部署deepseek 671B每个月亏损4个亿。 尤洋还是太草率了，他估计都没想过dpsk做了这么多深度优化。"
+}

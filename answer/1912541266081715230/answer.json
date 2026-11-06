@@ -1,0 +1,15 @@
+{
+  "id": "1912541266081715230",
+  "title": "华为推出参数规模高达 7180 亿的盘古 Ultra MoE 模型，这一突破对 AI 领域意味着什么？",
+  "source_url": "https://www.zhihu.com/question/1911841949167646404/answer/1912541266081715230",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-06-01T08:09:31+00:00",
+  "updated_at": "2025-06-01T08:31:10+00:00",
+  "votes": 41,
+  "captured_at": "2026-11-06T15:56:18.192Z",
+  "body_html": "<p>简单看了下</p><ul><li>Depth-Scaled Sandwich-Norm（DSSN）就是double norm，每层输出后又加了个norm。然后引入了训练一千层深度网络的那个trick。</li><li>TinyInit和我们在rwkv-4时提出的small emb init差不多，因为觉得这个trick不关键，就直接扔到附录里了。</li><li>没想到华为内部都还在大规模用910B，而不是最新的910C，莫非真的产能不足？</li><li>昨天才看到20级专家聊超大EP，论文里说256个专家在训练损失上表现显著优于64或128个专家，而增加到512个专家收益有限，因此选择256个专家以平衡性能和效率。那似乎说256的EP也是极限了，更大没必要了？</li></ul><p>真是用910B而不是910C哦</p><figure><div><img height=\"232\" loading=\"lazy\" src=\"https://pic1.zhimg.com/v2-329202c2b06285d9e0de4647492e7dcb_r.jpg?source=2c26e567\" width=\"1206\"></div></figure><p></p>",
+  "body_text": "简单看了下 Depth-Scaled Sandwich-Norm（DSSN）就是double norm，每层输出后又加了个norm。然后引入了训练一千层深度网络的那个trick。 TinyInit和我们在rwkv-4时提出的small emb init差不多，因为觉得这个trick不关键，就直接扔到附录里了。 没想到华为内部都还在大规模用910B，而不是最新的910C，莫非真的产能不足？ 昨天才看到20级专家聊超大EP，论文里说256个专家在训练损失上表现显著优于64或128个专家，而增加到512个专家收益有限，因此选择256个专家以平衡性能和效率。那似乎说256的EP也是极限了，更大没必要了？ 真是用910B而不是910C哦"
+}

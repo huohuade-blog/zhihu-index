@@ -1,0 +1,15 @@
+{
+  "id": "2027127344729527718",
+  "title": "Hopfield 神经网络现在是不是已经没落了？",
+  "source_url": "https://www.zhihu.com/question/376219963/answer/2027127344729527718",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-04-13T12:53:41+00:00",
+  "updated_at": "2026-04-13T12:53:41+00:00",
+  "votes": 31,
+  "captured_at": "2026-11-06T15:47:47.401Z",
+  "body_html": "<p>想起我24年做的一张PPT，从某种视角说，Transformer和<span>RWKV</span>（包括其他<span>线性注意力架构</span>）都可以看作一种现代<span>Hopfield神经网络</span>的变种。</p><figure><div><img height=\"1035\" loading=\"lazy\" src=\"https://picx.zhimg.com/v2-9146027d8d91623f9325ec2db16d1367_r.jpg?source=2c26e567\" width=\"1845\"></div></figure><p></p>",
+  "body_text": "想起我24年做的一张PPT，从某种视角说，Transformer和 RWKV （包括其他 线性注意力架构 ）都可以看作一种现代 Hopfield神经网络 的变种。"
+}

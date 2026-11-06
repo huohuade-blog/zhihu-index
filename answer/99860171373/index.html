@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>如果deepseek r1推理激活参数只有37B，是不是意味着37B的大模型就可以在垂直领域有效？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/12005197517/answer/99860171373">
+<meta name="description" content="MOE 这名字挺误导人的 我之前一直不理解为啥叫稀疏模型 实际上是这样的，假如有一个10240维度的线性层 这叫稠密矩阵或者 稠密模型 如果分成10个专家，每个维度1024 总参数量和稠密模型是一样的 每次只用2个专家，另外8个专家不用 相当于用乘了10240的矩阵 但是稀疏度是80% 即80%的参数是0 这样看MOE"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>如果deepseek r1推理激活参数只有37B，是不是意味着37B的大模型就可以在垂直领域有效？</h1><p class="muted">momo · 发布：<time>2025-02-13T04:56:48+00:00</time> · 更新：2025-02-13T06:17:12+00:00</p>
+<p><a href="https://www.zhihu.com/question/12005197517/answer/99860171373" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p><span>MOE</span>这名字挺误导人的</p><p>我之前一直不理解为啥叫稀疏模型</p><p>实际上是这样的，假如有一个10240维度的线性层</p><p>这叫稠密矩阵或者<span>稠密模型</span></p><p>如果分成10个专家，每个维度1024</p><p>总参数量和稠密模型是一样的</p><p>每次只用2个专家，另外8个专家不用</p><p>相当于用乘了10240的矩阵</p><p>但是稀疏度是80% 即80%的参数是0</p><p>这样看MOE就变成了一种<span>稀疏矩阵乘法</span>的实现方式</p><hr><p>再补充几句</p><p>清华有团队发现 <span>relu</span>的大模型</p><p>天然的稀疏度就是80%左右</p><p>这说明什么</p><p>说明你37B的垂直稠密模型</p><p>实际上激活的参数也就8B</p><p>所以懂了吧</p><p>671B就是671B</p><p>很大程度上671B MOE和671B稠密效果是一样的</p><p>但是moe的速度更快 <span>参数利用效率</span>更高</p></article>
+<footer>抓取时间：2026-11-06T15:57:10.657Z。外链媒体由原站提供，可能失效。</footer></body></html>

@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>为什么MoE(只增参数,不增计算开销)是有效的？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/1902307122399675024/answer/1903165782977913090">
+<meta name="description" content="MOE 成立的一个前提是越大的模型，越稀疏 10240维度的 稠密模型 ，每次起效也只是其中20%（ 稀疏性假设 ） 那么不如来10个专家，每个专家1024，每次激活2个专家 前者和后者参数量是一样的，但是激活参数后者是前者的20% 后面实验也证明，模型参数量越大，稀疏模型和稠密模型的效果越接近"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>为什么MoE(只增参数,不增计算开销)是有效的？</h1><p class="muted">momo · 发布：<time>2025-05-06T11:14:41+00:00</time> · 更新：2025-05-06T11:14:41+00:00</p>
+<p><a href="https://www.zhihu.com/question/1902307122399675024/answer/1903165782977913090" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p><span>MOE</span>成立的一个前提是越大的模型，越稀疏</p><p>10240维度的<span>稠密模型</span>，每次起效也只是其中20%（<span>稀疏性假设</span>）</p><p>那么不如来10个专家，每个专家1024，每次激活2个专家</p><p>前者和后者参数量是一样的，但是激活参数后者是前者的20%</p><p>后面实验也证明，模型参数量越大，稀疏模型和稠密模型的效果越接近</p></article>
+<footer>抓取时间：2026-11-06T15:56:30.603Z。外链媒体由原站提供，可能失效。</footer></body></html>

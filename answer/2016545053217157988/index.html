@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>开发一个OpenClaw的难度大吗？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/2014442407903667074/answer/2016545053217157988">
+<meta name="description" content="我没研究过 小龙虾 作者的背景。但是我看过小龙虾项目的代码，其中最主要代码就是 TS 代码 ，TypeScript。可以猜测小龙虾作者的背景是前端程序员出身。 而小龙虾整套系统的核心是什么？在我看来是一套 网关系统 。这也是我认为小龙虾为什么用起来那么丝滑的核心。作者在网关层面做了大量的事情。当一个请求进入小龙虾之后，"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>开发一个OpenClaw的难度大吗？</h1><p class="muted">momo · 发布：<time>2026-03-15T08:03:26+00:00</time> · 更新：2026-03-15T08:07:33+00:00</p>
+<p><a href="https://www.zhihu.com/question/2014442407903667074/answer/2016545053217157988" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>我没研究过<span>小龙虾</span>作者的背景。但是我看过小龙虾项目的代码，其中最主要代码就是<span>TS 代码</span>，TypeScript。可以猜测小龙虾作者的背景是前端程序员出身。</p><p>而小龙虾整套系统的核心是什么？在我看来是一套<span>网关系统</span>。这也是我认为小龙虾为什么用起来那么丝滑的核心。作者在网关层面做了大量的事情。当一个请求进入小龙虾之后，会有大量的参数检查、安全检测、需求去重。设计了任务队列，把你交给它的事情安排得整整齐齐。</p><p>返回也做得非常好，基本上是真的做到了，<b>凡事有交代，件件有着落，事事有回音</b>。简直就是完美的五星员工。别看这件事情简单，其实有大量的作者的巧思在里面。例如说一件事情短时间内做不完，也不可能等着结果返回，他就会自动设置一个定时任务，5 分钟后自动去检查那个任务结束没有，然后给你一个反馈。</p><p>小龙虾只调用 <span>API</span>，至于被 API 背后的模型如何优化、怎么优化，小龙虾完全不关心。小龙虾掌控大模型的方式就是今年非常火爆的<span>马具工程学</span>Harness engineering。</p><p>小龙虾在自己的流程中，会不断地更改发送给发送给大模型的上下文。包括记忆的压缩、多余信息的删除、外部信息的收集种种。一方面尽可能给大模型决策提供完备的上下文，一方面又删除掉多余的、冗余的上下文和噪音。使得用户操控大模型的过程中有那种丝滑的顺畅感。</p><p>如今程序员群体都非常焦虑会被大模型取代，我觉得小龙虾的作者作为一个前端程序员，却给大家展示了一个非常好的案例，炼丹师之外的程序员能如何产生自己的价值。</p></article>
+<footer>抓取时间：2026-11-06T15:47:57.676Z。外链媒体由原站提供，可能失效。</footer></body></html>

@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>大模型的 Embedding 层和独立的 Embedding 模型有什么区别？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/663835334/answer/1936041243332281739">
+<meta name="description" content="某种角度说，你的直觉是对的 最早的embedding模型，例如word2vec目标函数就是预测周围的词 目标是训练词的表示，这是核心差异之一 后续在这个基础上，做了一系列改进 一方面是目标函数变了， 一个是BERT的掩码语言建模 一个是GPT的自回归建模； 目标函数变了，适合的任务自然也就变了； 但可以想象最粗糙的em"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>大模型的 Embedding 层和独立的 Embedding 模型有什么区别？</h1><p class="muted">momo · 发布：<time>2025-08-05T04:30:02+00:00</time> · 更新：2025-08-05T04:30:02+00:00</p>
+<p><a href="https://www.zhihu.com/question/663835334/answer/1936041243332281739" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>某种角度说，你的直觉是对的</p><p>最早的embedding模型，例如word2vec目标函数就是预测周围的词</p><p>目标是训练词的表示，这是核心差异之一</p><p>后续在这个基础上，做了一系列改进</p><p>一方面是目标函数变了，</p><p>一个是BERT的掩码语言建模</p><p>一个是GPT的自回归建模；</p><p>目标函数变了，适合的任务自然也就变了；</p><p>但可以想象最粗糙的embedding自回归模型</p><p>embedding层出来后经过一个线性映射</p><p>然后直接预测下一个词</p><p>估计效果很差</p><p>这里可以看出线性映射是不够的</p><p>语言和语言之间有强烈的非线性</p><p>核心改进目标就变成找到更好的非线性函数了</p><p>Transformer Blocks只是一种非线性函数罢了</p><p>还有很多其他非线性函数</p><p>也是现在架构研究的主要方向</p></article>
+<footer>抓取时间：2026-11-06T15:55:37.364Z。外链媒体由原站提供，可能失效。</footer></body></html>

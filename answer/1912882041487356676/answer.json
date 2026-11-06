@@ -1,0 +1,15 @@
+{
+  "id": "1912882041487356676",
+  "title": "对于transformer而言，为什么不能把K与V的角色交换，即为什么要把Q与K相乘？",
+  "source_url": "https://www.zhihu.com/question/597732359/answer/1912882041487356676",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-06-02T06:43:38+00:00",
+  "updated_at": "2025-06-02T06:43:38+00:00",
+  "votes": 158,
+  "captured_at": "2026-11-06T15:56:18.227Z",
+  "body_html": "<p>最近刚出来一篇paper，QKV意义根本不相同</p><p>QK是键查找，而且键之间还有竞争</p><p>而value只是纯粹的信息，value之间并不竞争</p><ul><li><b>论文标题:</b> Massive Values in Self-Attention Modules are the Key to Contextual Knowledge Understanding</li><ul><li><b>arXiv 链接:</b> <code>https://arxiv.org/abs/2502.01563</code></li><li><b>简介:</b> 这篇论文探讨了大型语言模型（<span>LLMs</span>）在理解上下文知识方面的能力。研究发现，在各种现代基于 <span>Transformer</span> 的 LLMs 中，<span>注意力机制</span>的查询（Q）和键（K）层会持续出现集中的“巨量值”，而值（V）层则没有这种模式。论文进一步证明，这些巨量值在解释从当前上下文窗口获得的上下文知识中扮演着关键角色，而非用于检索模型参数中存储的参数知识。对<span>量化策略</span>的深入研究表明，忽略这些巨量值会导致在需要丰富上下文理解的任务上性能显著下降，这与论文的分析相符。最终，研究追溯了巨量值的出现原因，发现这种集中是由<span>旋转位置编码</span>（RoPE）引起的，并且从模型的第一层就开始出现。这些发现为理解 LLMs 中 Q 和 K 的运作方式提供了新视角，并为模型设计和优化提供了实用见解</li></ul></ul><p></p>",
+  "body_text": "最近刚出来一篇paper，QKV意义根本不相同 QK是键查找，而且键之间还有竞争 而value只是纯粹的信息，value之间并不竞争 论文标题: Massive Values in Self-Attention Modules are the Key to Contextual Knowledge Understanding arXiv 链接: https://arxiv.org/abs/2502.01563 简介: 这篇论文探讨了大型语言模型（ LLMs ）在理解上下文知识方面的能力。研究发现，在各种现代基于 Transformer 的 LLMs 中， 注意力机制 的查询（Q）和键（K）层会持续出现集中的“巨量值”，而值（V）层则没有这种模式。论文进一步证明，这些巨量值在解释从当前上下文窗口获得的上下文知识中扮演着关键角色，而非用于检索模型参数中存储的参数知识。对 量化策略 的深入研究表明，忽略这些巨量值会导致在需要丰富上下文理解的任务上性能显著下降，这与论文的分析相符。最终，研究追溯了巨量值的出现原因，发现这种集中是由 旋转位置编码 （RoPE）引起的，并且从模型的第一层就开始出现。这些发现为理解 LLMs 中 Q 和 K 的运作方式提供了新视角，并为模型设计和优化提供了实用见解"
+}

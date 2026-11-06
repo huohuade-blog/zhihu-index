@@ -1,0 +1,15 @@
+{
+  "id": "2084422765378123513",
+  "title": "如何看待前 OpenAI 研究员发布的新模型「Jev」 ？这类模型会成为 Agent 的新技术路线吗？",
+  "source_url": "https://www.zhihu.com/question/2083549123160925836/answer/2084422765378123513",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-09-18T15:25:13+00:00",
+  "updated_at": "2026-09-19T09:52:08+00:00",
+  "votes": 50,
+  "captured_at": "2026-11-06T15:46:03.316Z",
+  "body_html": "<p>这玩意我大概弄明白是个啥了</p><p>1. <span>RLCD</span> -&gt; 不是从头训练的，找了个开源LLM，然后RL微调了一下 </p><p>2. 并行采样 -&gt; 一次性把所有要匹配的QA都输入，然后仅在一个受限子集合中选取first token的概率（例如，只比较Yes和No两个token的概率） </p><p>3. 这套做法实际上相当复古（一种<span>reranker</span>变体），但并不保证正确或者置信度可靠（实际上这方面的数据根本没有提供或者测量）</p><figure><div><img loading=\"lazy\" src=\"https://pica.zhimg.com/v2-b0ad9c3c0fc1bad5548da7ac3bc4c343_r.jpg?source=2c26e567\" width=\"1448\"></div></figure><p><br></p><figure><div><img loading=\"lazy\" src=\"https://picx.zhimg.com/v2-145be5a9a0307d00a1174333fa6f93b7_r.jpg?source=2c26e567\" width=\"1448\"></div></figure><p></p>",
+  "body_text": "这玩意我大概弄明白是个啥了 1. RLCD -> 不是从头训练的，找了个开源LLM，然后RL微调了一下 2. 并行采样 -> 一次性把所有要匹配的QA都输入，然后仅在一个受限子集合中选取first token的概率（例如，只比较Yes和No两个token的概率） 3. 这套做法实际上相当复古（一种 reranker 变体），但并不保证正确或者置信度可靠（实际上这方面的数据根本没有提供或者测量）"
+}

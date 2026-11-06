@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>Transformer中的低秩问题是什么意思？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/3114865731/answer/1995111054422860043">
+<meta name="description" content="我也困扰过一段时间，下面我说人话来解释。 首先，Transformer肯定是稀疏的，因为softmax attention机制的问题 大多数数值都被打压到0附近了，每一行值比较大的就几个 全0矩阵是不是超级低秩？rank = 0 那全0矩阵里面有几个值，是不是低秩呢？ 不见得 对角线上全是值，这可是 满秩 一整行有很多"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>Transformer中的低秩问题是什么意思？</h1><p class="muted">momo · 发布：<time>2026-01-15T04:32:22+00:00</time> · 更新：2026-01-15T09:38:46+00:00</p>
+<p><a href="https://www.zhihu.com/question/3114865731/answer/1995111054422860043" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>我也困扰过一段时间，下面我说人话来解释。</p><p>首先，Transformer肯定是稀疏的，因为softmax attention机制的问题</p><p>大多数数值都被打压到0附近了，每一行值比较大的就几个</p><p>全0矩阵是不是超级低秩？rank = 0</p><p>那全0矩阵里面有几个值，是不是低秩呢？</p><p>不见得</p><p>对角线上全是值，这可是<span>满秩</span></p><p>一整行有很多个值，其他行都是0，此时rank=1，算是低秩的极端情况</p><p>但Transformer没这种情况，比这个高一点，因为每行都又几个值的</p><p>因为softmax的机制，极端情况就是1个值，value = 1，其他等于0.</p><p>如果1全部在对角线上，那就是满秩。</p><p>每行都有一个1，但是位置都差不多，例如50%的1都在第一个元素</p><p>统计一下，1在每行的高频位置就几个，那么这就是低秩</p><p>说明大量的行是重复的，冗余的。</p><p>进一步说明，模式是很少的，所有token都在关注几个重要token</p><p>低秩就等于不好吗？我看也不见得。</p><p>我们可以做一个思想实验，强制让token关注自己前面一个token</p><p>那么这个情况下，是满秩哦，效果会好吗？ 100%不好</p><p>因为这就退化到<span>bigram语言模型</span>了，是历史的倒车。</p><p>所以与其说低秩是Transformer的问题，不如说是任务的问题</p><p>说明任务就不够难，Transformer不需要动用太多pattern就能搞定</p><p>但Transformer的容量是够的，完全可以产生更多pattern来解决更难的任务</p></article>
+<footer>抓取时间：2026-11-06T15:48:35.585Z。外链媒体由原站提供，可能失效。</footer></body></html>

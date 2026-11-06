@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>DeepSeek与李飞飞团队都是以超低的训练费用闻名，相比之下谁更厉害？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/12288174286/answer/102506603273">
+<meta name="description" content="对题目描述完全无力吐槽。 李飞飞团队的这篇S1论文，看似成果很厉害，仔细分析一下，其实不然。核心内容主要就是一个数据筛选流程，从5.9万个数据里才挑出1000个样本，就大肆宣扬实现了50美元的超低训练成本。这有什么值得大书特书的呢？毕竟只拿这1000个样本去训练，成本肯定高不到哪里去。 所谓少量样本激活预训练模型能力，"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>DeepSeek与李飞飞团队都是以超低的训练费用闻名，相比之下谁更厉害？</h1><p class="muted">momo · 发布：<time>2025-02-16T11:53:45+00:00</time> · 更新：2025-02-25T02:11:21+00:00</p>
+<p><a href="https://www.zhihu.com/question/12288174286/answer/102506603273" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>对题目描述完全无力吐槽。</p><p>李飞飞团队的这篇S1论文，看似成果很厉害，仔细分析一下，其实不然。核心内容主要就是一个数据筛选流程，从5.9万个数据里才挑出1000个样本，就大肆宣扬实现了50美元的超低训练成本。这有什么值得大书特书的呢？毕竟只拿这1000个样本去训练，成本肯定高不到哪里去。</p><p>所谓少量样本激活预训练模型能力，这件事我和我的前同事都讨论过，大家一致认为这和基模的质量高度相关。李飞飞团队能用那么少的样本提升效果，前提是千问的基模足够强，他如果换一个很劣质的基模，他的这个结论我觉得极有可能是站不住脚的。</p><p>相比 Deepseek，实现低成本训练这件事是一个系统性的创新。我最近在整理 Deepseek 近一两年发表的论文，我发现他们从一开始就以降低模型的训练成本和推理成本为目标，围绕这个核心目标做了一系列的创新，最后才得到了大家看到的 Deepseek V3 这样低成本训练的结果。</p><p><b>所以高下立判！</b></p></article>
+<footer>抓取时间：2026-11-06T15:57:08.443Z。外链媒体由原站提供，可能失效。</footer></body></html>

@@ -1,0 +1,15 @@
+{
+  "id": "1992528584124957655",
+  "title": "如何看待何恺明2025年论文数创历史新高，引用创历史新低？",
+  "source_url": "https://www.zhihu.com/question/1987147453955339308/answer/1992528584124957655",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-01-08T01:30:33+00:00",
+  "updated_at": "2026-01-08T04:44:26+00:00",
+  "votes": 59,
+  "captured_at": "2026-11-06T15:48:37.874Z",
+  "body_html": "<blockquote><span>何恺明</span>已经走上了水论文的平庸之路吗？</blockquote><p>何恺明2025年的论文有一个特点，作者越少，水平越高，</p><p>特别是只有2个作者的论文，基本都能看出恺明出力不少</p><p>例如：Just image Transformers这篇</p><p>Back to Basics: Let Denoising Generative Models Denoise </p><p><a href=\"https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/2511.13720\" rel=\"noopener noreferrer\"><span class=\"invisible\">https://</span><span class=\"visible\">arxiv.org/pdf/2511.1372</span><span class=\"invisible\">0</span><span class=\"ellipsis\"></span></a></p><p>写得好啊，甘之如饴，逐句学习</p><hr><p>另外再补充一句， <span>x-pred</span>也有其他人做过，但因为是找实习生做的，实习生代码写错了，导致最后没有做出来。这也充分说明，kaiming亲自一线参与的重要性。</p>",
+  "body_text": "何恺明 已经走上了水论文的平庸之路吗？ 何恺明2025年的论文有一个特点，作者越少，水平越高， 特别是只有2个作者的论文，基本都能看出恺明出力不少 例如：Just image Transformers这篇 Back to Basics: Let Denoising Generative Models Denoise https:// arxiv.org/pdf/2511.1372 0 写得好啊，甘之如饴，逐句学习 另外再补充一句， x-pred 也有其他人做过，但因为是找实习生做的，实习生代码写错了，导致最后没有做出来。这也充分说明，kaiming亲自一线参与的重要性。"
+}

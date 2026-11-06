@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>为什么attention要用linear layer去提取QKV矩阵？可以用卷积核提取吗？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/6857965276/answer/59422739828">
+<meta name="description" content="当然可以，且不说linear本质上就是1x1的卷积和unigram 只要信息不泄漏，还可以用更大的卷积核去提取 而且效果还会更好，因为卷积天然适合处理local信息 RWKV-4 和5的token shift就是kernel=2的 casual CNN 的变种，把token都捏成bi-gram Mamba 直接就用ke"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>为什么attention要用linear layer去提取QKV矩阵？可以用卷积核提取吗？</h1><p class="muted">momo · 发布：<time>2024-12-19T15:31:44+00:00</time> · 更新：2024-12-19T15:31:44+00:00</p>
+<p><a href="https://www.zhihu.com/question/6857965276/answer/59422739828" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>当然可以，且不说linear本质上就是1x1的卷积和unigram</p><p>只要信息不泄漏，还可以用更大的卷积核去提取</p><p>而且效果还会更好，因为卷积天然适合处理local信息</p><p><span>RWKV-4</span>和5的token shift就是kernel=2的<span>casual CNN</span>的变种，把token都捏成bi-gram</p><p><span>Mamba</span>直接就用kernel=4的casual <span>cnn</span>，相当于4-gram</p><p>rwkv-6更进一步，直接搞了data-dependent token shift，这就超越了传统cnn了</p><p>所以这一路径上，这几年已经有了不错的进展，这些idea搬去transformer上肯定也能涨点的，感兴趣的可以去试试</p><p></p></article>
+<footer>抓取时间：2026-11-06T15:58:39.546Z。外链媒体由原站提供，可能失效。</footer></body></html>

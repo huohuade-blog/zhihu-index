@@ -1,0 +1,15 @@
+{
+  "id": "92017433588",
+  "title": "MLLM训练的时候是否需要使用图像增强？",
+  "source_url": "https://www.zhihu.com/question/8993190060/answer/92017433588",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-02-03T09:37:06+00:00",
+  "updated_at": "2025-02-03T09:37:06+00:00",
+  "votes": 8,
+  "captured_at": "2026-11-06T15:57:12.476Z",
+  "body_html": "<p>1. 看你怎么训练，如果是llava那套方式，训练超过两个epoch就过拟合了，你还增强个啥。</p><p>2. 因为用网络文本和caption训练，一增强颜色变了，和caption就对不上了，相反变成了噪音。</p>",
+  "body_text": "1. 看你怎么训练，如果是llava那套方式，训练超过两个epoch就过拟合了，你还增强个啥。 2. 因为用网络文本和caption训练，一增强颜色变了，和caption就对不上了，相反变成了噪音。"
+}

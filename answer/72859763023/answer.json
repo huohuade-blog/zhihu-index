@@ -1,0 +1,15 @@
+{
+  "id": "72859763023",
+  "title": "人工智能现在有什么有意思的研究方向？",
+  "source_url": "https://www.zhihu.com/question/8417453282/answer/72859763023",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-01-06T07:29:06+00:00",
+  "updated_at": "2025-01-06T07:29:06+00:00",
+  "votes": 22,
+  "captured_at": "2026-11-06T15:58:35.013Z",
+  "body_html": "<p><span>新型序列建模</span>，这几年刚崛起的，以<span>rwkv</span>、mamba、gla等为代表</p>",
+  "body_text": "新型序列建模 ，这几年刚崛起的，以 rwkv 、mamba、gla等为代表"
+}

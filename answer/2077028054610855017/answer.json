@@ -1,0 +1,15 @@
+{
+  "id": "2077028054610855017",
+  "title": "开源AI模型中国占绝对优势，为何中国没有诞生Hugging Face 这种平台？",
+  "source_url": "https://www.zhihu.com/question/2076680224889107181/answer/2077028054610855017",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-08-29T05:41:17+00:00",
+  "updated_at": "2026-08-29T07:37:48+00:00",
+  "votes": 31,
+  "captured_at": "2026-11-06T15:46:15.983Z",
+  "body_html": "<p>我五六年前就提过一个类似的问题。</p><div><a href=\"https://www.zhihu.com/question/487319180/answer/1966118003029549844?share_code=3zcpjwrY08Ps&amp;utm_psn=2077036722504971687\" rel=\"noopener noreferrer\"><span class=\"LinkCard-image LinkCard-image--default\"></span><span class=\"LinkCard-contents\"><span class=\"LinkCard-title loading\"></span><span class=\"LinkCard-desc loading\"></span></span></a></div><p>首先，Hugging Face 的商业模式显而易见很差。运营成本极高，几百 B上千 B 参数的模型，就免费托管在上面。更夸张的是数据集，几 TB 大小的数据都算小的，我甚至见过上百 TB 的数据集。这些存储成本显然是非常惊人的，当然更夸张的是拉取这些数据时产生的带宽成本。</p><p>但是，盈利的模式却非常不清晰。</p><p>1. 订阅制会员费：说实话，我身边就没见到几个人会专门去订阅 Hugging Face 的会员，哪怕是一些大的课题组。所以通过这个路径赚钱也是很费劲的。</p><p>2. 第二块：推理服务确实有，Hugging Face 也自有一些算力。但感觉长期做得挺一般的。Hugging Face 也没有很强的 <span>Infra 团队</span>，和专门做推理服务的公司，比如<span>硅基流动</span>一类的公司比，也毫无优势。</p><p>3. 第三块，To B 的定制化收费。这块就更迷了，都是一个 case 一个 case 谈的。哪怕欧美用户的付费意愿更强一些，这一块收入依然很难 scaling。更别说中国这种 <span>ToB</span> 环境和付费意愿了。</p><p>所以在被英伟达收购之前，<span class=\"highlight-wrap other has-end-icon\">抱抱脸顶多处在盈亏平衡点，甚至我怀疑是亏损状态</span>。</p><p></p>",
+  "body_text": "我五六年前就提过一个类似的问题。 首先，Hugging Face 的商业模式显而易见很差。运营成本极高，几百 B上千 B 参数的模型，就免费托管在上面。更夸张的是数据集，几 TB 大小的数据都算小的，我甚至见过上百 TB 的数据集。这些存储成本显然是非常惊人的，当然更夸张的是拉取这些数据时产生的带宽成本。 但是，盈利的模式却非常不清晰。 1. 订阅制会员费：说实话，我身边就没见到几个人会专门去订阅 Hugging Face 的会员，哪怕是一些大的课题组。所以通过这个路径赚钱也是很费劲的。 2. 第二块：推理服务确实有，Hugging Face 也自有一些算力。但感觉长期做得挺一般的。Hugging Face 也没有很强的 Infra 团队 ，和专门做推理服务的公司，比如 硅基流动 一类的公司比，也毫无优势。 3. 第三块，To B 的定制化收费。这块就更迷了，都是一个 case 一个 case 谈的。哪怕欧美用户的付费意愿更强一些，这一块收入依然很难 scaling。更别说中国这种 ToB 环境和付费意愿了。 所以在被英伟达收购之前， 抱抱脸顶多处在盈亏平衡点，甚至我怀疑是亏损状态 。"
+}

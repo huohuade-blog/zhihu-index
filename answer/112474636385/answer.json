@@ -1,0 +1,15 @@
+{
+  "id": "112474636385",
+  "title": "如何看待DeepSeek开源的3FS？对工业界、学术界的影响是什么？",
+  "source_url": "https://www.zhihu.com/question/13614300508/answer/112474636385",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-02-28T01:49:50+00:00",
+  "updated_at": "2025-02-28T01:49:50+00:00",
+  "votes": 392,
+  "captured_at": "2026-11-06T15:57:04.177Z",
+  "body_html": "<p>太离谱了 连文件系统都自己写</p><p>尤洋之前测，肯定就是在普通的linux上（大概率乌班图）跑了一跑</p><p>这么一比相当欠优化了，得出亏损4亿的结论也就不奇怪了。</p><p>deepseek这是想完全重构AGI时代的所有底层设施么？</p>",
+  "body_text": "太离谱了 连文件系统都自己写 尤洋之前测，肯定就是在普通的linux上（大概率乌班图）跑了一跑 这么一比相当欠优化了，得出亏损4亿的结论也就不奇怪了。 deepseek这是想完全重构AGI时代的所有底层设施么？"
+}

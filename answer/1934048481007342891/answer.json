@@ -1,0 +1,15 @@
+{
+  "id": "1934048481007342891",
+  "title": "【Q060】为什么主流AI模型都无法正确完成“输出刚好一百八十三个‘哈’字”这个任务？",
+  "source_url": "https://www.zhihu.com/question/1933498703517286437/answer/1934048481007342891",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-07-30T16:31:30+00:00",
+  "updated_at": "2025-07-30T16:31:30+00:00",
+  "votes": 35,
+  "captured_at": "2026-11-06T15:55:39.072Z",
+  "body_html": "<p>这背后实际上是个variable tracking的问题</p><p>你可以假想模型内部有一个variable count</p><p>每输出一个哈，count就自动加1</p><p>但这个事情，transformer是很不擅长的</p><p>有大量paper都验证过</p><p>甚至证明了固定深度的transformer是无法完成</p><p>无限长的variable tracking的</p><p>相反RNN类的模型就很擅长干这个</p>",
+  "body_text": "这背后实际上是个variable tracking的问题 你可以假想模型内部有一个variable count 每输出一个哈，count就自动加1 但这个事情，transformer是很不擅长的 有大量paper都验证过 甚至证明了固定深度的transformer是无法完成 无限长的variable tracking的 相反RNN类的模型就很擅长干这个"
+}

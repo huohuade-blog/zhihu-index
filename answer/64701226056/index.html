@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>2024年，科研工作中最令自己沮丧的过程是什么？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/7877920868/answer/64701226056">
+<meta name="description" content="今年，我试图用 RWKV 复现Open VLA : An Open-Source Vision-Language-Action Model，差不多浪费了我一个月底时间，当时非常沮丧。 RWKV-VLA初步的一些结果： 1. 使用OpenVLA的原本方案，收敛极慢，论文里训练了27 epochs。论文里用了 64 个 A"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>2024年，科研工作中最令自己沮丧的过程是什么？</h1><p class="muted">momo · 发布：<time>2024-12-26T11:43:40+00:00</time> · 更新：2024-12-26T11:43:40+00:00</p>
+<p><a href="https://www.zhihu.com/question/7877920868/answer/64701226056" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>今年，我试图用<span>RWKV</span>复现Open<span>VLA</span>: An Open-Source Vision-Language-Action Model，差不多浪费了我一个月底时间，当时非常沮丧。</p><p>RWKV-VLA初步的一些结果：</p><p>1. 使用OpenVLA的原本方案，收敛极慢，论文里训练了27 epochs。论文里用了 64 个<span>A100 GPUs</span> for 14 days，总共21,500 A100-hours，这完全无法接受的。而且这种做法，涉嫌强行过拟合，试图用模型参数记住场景，<span>泛化能力</span>堪忧。</p><p>我觉得VLA领域要是一直这样过<span>拟合训练集</span>，迟早完犊子。</p></article>
+<footer>抓取时间：2026-11-06T15:58:37.318Z。外链媒体由原站提供，可能失效。</footer></body></html>

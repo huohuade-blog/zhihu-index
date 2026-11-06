@@ -1,0 +1,15 @@
+{
+  "id": "1890779796251841885",
+  "title": "Wavenet为什么不能替代Transformer?",
+  "source_url": "https://www.zhihu.com/question/15511254093/answer/1890779796251841885",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-04-02T06:57:12+00:00",
+  "updated_at": "2025-04-02T06:57:12+00:00",
+  "votes": 12,
+  "captured_at": "2026-11-06T15:56:52.025Z",
+  "body_html": "<p>Wavenet最早是做语音的</p><p>后面自然有延申到文本</p><p>就是TCN 语言模型</p><p>TCN 模型即所谓的<i>Temporal Convolution Networks</i></p><p>该模型基于两个基本原则：</p><ul><li>网络输出一个和输入序列等长度的序列；</li><li>不会发生从未来到过去的信息泄露。</li></ul><p>为了达到第一点原则，TCN 使用 1D 全连接卷积网络：每一个隐层的长度和输入层相同，并且使用零填充保证后续的隐层也能保持和之前序列长度相同。</p><p>为了达到第二点目的，TCN 使用因果卷积（<i>causal convolutions</i>, 如下左图），即t时刻的输出仅为 t时刻及之前的序列的卷积结果。</p><figure><div><img height=\"345\" loading=\"lazy\" src=\"https://pic1.zhimg.com/v2-6f81ad328b7c612bbbb9f073cfb0a3c2_r.jpg?source=2c26e567\" width=\"825\"></div></figure><h2>TCN 的优点</h2><ol><li>并行性。当给定一个句子时，TCN可以将句子并行的处理，而不需要像RNN那样顺序的处理。</li><li>灵活的感受野。TCN的感受野的大小受层数、卷积核大小、扩张系数等决定。可以根据不同的任务不同的特性灵活定制。</li><li>稳定的梯度。RNN经常存在梯度消失和梯度爆炸的问题，这主要是由不同时间段上共用参数导致的，和传统卷积神经网络一样，TCN不太存在梯度消失和爆炸问题。</li><li>内存更低。RNN在使用时需要将每步的信息都保存下来，这会占据大量的内存，TCN在一层里面卷积核是共享的，内存使用更低。</li></ol><h2>TCN 的缺点</h2><ol><li>TCN 在迁移学习方面可能没有那么强的适应能力。这是因为在不同的领域，模型预测所需要的历史信息量可能是不同的。因此，在将一个模型从一个对记忆信息需求量少的问题迁移到一个需要更长记忆的问题上时，TCN 可能会表现得很差，因为其感受野不够大。</li><li>论文中描述的TCN还是一种单向的结构，在语音识别和语音合成等任务上，纯单向的结构还是相当有用的。</li><li>TCN毕竟是卷积神经网络的变种，虽然使用扩展卷积可以扩大感受野，但是仍然受到限制，相比 Transformer那种可以任意长度的相关信息都可以抓取到的特性还是差了点。TCN在文本中的应用还有待检验。</li></ol><p>参考文献：</p><p><a href=\"https://link.zhihu.com/?target=https%3A//openreview.net/pdf%3Fid%3Drk8wKk-R-\" rel=\"noopener noreferrer\">Convolutional Sequence Modelling Revisited</a>, <i>Shaojie Bai, J. Zico Kolter, Vladlen Koltun</i></p>",
+  "body_text": "Wavenet最早是做语音的 后面自然有延申到文本 就是TCN 语言模型 TCN 模型即所谓的 Temporal Convolution Networks 该模型基于两个基本原则： 网络输出一个和输入序列等长度的序列； 不会发生从未来到过去的信息泄露。 为了达到第一点原则，TCN 使用 1D 全连接卷积网络：每一个隐层的长度和输入层相同，并且使用零填充保证后续的隐层也能保持和之前序列长度相同。 为了达到第二点目的，TCN 使用因果卷积（ causal convolutions , 如下左图），即t时刻的输出仅为 t时刻及之前的序列的卷积结果。 TCN 的优点 并行性。当给定一个句子时，TCN可以将句子并行的处理，而不需要像RNN那样顺序的处理。 灵活的感受野。TCN的感受野的大小受层数、卷积核大小、扩张系数等决定。可以根据不同的任务不同的特性灵活定制。 稳定的梯度。RNN经常存在梯度消失和梯度爆炸的问题，这主要是由不同时间段上共用参数导致的，和传统卷积神经网络一样，TCN不太存在梯度消失和爆炸问题。 内存更低。RNN在使用时需要将每步的信息都保存下来，这会占据大量的内存，TCN在一层里面卷积核是共享的，内存使用更低。 TCN 的缺点 TCN 在迁移学习方面可能没有那么强的适应能力。这是因为在不同的领域，模型预测所需要的历史信息量可能是不同的。因此，在将一个模型从一个对记忆信息需求量少的问题迁移到一个需要更长记忆的问题上时，TCN 可能会表现得很差，因为其感受野不够大。 论文中描述的TCN还是一种单向的结构，在语音识别和语音合成等任务上，纯单向的结构还是相当有用的。 TCN毕竟是卷积神经网络的变种，虽然使用扩展卷积可以扩大感受野，但是仍然受到限制，相比 Transformer那种可以任意长度的相关信息都可以抓取到的特性还是差了点。TCN在文本中的应用还有待检验。 参考文献： Convolutional Sequence Modelling Revisited , Shaojie Bai, J. Zico Kolter, Vladlen Koltun"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "2091483063989563485",
+  "title": "如何看待曝一大厂职工靠加班将服务器成本降低2亿致全组被裁？网友说「程序员要学会养bug」，怎么理解？",
+  "source_url": "https://www.zhihu.com/question/2089288174748919667/answer/2091483063989563485",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-10-08T03:00:20+00:00",
+  "updated_at": "2026-10-08T03:00:20+00:00",
+  "votes": 225,
+  "captured_at": "2026-11-06T15:45:45.227Z",
+  "body_html": "<p>没啥用，只要代码库是公开的，</p><p>新团队介入，用 agent 一直 24 小时循环code review</p><p>不出一星期，所有 bug 全部修复。</p><p>养 bug 这些小伎俩负隅顽抗没用的，</p><p>在大趋势面前螳臂挡车，不自量力</p>",
+  "body_text": "没啥用，只要代码库是公开的， 新团队介入，用 agent 一直 24 小时循环code review 不出一星期，所有 bug 全部修复。 养 bug 这些小伎俩负隅顽抗没用的， 在大趋势面前螳臂挡车，不自量力"
+}

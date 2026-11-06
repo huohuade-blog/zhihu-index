@@ -1,0 +1,15 @@
+{
+  "id": "2081465321068688409",
+  "title": "如何评价正式发布的 DeepSeek V4.1 Flash？",
+  "source_url": "https://www.zhihu.com/question/2081380378493961583/answer/2081465321068688409",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-09-10T11:33:24+00:00",
+  "updated_at": "2026-09-10T11:33:24+00:00",
+  "votes": 56,
+  "captured_at": "2026-11-06T15:46:09.156Z",
+  "body_html": "<p><span>DeepSeek V4.1 Flash</span> 显然借鉴了<span>YOCO</span> (You Only Cache Once; <a href=\"https://link.zhihu.com/?target=https%3A//arxiv.org/abs/2405.05254\" rel=\"noopener noreferrer\">You Only Cache Once: Decoder-Decoder Architectures for Language Models</a>) </p><p><span>PD 分离</span>更好，<span>KV cache</span> 更小，推理成本更低</p>",
+  "body_text": "DeepSeek V4.1 Flash 显然借鉴了 YOCO (You Only Cache Once; You Only Cache Once: Decoder-Decoder Architectures for Language Models ) PD 分离 更好， KV cache 更小，推理成本更低"
+}

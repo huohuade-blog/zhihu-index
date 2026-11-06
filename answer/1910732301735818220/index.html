@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>为什么我感觉Gemini 2.5 Pro模型有一种异常的强？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/1907535416443265722/answer/1910732301735818220">
+<meta name="description" content="已经被反向工程出来了，反向的是Gemma 但同时把gemini的架构设计也给泄露了 直接说最重要的创新点： Gemini用了Per Layer Embeddings 。具体而言，每一层FNN都会增加一个emb，残差连接会被下投影到 256 维（emb的维度），与对应的 PLE 向量进行逐元素乘法操作，然后再上投影回 2"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>为什么我感觉Gemini 2.5 Pro模型有一种异常的强？</h1><p class="muted">momo · 发布：<time>2025-05-27T08:21:20+00:00</time> · 更新：2025-05-27T08:31:18+00:00</p>
+<p><a href="https://www.zhihu.com/question/1907535416443265722/answer/1910732301735818220" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>已经被反向工程出来了，反向的是Gemma</p><p>但同时把gemini的架构设计也给泄露了</p><figure><div><img height="244" loading="lazy" src="https://pica.zhimg.com/v2-b1e8856e6e9c28d6f5315a6be629402e_r.jpg?source=2c26e567" width="1344"></div></figure><p>直接说最重要的创新点：</p><p><b>Gemini用了Per Layer Embeddings</b>。具体而言，每一层FNN都会增加一个emb，残差连接会被下投影到 256 维（emb的维度），与对应的 PLE 向量进行逐元素乘法操作，然后再上投影回 2048 维的主通道。</p><p>简直和RWKV-8不谋而合，只能说英雄所见略同。</p><figure><div><img height="833" loading="lazy" src="https://picx.zhimg.com/v2-440033f6371731aaaa528b86816d2aa0_r.jpg?source=2c26e567" width="518"></div></figure><p></p></article>
+<footer>抓取时间：2026-11-06T15:56:21.634Z。外链媒体由原站提供，可能失效。</footer></body></html>

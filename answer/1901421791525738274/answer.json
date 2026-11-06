@@ -1,0 +1,15 @@
+{
+  "id": "1901421791525738274",
+  "title": "qwen3-0.6B这种小模型有什么实际意义和用途吗？",
+  "source_url": "https://www.zhihu.com/question/1900664888608691102/answer/1901421791525738274",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-05-01T15:44:41+00:00",
+  "updated_at": "2025-05-01T15:44:41+00:00",
+  "votes": 1664,
+  "captured_at": "2026-11-06T15:56:42.300Z",
+  "body_html": "<p>感慨啊，0.6B这种“小模型”已经被质疑没有实际意义和用途了。</p><p>想当年，<span>BERT</span>推出的时候只有0.1B和0.3B，就已经风靡全球。</p><p>BERT从打标签到<span>NER</span>如火如荼地席卷各个大厂的<span>NLP</span>业务。</p>",
+  "body_text": "感慨啊，0.6B这种“小模型”已经被质疑没有实际意义和用途了。 想当年， BERT 推出的时候只有0.1B和0.3B，就已经风靡全球。 BERT从打标签到 NER 如火如荼地席卷各个大厂的 NLP 业务。"
+}

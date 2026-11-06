@@ -1,0 +1,15 @@
+{
+  "id": "2018078478998742827",
+  "title": "请问是不是在linear attention上改个维度或者gate啥的其实是很大的事情？",
+  "source_url": "https://www.zhihu.com/question/2017162456913429730/answer/2018078478998742827",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-03-19T13:36:43+00:00",
+  "updated_at": "2026-03-19T13:36:43+00:00",
+  "votes": 33,
+  "captured_at": "2026-11-06T15:47:56.899Z",
+  "body_html": "<p>是时候，找到我做的一张PPT了。不说gate，因为gate是个很宽泛的概念，这里说decay，特指相当于<span>RWKV</span>里W的那个参数。这个W参数，基本在各种<span>Linear Attention</span>里都有等价物。</p><ol><li><span>S4</span>是static decay，<span>Mamba-1</span>是dynamic S4。</li><li><span>Mamba-2</span>走回了linear attention路线，改成了head-wise dynamic decay。</li><li><span>RetNet</span>是head-wise static decay，Mamba-2可能有参考RetNet的思路。</li><li><span>RWKV-6</span>是channel-wise dynamic decay，是当时（24年）表达力最高的设计。</li><li>所以回答你的问题，改这个decay在过去一段时间，实际上就是Linear Attention发展的主线。</li></ol><figure><div><img height=\"373\" loading=\"lazy\" src=\"https://pic1.zhimg.com/v2-1ac2d5b4475f652da48df61920917892_r.jpg?source=2c26e567\" width=\"1323\"></div><figcaption>不受时间变化影响的参数，如A,B,γ等，没有下标，它们是trainable的。参数上有波浪线代表 not trainable。矩阵用粗体大写字母表示，向量用粗体小写字母表示，标量则用斜体表示。</figcaption></figure><p></p>",
+  "body_text": "是时候，找到我做的一张PPT了。不说gate，因为gate是个很宽泛的概念，这里说decay，特指相当于 RWKV 里W的那个参数。这个W参数，基本在各种 Linear Attention 里都有等价物。 S4 是static decay， Mamba-1 是dynamic S4。 Mamba-2 走回了linear attention路线，改成了head-wise dynamic decay。 RetNet 是head-wise static decay，Mamba-2可能有参考RetNet的思路。 RWKV-6 是channel-wise dynamic decay，是当时（24年）表达力最高的设计。 所以回答你的问题，改这个decay在过去一段时间，实际上就是Linear Attention发展的主线。 不受时间变化影响的参数，如A,B,γ等，没有下标，它们是trainable的。参数上有波浪线代表 not trainable。矩阵用粗体大写字母表示，向量用粗体小写字母表示，标量则用斜体表示。"
+}

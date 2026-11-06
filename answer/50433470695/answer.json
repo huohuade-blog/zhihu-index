@@ -1,0 +1,15 @@
+{
+  "id": "50433470695",
+  "title": "如何评价何凯明ResNet论文被引用10万次，顶几篇Nature正刊，够评院士吗？",
+  "source_url": "https://www.zhihu.com/question/506954648/answer/50433470695",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2024-12-08T03:44:40+00:00",
+  "updated_at": "2024-12-08T03:46:15+00:00",
+  "votes": 71,
+  "captured_at": "2026-11-06T15:58:43.660Z",
+  "body_html": "<p>有人说alexnet优于<span>resnet</span>，我倒不觉得</p><p>alexnet只是早 和 验证了效果 单纯模型设计上没啥东西 <span>hinton</span>最早宣传的时候都说 我们用<span>gpu</span>做了个大玩具 hinton自己都不觉得alexnet的想法有多新颖。</p><p>虽然很多人认为resnet是个trick 但我觉得这完全低估了resnet背后的学术思想。个人更偏爱resnet。</p><p>另外可以去读读alexnet，真是极其难读。相比，resnet写作好一百倍。虽然alexnet作者是英语母语使用者，但确实不如<span>何凯明</span>这个中国人写得好。（说明在写作上花的功夫不在一个数量级）</p>",
+  "body_text": "有人说alexnet优于 resnet ，我倒不觉得 alexnet只是早 和 验证了效果 单纯模型设计上没啥东西 hinton 最早宣传的时候都说 我们用 gpu 做了个大玩具 hinton自己都不觉得alexnet的想法有多新颖。 虽然很多人认为resnet是个trick 但我觉得这完全低估了resnet背后的学术思想。个人更偏爱resnet。 另外可以去读读alexnet，真是极其难读。相比，resnet写作好一百倍。虽然alexnet作者是英语母语使用者，但确实不如 何凯明 这个中国人写得好。（说明在写作上花的功夫不在一个数量级）"
+}

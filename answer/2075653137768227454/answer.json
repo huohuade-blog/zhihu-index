@@ -1,0 +1,15 @@
+{
+  "id": "2075653137768227454",
+  "title": "前DeepMind科学家曹原称AI4S最难的是「验证」，为什么「验证」会成为AI自动科研的关键瓶颈？",
+  "source_url": "https://www.zhihu.com/question/2073487407362437229/answer/2075653137768227454",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-08-25T10:37:51+00:00",
+  "updated_at": "2026-08-25T10:37:51+00:00",
+  "votes": 17,
+  "captured_at": "2026-11-06T15:46:17.625Z",
+  "body_html": "<p>首先，我觉得要定义清楚什么是 science。</p><p>如果 science 有明确的工程指标，例如光伏领域的光电转换效率，这是有标准的验证平台的，标准的验证流程和标准的验证结果。那么我觉得这一类science是最有可能实现自动化科研的。</p><p>如果 science 是指有好的故事并且给 community 带来 inspiration。这类东西是最主观的，难以评估和验证的，非常的文科，估计最多也就只能做一做对齐人类偏好。</p><p>如果Science 是指 create something from void.从虚空中创造，无中生有。那么我觉得现在的大模型框架完全无能为力。</p>",
+  "body_text": "首先，我觉得要定义清楚什么是 science。 如果 science 有明确的工程指标，例如光伏领域的光电转换效率，这是有标准的验证平台的，标准的验证流程和标准的验证结果。那么我觉得这一类science是最有可能实现自动化科研的。 如果 science 是指有好的故事并且给 community 带来 inspiration。这类东西是最主观的，难以评估和验证的，非常的文科，估计最多也就只能做一做对齐人类偏好。 如果Science 是指 create something from void.从虚空中创造，无中生有。那么我觉得现在的大模型框架完全无能为力。"
+}

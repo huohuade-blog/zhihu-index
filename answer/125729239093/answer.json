@@ -1,0 +1,15 @@
+{
+  "id": "125729239093",
+  "title": "为什么现在深度学习对于Memory的研究变少了？",
+  "source_url": "https://www.zhihu.com/question/330329012/answer/125729239093",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-03-16T10:31:16+00:00",
+  "updated_at": "2025-03-16T10:31:16+00:00",
+  "votes": 96,
+  "captured_at": "2026-11-06T15:56:58.677Z",
+  "body_html": "<p>memory算是核心议题了 </p><p>只是说transformer算是提出了</p><p>两个很好的中间状态的memory</p><p>FFN层是一种memory</p><p>用来记忆世界知识</p><p>self-attention是另外一种memory</p><p>用来学习上下文知识</p><p>接下来，深度学习要继续进步</p><p>依然会沿着这两个方向进步</p><p>FFN要记住更多的世界知识</p><p>需要更大的FFN</p><p>deepseek的691B只是起点不是终点</p><p>更加稀疏的FFN已经在路上</p><p>ultramem，mem+等</p><p>以后FFN层直接落在SSD上</p><p>比现在扩大一个数量级都不是问题</p><p>另一种memory</p><p>attention需要更高效更适合cot</p><p>一系列linear attention已经在路上</p><p>rwkv-4/5/6/7已经迭代几版了</p><p>每一版改进都很大 进步都很显著</p><p>会越来越像人脑的memory</p><p></p><p></p>",
+  "body_text": "memory算是核心议题了 只是说transformer算是提出了 两个很好的中间状态的memory FFN层是一种memory 用来记忆世界知识 self-attention是另外一种memory 用来学习上下文知识 接下来，深度学习要继续进步 依然会沿着这两个方向进步 FFN要记住更多的世界知识 需要更大的FFN deepseek的691B只是起点不是终点 更加稀疏的FFN已经在路上 ultramem，mem+等 以后FFN层直接落在SSD上 比现在扩大一个数量级都不是问题 另一种memory attention需要更高效更适合cot 一系列linear attention已经在路上 rwkv-4/5/6/7已经迭代几版了 每一版改进都很大 进步都很显著 会越来越像人脑的memory"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "2057535443441284314",
+  "title": "有没有可能2026年Anthropic还在用MHA+Dense MLP的模型架构？",
+  "source_url": "https://www.zhihu.com/question/2041104925845935657/answer/2057535443441284314",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-07-06T10:44:36+00:00",
+  "updated_at": "2026-07-06T10:44:36+00:00",
+  "votes": 162,
+  "captured_at": "2026-11-06T15:46:27.284Z",
+  "body_html": "<p>过去几个月了，我终于找到点说法。SemiAnalysis的创始人Dylan Patel在访谈34分钟说的：</p><ol><li>openai的架构极度稀疏（更接近deepseek路线），目标是榨出英伟达GPU的极致性能。</li><li><span>anthropic</span>的架构虽然也是<span>MOE</span>，但是没那么稀疏，而且是用<span>TPU</span>训练的，限制了其稀疏度。</li></ol><div><a href=\"https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3Df6D_aiy8qyU\" rel=\"noopener noreferrer\"><span class=\"LinkCard-image LinkCard-image--default\"></span><span class=\"LinkCard-contents\"><span class=\"LinkCard-title loading\"></span><span class=\"LinkCard-desc loading\"></span></span></a></div><p></p>",
+  "body_text": "过去几个月了，我终于找到点说法。SemiAnalysis的创始人Dylan Patel在访谈34分钟说的： openai的架构极度稀疏（更接近deepseek路线），目标是榨出英伟达GPU的极致性能。 anthropic 的架构虽然也是 MOE ，但是没那么稀疏，而且是用 TPU 训练的，限制了其稀疏度。"
+}

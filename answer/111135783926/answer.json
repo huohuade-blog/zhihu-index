@@ -1,0 +1,15 @@
+{
+  "id": "111135783926",
+  "title": "如何评价百川智能开源的医疗大模型 Baichuan-M1-14B ？",
+  "source_url": "https://www.zhihu.com/question/10453788461/answer/111135783926",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-02-26T10:39:29+00:00",
+  "updated_at": "2025-02-26T10:39:29+00:00",
+  "votes": 168,
+  "captured_at": "2026-11-06T15:57:05.162Z",
+  "body_html": "<p>初步看了下结果 </p><p>当年的<span>专用模型</span>和通用模型之争</p><p>基本可以尘埃落定了</p><p>专用模型用了那么多领域数据，专用数据</p><p>结果平均分只比<span>qwen</span>高了2.5</p><p>要是和<span>deepseek 671B</span>比，估计会被打崩</p><p>deepseek还是免费开源的 </p><p>真不知道这种<span>ToB</span>的生意怎么做下去</p><p></p><p></p>",
+  "body_text": "初步看了下结果 当年的 专用模型 和通用模型之争 基本可以尘埃落定了 专用模型用了那么多领域数据，专用数据 结果平均分只比 qwen 高了2.5 要是和 deepseek 671B 比，估计会被打崩 deepseek还是免费开源的 真不知道这种 ToB 的生意怎么做下去"
+}

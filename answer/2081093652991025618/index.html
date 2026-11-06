@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>能不能问一下LLM获得现在这样的成功究竟是哪一个机制起到了主要作用？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/2073847362317981001/answer/2081093652991025618">
+<meta name="description" content="想到哪说到哪。首先结合一下我最近的感想：真正有影响力的工作，实际上都是打破了 scaling 瓶颈阻碍的工作。这样的工作往往会成为经典。 第一个机制当然是自回归，自回归打破了 Scaling 瓶颈。在自回归之前，都是什么模型？都叫 DNN 模型 或者 CNN 模型 。无论哪一种，它们计算时其实都只能通过一次前向计算就得"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>能不能问一下LLM获得现在这样的成功究竟是哪一个机制起到了主要作用？</h1><p class="muted">momo · 发布：<time>2026-09-09T10:56:31+00:00</time> · 更新：2026-09-09T13:04:13+00:00</p>
+<p><a href="https://www.zhihu.com/question/2073847362317981001/answer/2081093652991025618" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>想到哪说到哪。首先结合一下我最近的感想：真正有影响力的工作，实际上都是打破了 <span>scaling</span> 瓶颈阻碍的工作。这样的工作往往会成为经典。</p><p>第一个机制当然是自回归，自回归打破了<span>Scaling</span> 瓶颈。在自回归之前，都是什么模型？都叫 <span>DNN 模型</span>或者 <span>CNN 模型</span>。无论哪一种，它们计算时其实都只能通过一次前向计算就得到结果。上古时期，基于 DNN 和 CNN 的语言模型都曾经存在过。像<span>Yoshua Bengio</span>，最早的一篇使用<span>神经网络</span>的语言模型，就是用 DNN 做的。</p><p>自回归最原始来自哪里？来自 RNN。当然，现在的 <span>Transformer</span> 你也不能说它是 RNN 了，但这种思想从 RNN 里面演化出来之后，就被广泛借鉴到了很多领域。有了自回归机制，就可以用多次前向计算，在循环内部不断重复、不断演化、不断修正，从而获得更好的预测效果。</p><p>第二个机制是<span>残差连接</span>，这也是为什么<span>何凯明</span>这么牛逼。在何凯明之前，<span>LSTM</span> 也就训个三层而已，更深的模型就训不动了而且效果也不好。这是个很大的瓶颈。这就意味着模型的尺寸无法继续扩大了。当然你也可以说让模型变胖。但你可以发现，3层的胖模型效果肯定不如30层的瘦模型加残差连接。所以，残差连接彻底解决了模型尺寸 scaling的问题。</p><p>第三个机制是<span>思维链</span>。思维链真的是个非常牛逼的东西。从序列维度，用上下文的长度来换性能，性能不够，模型就多想想。居然效果真的能大幅提升。开启了从序列维度 Scaling 的新篇章。</p></article>
+<footer>抓取时间：2026-11-06T15:46:09.202Z。外链媒体由原站提供，可能失效。</footer></body></html>

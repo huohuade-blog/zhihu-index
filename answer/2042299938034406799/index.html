@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>transformer不进行预训练的话效果会很差吗?</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/3830714383/answer/2042299938034406799">
+<meta name="description" content="上古时代，就是 2017 年，那时候玩过一下视频分类 有一个竞赛叫做 YouTube 8M ，就是给了 800 万 YouTube 的视频特征。 你可以去看一下那几届比赛的赢家，没有一个是基于 Transformer 的模型。 当然那时候 Attention is all you need 已经发表了，也有人尝试过使用"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>transformer不进行预训练的话效果会很差吗?</h1><p class="muted">momo · 发布：<time>2026-05-25T09:44:09+00:00</time> · 更新：2026-05-25T09:44:09+00:00</p>
+<p><a href="https://www.zhihu.com/question/3830714383/answer/2042299938034406799" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>上古时代，就是 2017 年，那时候玩过一下视频分类</p><p>有一个竞赛叫做 <span>YouTube 8M</span>，就是给了 800 万 YouTube 的视频特征。</p><p>你可以去看一下那几届比赛的赢家，没有一个是基于 Transformer 的模型。</p><p>当然那时候 <span>Attention is all you need</span> 已经发表了，也有人尝试过使用 Transformer。</p><p>但效果都不好，<span>折戟沉沙</span>。大家那时候都在说，做视觉还是得 CNN，Transformer 不行的。</p><p>直到后面经典的 <span>ViT</span> 论文出来之后。给大家提供了一个非常重要的<span>阈值</span>。</p><p>100M，1 亿张图片之后，Transformer 的效果才开始超过 CNN。</p><p>当你的训练数据少于 1 亿张图片时，你都可以默认 CNN 效果更好。</p><p>所以 Transformer 真的是非常需要预训练的。</p><p>没谁会Train from scratch，那是自讨苦吃。</p></article>
+<footer>抓取时间：2026-11-06T15:47:36.436Z。外链媒体由原站提供，可能失效。</footer></body></html>

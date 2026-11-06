@@ -1,0 +1,15 @@
+{
+  "id": "55287602931",
+  "title": "为什么Ilya说LSTM是一个旋转90度的ResNet？",
+  "source_url": "https://www.zhihu.com/question/6834319970/answer/55287602931",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2024-12-14T08:27:03+00:00",
+  "updated_at": "2024-12-14T15:03:26+00:00",
+  "votes": 165,
+  "captured_at": "2026-11-06T15:58:41.580Z",
+  "body_html": "<p>这说法我一直都不认同</p><p>认同这说法就</p><p>相当于认同Schmidhuber是<span>ResNet</span>之父</p><p>是<span>attention</span>之父，是GAN之父</p><p>但实际上，<span>LSTM</span>长期无法超过三层</p><p>因为训练不动深层LSTM</p><p>这不就是<span>kaiming</span>解决的核心问题</p><p>大家曾经或多或少都发现LSTM里面的long term memory，就很像token level的<span>skip connection</span></p><p>但是那是用<span>gating</span>机制来实现的</p><p>就是历史信息要忘掉多少gating一下</p><p>新的信息要加进来多少gating一下</p><p>这想法其实非常传统 并没有残差的视角和思想</p><hr><p>回答问题前，我并没有听<span>伊利亚</span>的talk；回答后，我去听了下，我没理解错他的意思。</p><figure><div><img loading=\"lazy\" src=\"https://picx.zhimg.com/v2-c6866508252d05937eb71a4529682ed2_r.jpg?source=2c26e567\" width=\"1470\"></div></figure><hr><p>另外，我恰恰觉得这个talk里最值得讨论的是这个</p><p>大脑和身体那张slide？伊利亚想表达的到底是什么？</p><figure><div><img loading=\"lazy\" src=\"https://pic1.zhimg.com/v2-813f24f8204935826f4cf01416ba66ee_r.jpg?source=2c26e567\" width=\"1465\"></div></figure><p></p>",
+  "body_text": "这说法我一直都不认同 认同这说法就 相当于认同Schmidhuber是 ResNet 之父 是 attention 之父，是GAN之父 但实际上， LSTM 长期无法超过三层 因为训练不动深层LSTM 这不就是 kaiming 解决的核心问题 大家曾经或多或少都发现LSTM里面的long term memory，就很像token level的 skip connection 但是那是用 gating 机制来实现的 就是历史信息要忘掉多少gating一下 新的信息要加进来多少gating一下 这想法其实非常传统 并没有残差的视角和思想 回答问题前，我并没有听 伊利亚 的talk；回答后，我去听了下，我没理解错他的意思。 另外，我恰恰觉得这个talk里最值得讨论的是这个 大脑和身体那张slide？伊利亚想表达的到底是什么？"
+}

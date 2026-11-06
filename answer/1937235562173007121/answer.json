@@ -1,0 +1,15 @@
+{
+  "id": "1937235562173007121",
+  "title": "想问问 Transformer模型 的参数量是怎么计算的？",
+  "source_url": "https://www.zhihu.com/question/1936238941293483118/answer/1937235562173007121",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-08-08T11:35:50+00:00",
+  "updated_at": "2025-08-08T11:35:50+00:00",
+  "votes": 33,
+  "captured_at": "2026-11-06T15:55:37.731Z",
+  "body_html": "<p>很好算的，词表V、模型宽度D、层数L</p><p><span>embedding</span>：VD</p><p><span>lm head</span>：VD</p><p><span>FFN</span>：8DDL</p><p><span>attention</span>：4DDL（qkvo4个矩阵）</p><p>不考虑<span>归一化层</span>和bias就这样了</p><p>总参数量=12DDL + 2VD</p>",
+  "body_text": "很好算的，词表V、模型宽度D、层数L embedding ：VD lm head ：VD FFN ：8DDL attention ：4DDL（qkvo4个矩阵） 不考虑 归一化层 和bias就这样了 总参数量=12DDL + 2VD"
+}

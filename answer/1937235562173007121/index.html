@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>想问问 Transformer模型 的参数量是怎么计算的？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/1936238941293483118/answer/1937235562173007121">
+<meta name="description" content="很好算的，词表V、模型宽度D、层数L embedding ：VD lm head ：VD FFN ：8DDL attention ：4DDL（qkvo4个矩阵） 不考虑 归一化层 和bias就这样了 总参数量=12DDL + 2VD"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>想问问 Transformer模型 的参数量是怎么计算的？</h1><p class="muted">momo · 发布：<time>2025-08-08T11:35:50+00:00</time> · 更新：2025-08-08T11:35:50+00:00</p>
+<p><a href="https://www.zhihu.com/question/1936238941293483118/answer/1937235562173007121" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>很好算的，词表V、模型宽度D、层数L</p><p><span>embedding</span>：VD</p><p><span>lm head</span>：VD</p><p><span>FFN</span>：8DDL</p><p><span>attention</span>：4DDL（qkvo4个矩阵）</p><p>不考虑<span>归一化层</span>和bias就这样了</p><p>总参数量=12DDL + 2VD</p></article>
+<footer>抓取时间：2026-11-06T15:55:37.731Z。外链媒体由原站提供，可能失效。</footer></body></html>

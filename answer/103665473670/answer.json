@@ -1,0 +1,15 @@
+{
+  "id": "103665473670",
+  "title": "当学术界计算资源受限的今天，LLM的学界研究者该何去何从？",
+  "source_url": "https://www.zhihu.com/question/12552562646/answer/103665473670",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-02-18T00:02:37+00:00",
+  "updated_at": "2025-02-18T00:02:37+00:00",
+  "votes": 92,
+  "captured_at": "2026-11-06T15:57:06.920Z",
+  "body_html": "<p>梁文峰有phd吗？deepseek是有不少资源</p><p>但提出核心那几个创新 并不需要那么多资源</p><p>从deepseek的paper看 他们扩大化之前 </p><p>都会在小模型上验证效果 MLA好像就有2B的实验</p><p>MTP也有小模型实验 GRPO就更是了</p><p>deepseek的math模型一直都是在7b这个规模上玩</p><p>有个例子 我很喜欢 就是mit那个全加法的大模型 真正适合学术界做的事情 </p>",
+  "body_text": "梁文峰有phd吗？deepseek是有不少资源 但提出核心那几个创新 并不需要那么多资源 从deepseek的paper看 他们扩大化之前 都会在小模型上验证效果 MLA好像就有2B的实验 MTP也有小模型实验 GRPO就更是了 deepseek的math模型一直都是在7b这个规模上玩 有个例子 我很喜欢 就是mit那个全加法的大模型 真正适合学术界做的事情"
+}

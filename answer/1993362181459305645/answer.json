@@ -1,0 +1,15 @@
+{
+  "id": "1993362181459305645",
+  "title": "DeepSeek R1论文大更新，有什么需要关注的吗？",
+  "source_url": "https://www.zhihu.com/question/1992326167387214783/answer/1993362181459305645",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-01-10T08:42:58+00:00",
+  "updated_at": "2026-01-10T08:42:58+00:00",
+  "votes": 47,
+  "captured_at": "2026-11-06T15:48:37.486Z",
+  "body_html": "<p>一年过去了，大家对大模型的理解又增进不少。再次看到Deepseek-R1的这张流程图，感慨万千。</p><p>想谈的也不多，就是谈一点，就是 <span>Deepseek R1 Zero</span> 这个模型。</p><p>这篇论文刚出来的时候，大家都非常的奇怪，为什么要专门弄一个 zero 模型？</p><p>这模型到底是干什么的？现在经过一系列后续的研究，这个谜题也揭晓了。 </p><p>zero 实际上就是一个纯粹的数据生成器。但为什么要这么做？</p><figure><div><img loading=\"lazy\" src=\"https://picx.zhimg.com/v2-727d3f8aaceb6728eb9767b3ad873c7c_r.jpg?source=2c26e567\" width=\"3023\"></div></figure><p>那时候还没有开源的推理数据，只能用zero这样的做法从头搞一批。</p><p>那现在有那么多开源推理数据了，拿来直接冷启动，是不是就不需要zero了呢？</p><p>今年的一系列研究表明zero这样才是最好的做法。</p><p>简单说，zero生成的<span>sft数据</span>对于base模型来说，相当于是<span>on-policy</span>的，微调后遗忘少、损害小</p><p>而用别的模型产生的数据来sft，相当于是<span>off-policy</span>的，微调后遗忘多、损害大</p><figure><div><img loading=\"lazy\" src=\"https://picx.zhimg.com/v2-7ec66a1e93101457aebe839a382432f8_r.jpg?source=2c26e567\" width=\"1371\"></div></figure><p></p>",
+  "body_text": "一年过去了，大家对大模型的理解又增进不少。再次看到Deepseek-R1的这张流程图，感慨万千。 想谈的也不多，就是谈一点，就是 Deepseek R1 Zero 这个模型。 这篇论文刚出来的时候，大家都非常的奇怪，为什么要专门弄一个 zero 模型？ 这模型到底是干什么的？现在经过一系列后续的研究，这个谜题也揭晓了。 zero 实际上就是一个纯粹的数据生成器。但为什么要这么做？ 那时候还没有开源的推理数据，只能用zero这样的做法从头搞一批。 那现在有那么多开源推理数据了，拿来直接冷启动，是不是就不需要zero了呢？ 今年的一系列研究表明zero这样才是最好的做法。 简单说，zero生成的 sft数据 对于base模型来说，相当于是 on-policy 的，微调后遗忘少、损害小 而用别的模型产生的数据来sft，相当于是 off-policy 的，微调后遗忘多、损害大"
+}

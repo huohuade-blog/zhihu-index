@@ -1,0 +1,15 @@
+{
+  "id": "1967593468667863123",
+  "title": "如何看待KimiDeltaAttention与RWKV-7的实现区别？",
+  "source_url": "https://www.zhihu.com/question/1966873359510906300/answer/1967593468667863123",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-10-31T06:07:19+00:00",
+  "updated_at": "2025-10-31T13:56:58+00:00",
+  "votes": 42,
+  "captured_at": "2026-11-06T15:53:22.162Z",
+  "body_html": "<p><span>delta rule</span>这一系列最早的idea可以追溯到<span>Widrow-Hoff规则</span>。</p><p>最早意识到<span>线性注意力</span>和delta rule关系的是schlag的《<span>Linear Transformers</span> Are Secretly Fast Weight Programmers》   </p><p>最先做出高效实现版本的是<span>DeltaNet</span>（Parallelizing Linear Transformers with the Delta Rule over Sequence Length）</p><p>小参数设计的极致优化版是RWKV-7（RWKV-7 \"Goose\" with Expressive Dynamic State Evolution），每一个小参数的设计背后都有大量的<span>消融实验</span>，迭代了N个版本后才有了现在的形式。当然这也被质疑，怎么那么多小参数，怎么冒出来没办法全都说得清，因为不是<span>rational design</span>的，而是演化出来的。</p>",
+  "body_text": "delta rule 这一系列最早的idea可以追溯到 Widrow-Hoff规则 。 最早意识到 线性注意力 和delta rule关系的是schlag的《 Linear Transformers Are Secretly Fast Weight Programmers》 最先做出高效实现版本的是 DeltaNet （Parallelizing Linear Transformers with the Delta Rule over Sequence Length） 小参数设计的极致优化版是RWKV-7（RWKV-7 \"Goose\" with Expressive Dynamic State Evolution），每一个小参数的设计背后都有大量的 消融实验 ，迭代了N个版本后才有了现在的形式。当然这也被质疑，怎么那么多小参数，怎么冒出来没办法全都说得清，因为不是 rational design 的，而是演化出来的。"
+}

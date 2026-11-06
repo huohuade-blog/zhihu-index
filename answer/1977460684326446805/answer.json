@@ -1,0 +1,15 @@
+{
+  "id": "1977460684326446805",
+  "title": "如何评价美团发布的新上下文级联压缩技术（C3）？",
+  "source_url": "https://www.zhihu.com/question/1977413775251502148/answer/1977460684326446805",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-11-27T11:36:06+00:00",
+  "updated_at": "2025-11-27T11:36:06+00:00",
+  "votes": 55,
+  "captured_at": "2026-11-06T15:53:11.938Z",
+  "body_html": "<p>这个<span>Context Query</span>让我想起了一个东西！<i><b><span>DETR</span>！！！</b></i></p><figure><div><img loading=\"lazy\" src=\"https://pic1.zhimg.com/v2-bdb292fb976fc26eee2471b636feac60_r.jpg?source=2c26e567\" width=\"973\"></div></figure><p>和DETR里的<span>object queries</span>是不是神似！！！</p><figure><div><img loading=\"lazy\" src=\"https://pica.zhimg.com/v2-57024f5062a64d0bd85fe029fb595942_r.jpg?source=2c26e567\" width=\"936\"></div></figure><p></p>",
+  "body_text": "这个 Context Query 让我想起了一个东西！ DETR ！！！ 和DETR里的 object queries 是不是神似！！！"
+}

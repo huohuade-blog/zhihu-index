@@ -1,0 +1,15 @@
+{
+  "id": "2052797282404381599",
+  "title": "如何评价智谱 6 月 13 日发布的 GLM5.2 模型？",
+  "source_url": "https://www.zhihu.com/question/2049161661567723164/answer/2052797282404381599",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-06-23T08:56:51+00:00",
+  "updated_at": "2026-06-23T08:56:51+00:00",
+  "votes": 39,
+  "captured_at": "2026-11-06T15:46:30.400Z",
+  "body_html": "<ol><li>Attention是用了MLA+DSA的混合</li><li>激活参数不少，1个共享专家+8个MOE专家</li><li>强化学习放弃GRPO，<b>转向了基于 Critic 的 PPO (Proximal Policy Optimization) 。</b>不再依赖组内的相对比较，而是依靠 Critic 模型直接估算 <b>token 级别的优势 (token-level advantages)</b>，使得算法能够更自然地从单次 rollout 中进行学习，有效解决了由于长轨迹压缩与分割带来的样本长度极度不平衡的问题。</li></ol><figure><div><img height=\"1604\" loading=\"lazy\" src=\"https://pic1.zhimg.com/v2-98c90920fe7be302b1a47ce62306a63d_r.jpg?source=2c26e567\" width=\"1622\"></div></figure><p></p>",
+  "body_text": "Attention是用了MLA+DSA的混合 激活参数不少，1个共享专家+8个MOE专家 强化学习放弃GRPO， 转向了基于 Critic 的 PPO (Proximal Policy Optimization) 。 不再依赖组内的相对比较，而是依靠 Critic 模型直接估算 token 级别的优势 (token-level advantages) ，使得算法能够更自然地从单次 rollout 中进行学习，有效解决了由于长轨迹压缩与分割带来的样本长度极度不平衡的问题。"
+}

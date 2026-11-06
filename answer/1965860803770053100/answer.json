@@ -1,0 +1,15 @@
+{
+  "id": "1965860803770053100",
+  "title": "DeepSeek-V3.2-Exp 和 Qwen3-Next 哪个才是未来？",
+  "source_url": "https://www.zhihu.com/question/1956137082197083536/answer/1965860803770053100",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-10-26T11:22:19+00:00",
+  "updated_at": "2025-10-26T11:22:19+00:00",
+  "votes": 50,
+  "captured_at": "2026-11-06T15:53:24.462Z",
+  "body_html": "<p>我最近觉得，稀疏注意力的真正野心在于取代 RAG</p><p>因为稀疏注意力是一种真正意义上的端到端可训练的 RAG </p><p>而线性注意力，现在我的感觉是更加适合用作 working memory</p><p>这两者的结合便是，通过稀疏注意力做 RAG， 实现有效召回。把召回的信息呢，放进工作记忆里，使用线性注意力进行加工</p><p></p><p></p>",
+  "body_text": "我最近觉得，稀疏注意力的真正野心在于取代 RAG 因为稀疏注意力是一种真正意义上的端到端可训练的 RAG 而线性注意力，现在我的感觉是更加适合用作 working memory 这两者的结合便是，通过稀疏注意力做 RAG， 实现有效召回。把召回的信息呢，放进工作记忆里，使用线性注意力进行加工"
+}

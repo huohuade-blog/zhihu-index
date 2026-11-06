@@ -1,0 +1,15 @@
+{
+  "id": "1907748109821380281",
+  "title": "如何看待Qwen推出的新Scaling Law ——Parallel Scaling？",
+  "source_url": "https://www.zhihu.com/question/1907422978985169131/answer/1907748109821380281",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-05-19T02:43:13+00:00",
+  "updated_at": "2025-05-19T02:43:13+00:00",
+  "votes": 33,
+  "captured_at": "2026-11-06T15:56:24.633Z",
+  "body_html": "<p>下面一点个人看法，欢迎大家讨论</p><p>我考虑了一下，我觉得这种做法其实还是在调控sampling。基础模型的能力应该没有差异。</p><p>这个事情和设置两个差异化的system prompt, 然后并行运行。然后在输出前融合，差别并不大。</p>",
+  "body_text": "下面一点个人看法，欢迎大家讨论 我考虑了一下，我觉得这种做法其实还是在调控sampling。基础模型的能力应该没有差异。 这个事情和设置两个差异化的system prompt, 然后并行运行。然后在输出前融合，差别并不大。"
+}

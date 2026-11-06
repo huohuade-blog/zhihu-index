@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>LinearAttention在KV cache的存储上有多大优势？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/1974064489159730057/answer/2042507808474673820">
+<meta name="description" content="这个我最熟了。就以 RWKV 7 为例，RWKV7 的 state 相当于 32 个 kv cache ，这当然是标准的 MHA 的 kv cache，会存下来一个 key 和一个 value。 所以可以简单认为，对于 MHA，只要你的序列长度超过 32。使用RWKV 就会在 kv cache 上有存储优势。 当然，随"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>LinearAttention在KV cache的存储上有多大优势？</h1><p class="muted">momo · 发布：<time>2026-05-25T23:30:09+00:00</time> · 更新：2026-05-25T23:31:27+00:00</p>
+<p><a href="https://www.zhihu.com/question/1974064489159730057/answer/2042507808474673820" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>这个我最熟了。就以 <span>RWKV</span>7 为例，RWKV7 的 state 相当于 32 个 <span>kv cache</span>，这当然是标准的 <span>MHA</span> 的 kv cache，会存下来一个 key 和一个 value。</p><p>所以可以简单认为，对于 MHA，只要你的序列长度超过 32。使用RWKV 就会在 kv cache 上有存储优势。</p><p>当然，随着现在各种新架构的不断改进，使用的 kv cache也越来越小。例如 <span>Deepseek v4</span> 用的就是 shared key value <span>MQA</span>。像这样它每个 token 只存储一个向量，这个向量是 key 和 value 共享的。并且 MQA 假设它原本有 8 个头，只保留一个头吧。那么这样 RWKV-7的 state 就会相当于32x 2x8=512 个kv cache。</p></article>
+<footer>抓取时间：2026-11-06T15:47:36.416Z。外链媒体由原站提供，可能失效。</footer></body></html>

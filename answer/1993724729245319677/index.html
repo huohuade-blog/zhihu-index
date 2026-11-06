@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>为什么现在普遍基于RL去提升模型的推理能力，而不是通过构造数据做SFT的方式呢？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/1989082556772135720/answer/1993724729245319677">
+<meta name="description" content="首先， RL 强于 SFT 的负样本说，已经被证伪了。有一篇论文叫做强化学习剃刀， 非常值得一读。 简单说，基于强化学习训练出来的模型， 泛化能力 更强，遗忘少。而基于别的模型产生的 SFT 数据，相当于是 off policy 的，泛化性差，遗忘多。 同时文章也证实，如果是基于自己模型 RL 之后产生的模型生成的 S"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>为什么现在普遍基于RL去提升模型的推理能力，而不是通过构造数据做SFT的方式呢？</h1><p class="muted">momo · 发布：<time>2026-01-11T08:43:37+00:00</time> · 更新：2026-01-11T08:44:08+00:00</p>
+<p><a href="https://www.zhihu.com/question/1989082556772135720/answer/1993724729245319677" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>首先， RL 强于 SFT 的负样本说，已经被证伪了。有一篇论文叫做强化学习剃刀， 非常值得一读。</p><p>简单说，基于强化学习训练出来的模型，<span>泛化能力</span>更强，遗忘少。而基于别的模型产生的 SFT 数据，相当于是 off policy 的，泛化性差，遗忘多。</p><p>同时文章也证实，如果是基于自己模型 RL 之后产生的模型生成的 SFT 数据去微调原模型，基本也相当于是 on policy 的，差异和直接用强化学习训练不大。</p><p>这也就是为什么 <span>Deepseek R1</span> 首先要训练一个 <span>Zero 模型</span>的原因。</p></article>
+<footer>抓取时间：2026-11-06T15:48:37.837Z。外链媒体由原站提供，可能失效。</footer></body></html>

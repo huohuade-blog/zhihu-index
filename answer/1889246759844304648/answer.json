@@ -1,0 +1,15 @@
+{
+  "id": "1889246759844304648",
+  "title": "在 Transformer 的潜在替代架构中，你最看好哪个？",
+  "source_url": "https://www.zhihu.com/question/15759783002/answer/1889246759844304648",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-03-29T01:25:28+00:00",
+  "updated_at": "2025-03-29T01:25:28+00:00",
+  "votes": 82,
+  "captured_at": "2026-11-06T15:56:55.189Z",
+  "body_html": "<p><span>Titans</span>首先出局，因为它连一个官方实现的都没有，<span>lucidrains</span>有一个实现，但肉眼可见的效率不高。</p><p>这都2025年了，<span>Flash-Attention</span>早已大杀四方，我真不知一个架构实现效率很低，拿什么和Flash-Attention打。</p><p>有一点我很赞同 <span><span class=\"UserLink\"></span></span></p><div><a href=\"https://www.zhihu.com/people/f16a06041ffac91a1c0d31da4658f5a8\" rel=\"noopener noreferrer\">@sonta</a></div> ，真的能现阶段替代<span>Transformer</span>的新架构，必然是<span>algo-hardware co-design</span>的架构。<p></p><p>这点就要求这个架构不止idea新颖，效果出类拔萃，同时必须能超高效实现。</p>",
+  "body_text": "Titans 首先出局，因为它连一个官方实现的都没有， lucidrains 有一个实现，但肉眼可见的效率不高。 这都2025年了， Flash-Attention 早已大杀四方，我真不知一个架构实现效率很低，拿什么和Flash-Attention打。 有一点我很赞同 @sonta ，真的能现阶段替代 Transformer 的新架构，必然是 algo-hardware co-design 的架构。 这点就要求这个架构不止idea新颖，效果出类拔萃，同时必须能超高效实现。"
+}

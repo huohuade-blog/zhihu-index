@@ -1,0 +1,15 @@
+{
+  "id": "82542004483",
+  "title": "如何评价 MiniMax 于 2025 年 1 月 15 日发布的 MiniMax-01 系列模型？",
+  "source_url": "https://www.zhihu.com/question/9630107500/answer/82542004483",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-01-19T05:38:29+00:00",
+  "updated_at": "2025-01-19T05:38:29+00:00",
+  "votes": 13,
+  "captured_at": "2026-11-06T15:58:31.782Z",
+  "body_html": "<p><b>整体架构</b>：MiniMax-Text-01 共 80 层，有 456B参数，每 token 激活参数 45.9B，采用 32 个专家，Top-2 路由的MoE架构。支持 4M tokens 的上下文窗口。</p><p><b>线性注意力：</b>在每 7 个具有Lightning Attention的 Transnormer 块（Qin 等人，2022a）之后放置一个具有 softmax 注意力的 Transformer 块。总共就是70层Transnormer，10层Transformer。每个注意力模块由 64 个头组成，每个头的维度为 128。softmax 注意力层采用组查询注意力（GQA）（Ainslie 等人，2023），组大小为 8。旋转位置嵌入（RoPE）。</p><p></p><p></p><p></p>",
+  "body_text": "整体架构 ：MiniMax-Text-01 共 80 层，有 456B参数，每 token 激活参数 45.9B，采用 32 个专家，Top-2 路由的MoE架构。支持 4M tokens 的上下文窗口。 线性注意力： 在每 7 个具有Lightning Attention的 Transnormer 块（Qin 等人，2022a）之后放置一个具有 softmax 注意力的 Transformer 块。总共就是70层Transnormer，10层Transformer。每个注意力模块由 64 个头组成，每个头的维度为 128。softmax 注意力层采用组查询注意力（GQA）（Ainslie 等人，2023），组大小为 8。旋转位置嵌入（RoPE）。"
+}

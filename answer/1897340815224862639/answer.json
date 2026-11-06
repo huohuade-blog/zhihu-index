@@ -1,0 +1,15 @@
+{
+  "id": "1897340815224862639",
+  "title": "为什么现在国内很多公司都在做深度学习框架?",
+  "source_url": "https://www.zhihu.com/question/412595912/answer/1897340815224862639",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-04-20T09:28:21+00:00",
+  "updated_at": "2025-04-20T09:28:21+00:00",
+  "votes": 44,
+  "captured_at": "2026-11-06T15:56:47.117Z",
+  "body_html": "<p>五年过去了</p><p>事实证明那段时间（2020年前后）</p><p>真正的潜在机遇是</p><p><span>分布式训练</span>框架</p><p>但这个短暂的窗口期</p><p>却是被大厂抓住了</p><p>微软出了<span>deepspeed</span></p><p>英伟达出了<span>megatron</span></p>",
+  "body_text": "五年过去了 事实证明那段时间（2020年前后） 真正的潜在机遇是 分布式训练 框架 但这个短暂的窗口期 却是被大厂抓住了 微软出了 deepspeed 英伟达出了 megatron"
+}

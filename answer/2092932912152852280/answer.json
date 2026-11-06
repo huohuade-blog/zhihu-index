@@ -1,0 +1,15 @@
+{
+  "id": "2092932912152852280",
+  "title": "怎么看微软 CEO 发长文说：大模型提供 CoT 透明是底线？",
+  "source_url": "https://www.zhihu.com/question/2092670679795634670/answer/2092932912152852280",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-10-12T03:01:31+00:00",
+  "updated_at": "2026-10-16T05:08:38+00:00",
+  "votes": 49,
+  "captured_at": "2026-11-06T15:45:41.800Z",
+  "body_html": "<p>我很好奇，没有技术可以通过 Input 和 Response 反推 <span>COT</span> 吗？</p><p>另外，没有 COT 直接蒸馏难道真的不行吗？差距有多大呢？有没有相关论文</p><hr><p>论文找到了</p><div><a href=\"https://zhuanlan.zhihu.com/p/2070154620970832261?share_code=o3iFhV1HjrFo&amp;utm_psn=2094413761192915195\" rel=\"noopener noreferrer\"><span class=\"LinkCard-image LinkCard-image--default\"></span><span class=\"LinkCard-contents\"><span class=\"LinkCard-title loading\"></span><span class=\"LinkCard-desc loading\"></span></span></a></div><p></p>",
+  "body_text": "我很好奇，没有技术可以通过 Input 和 Response 反推 COT 吗？ 另外，没有 COT 直接蒸馏难道真的不行吗？差距有多大呢？有没有相关论文 论文找到了"
+}

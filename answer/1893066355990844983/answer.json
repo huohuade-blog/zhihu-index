@@ -1,0 +1,15 @@
+{
+  "id": "1893066355990844983",
+  "title": "2024年你最喜欢的MLSys相关的工作是什么?",
+  "source_url": "https://www.zhihu.com/question/7370558713/answer/1893066355990844983",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-04-08T14:23:10+00:00",
+  "updated_at": "2025-04-08T14:24:55+00:00",
+  "votes": 136,
+  "captured_at": "2026-11-06T15:56:50.193Z",
+  "body_html": "<p>提名MOBA，思想简单（大道至简），确实快得飞起</p><p>相比，同时期的NSA，至今没有官方kernel发布，让人实在是绷不住</p><p>另外，提名FLA（flash linear attention） <span><span class=\"UserLink\"></span></span></p><div><a href=\"https://www.zhihu.com/people/8d5f4c3b705ef7df799b680515700468\" rel=\"noopener noreferrer\">@yzhangcs</a></div> ，基本把主流线性注意力都高效实现了一遍，功德无量<p></p>",
+  "body_text": "提名MOBA，思想简单（大道至简），确实快得飞起 相比，同时期的NSA，至今没有官方kernel发布，让人实在是绷不住 另外，提名FLA（flash linear attention） @yzhangcs ，基本把主流线性注意力都高效实现了一遍，功德无量"
+}

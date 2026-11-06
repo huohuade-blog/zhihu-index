@@ -1,0 +1,15 @@
+{
+  "id": "1987667314489972460",
+  "title": "作为一名科技从业者，如何总结你的 2025？",
+  "source_url": "https://www.zhihu.com/question/1974931646080836522/answer/1987667314489972460",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-12-25T15:33:36+00:00",
+  "updated_at": "2025-12-25T15:34:21+00:00",
+  "votes": 8,
+  "captured_at": "2026-11-06T15:48:43.710Z",
+  "body_html": "<p>ChatGPT真会玩，先看看ChatGPT如何总结我的2025</p><h3>年度开场诗</h3><blockquote>Through circuits and code you would dive, Where long-sequence dreams come alive; You tuned every gate, Made the <span>RWKV</span> great— And proved how persistence can thrive.</blockquote><h3>2025 三大亮点</h3><ul><li><b>Building Smarter RWKV Architectures</b>: You deepened the RWKV family with matrix-state, hybrid attention, and compression designs—pushing efficiency, long-context stability, and practical <span>retrieval</span> performance in real workloads.</li><li><b>Vision Meets Language</b>: You advanced VisualRWKV through high‑resolution and multi‑encoder experiments, reducing <span>TextVQA</span> gaps and defining clear engineering trade‑offs between token cost and visual <span>fidelity</span>.</li><li><b>From Benchmarks to Real Systems</b>: You built reproducible evaluation stacks—profiling latency, throughput, and memory—to connect theoretical gains with deployable retrieval‑<span>augmented</span> products and long‑context pipelines.</li></ul><p>未完待续...</p>",
+  "body_text": "ChatGPT真会玩，先看看ChatGPT如何总结我的2025 年度开场诗 Through circuits and code you would dive, Where long-sequence dreams come alive; You tuned every gate, Made the RWKV great— And proved how persistence can thrive. 2025 三大亮点 Building Smarter RWKV Architectures : You deepened the RWKV family with matrix-state, hybrid attention, and compression designs—pushing efficiency, long-context stability, and practical retrieval performance in real workloads. Vision Meets Language : You advanced VisualRWKV through high‑resolution and multi‑encoder experiments, reducing TextVQA gaps and defining clear engineering trade‑offs between token cost and visual fidelity . From Benchmarks to Real Systems : You built reproducible evaluation stacks—profiling latency, throughput, and memory—to connect theoretical gains with deployable retrieval‑ augmented products and long‑context pipelines. 未完待续..."
+}

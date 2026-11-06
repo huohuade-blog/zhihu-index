@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>Transformer架构是否被高估了？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/1936047572750955635/answer/2092922096598962286">
+<meta name="description" content="有没有人试过单纯用RNN在web scale的数据上训练一个LLM呢？效果会比Transformer decoder差很多吗？ RWKV-7 了解一下？据我所知，应该是全网尺寸最大的训练数据最多的纯 RNN。 效果的话，做题类的基本上和 Transformer 比也没什么区别，PPL 还更低。显然 RNN 还是更擅长短"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>Transformer架构是否被高估了？</h1><p class="muted">momo · 发布：<time>2026-10-12T02:18:32+00:00</time> · 更新：2026-10-12T02:22:17+00:00</p>
+<p><a href="https://www.zhihu.com/question/1936047572750955635/answer/2092922096598962286" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><blockquote>有没有人试过单纯用RNN在web scale的数据上训练一个LLM呢？效果会比Transformer decoder差很多吗？</blockquote><p>RWKV-7 了解一下？据我所知，应该是全网尺寸最大的训练数据最多的纯 RNN。</p><p>效果的话，做题类的基本上和 Transformer 比也没什么区别，PPL 还更低。显然 RNN 还是更擅长短程建模的。</p><p>我觉得真正的问题在于 copy 的能力。现在的智能体又是 Coding 场景大行其道，而 Coding 又是一个相当需要复制粘贴能力的场景。这就让纯 RNN 很难受了。</p><p>和Transformer，我觉得 RNN 显然需要做好做透一个东西，就是上下文内检索。这个事情对于 Transformer 不重要，是因为 Attention 机制已经可以基本上做到自身上下文内的检索，准确率非常非常非常高。但 RNN 不行，一边推理就要一边不断检索自己的上下文。</p></article>
+<footer>抓取时间：2026-11-06T15:45:41.693Z。外链媒体由原站提供，可能失效。</footer></body></html>

@@ -1,0 +1,15 @@
+{
+  "id": "1890766817699545610",
+  "title": "审稿人问学习率为什么设置为0.001怎么办？",
+  "source_url": "https://www.zhihu.com/question/656501138/answer/1890766817699545610",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-04-02T06:05:38+00:00",
+  "updated_at": "2025-04-02T06:05:38+00:00",
+  "votes": 46,
+  "captured_at": "2026-11-06T15:56:54.091Z",
+  "body_html": "<p>实际上，对于炼丹学习率真的很重要</p><p>缺乏对学习率的<span>消融实验</span></p><p>会让你结论的可信度大大降低</p><p></p>",
+  "body_text": "实际上，对于炼丹学习率真的很重要 缺乏对学习率的 消融实验 会让你结论的可信度大大降低"
+}

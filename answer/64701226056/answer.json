@@ -1,0 +1,15 @@
+{
+  "id": "64701226056",
+  "title": "2024年，科研工作中最令自己沮丧的过程是什么？",
+  "source_url": "https://www.zhihu.com/question/7877920868/answer/64701226056",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2024-12-26T11:43:40+00:00",
+  "updated_at": "2024-12-26T11:43:40+00:00",
+  "votes": 379,
+  "captured_at": "2026-11-06T15:58:37.318Z",
+  "body_html": "<p>今年，我试图用<span>RWKV</span>复现Open<span>VLA</span>: An Open-Source Vision-Language-Action Model，差不多浪费了我一个月底时间，当时非常沮丧。</p><p>RWKV-VLA初步的一些结果：</p><p>1. 使用OpenVLA的原本方案，收敛极慢，论文里训练了27 epochs。论文里用了 64 个<span>A100 GPUs</span> for 14 days，总共21,500 A100-hours，这完全无法接受的。而且这种做法，涉嫌强行过拟合，试图用模型参数记住场景，<span>泛化能力</span>堪忧。</p><p>我觉得VLA领域要是一直这样过<span>拟合训练集</span>，迟早完犊子。</p>",
+  "body_text": "今年，我试图用 RWKV 复现Open VLA : An Open-Source Vision-Language-Action Model，差不多浪费了我一个月底时间，当时非常沮丧。 RWKV-VLA初步的一些结果： 1. 使用OpenVLA的原本方案，收敛极慢，论文里训练了27 epochs。论文里用了 64 个 A100 GPUs for 14 days，总共21,500 A100-hours，这完全无法接受的。而且这种做法，涉嫌强行过拟合，试图用模型参数记住场景， 泛化能力 堪忧。 我觉得VLA领域要是一直这样过 拟合训练集 ，迟早完犊子。"
+}

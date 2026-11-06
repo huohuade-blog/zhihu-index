@@ -1,0 +1,15 @@
+{
+  "id": "1929327313071350609",
+  "title": "为什么美国中小学生学的数学比我们简单，美国人却还能做出超级牛的东西？",
+  "source_url": "https://www.zhihu.com/question/20953633/answer/1929327313071350609",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-07-17T15:51:16+00:00",
+  "updated_at": "2025-07-17T15:51:16+00:00",
+  "votes": 106,
+  "captured_at": "2026-11-06T15:55:59.685Z",
+  "body_html": "<p><span><span class=\"UserLink\"></span></span></p><div><a href=\"https://www.zhihu.com/people/7ecc331b2342c9aefd3e26997519ecd4\" rel=\"noopener noreferrer\">@郑天玑</a></div> 这个回答说的很好。类比到大模型，就是<span>预训练</span>就只用了一丁点语料。然后开始疯狂<span>微调</span>和强化学习，比谁更能把<span>pass@k</span>优化成pass@1。但实际上基础能力是一点都没增加。<p></p><div><a href=\"https://www.zhihu.com/question/20953633/answer/1928618437707544102?share_code=1aKp6p6883Xkm&amp;utm_psn=1929326338067633701\" rel=\"noopener noreferrer\"><span class=\"LinkCard-image LinkCard-image--default\"></span><span class=\"LinkCard-contents\"><span class=\"LinkCard-title loading\"></span><span class=\"LinkCard-desc loading\"></span></span></a></div><p></p>",
+  "body_text": "@郑天玑 这个回答说的很好。类比到大模型，就是 预训练 就只用了一丁点语料。然后开始疯狂 微调 和强化学习，比谁更能把 pass@k 优化成pass@1。但实际上基础能力是一点都没增加。"
+}

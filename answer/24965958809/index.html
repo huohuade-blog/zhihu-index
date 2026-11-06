@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>深度学习训练数据是否需要shuffle?</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/2842063876/answer/24965958809">
+<meta name="description" content="深度学习随机性是不可避免的 数据遍历过程不同 最后的结果有差异也很正常 甚至你用相同参数初始化策略 但因为随机性 最后模型效果都会有差异 你找谁说去 同时训练的 超参数 一样影响巨大 batch size 小，容易乱跑，结果容易差异大 batch size大，梯度更接近，结果也会更接近 我还是建议，先固定初始化模型和 "></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>深度学习训练数据是否需要shuffle?</h1><p class="muted">momo · 发布：<time>2024-11-07T00:20:06+00:00</time> · 更新：2024-11-07T00:20:06+00:00</p>
+<p><a href="https://www.zhihu.com/question/2842063876/answer/24965958809" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>深度学习随机性是不可避免的</p><p>数据遍历过程不同 最后的结果有差异也很正常</p><p>甚至你用相同参数初始化策略 但因为随机性</p><p>最后模型效果都会有差异 你找谁说去</p><p>同时训练的<span>超参数</span>一样影响巨大</p><p><span>batch size</span>小，容易乱跑，结果容易差异大</p><p>batch size大，梯度更接近，结果也会更接近</p><p>我还是建议，先固定初始化模型和<span>数据遍历</span>过程</p><p>这样两次实验之间的变化才更加可靠</p></article>
+<footer>抓取时间：2026-11-06T15:58:55.128Z。外链媒体由原站提供，可能失效。</footer></body></html>

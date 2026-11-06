@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https: http:; media-src https: http:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>神经网络既然每次训练的结果都不一样，那岂不是可以编造数据？</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/question/461272116/answer/3636180911">
+<meta name="description" content="想要 神经网络 ，每次训练结果都一样，一点都不难。 只要在流程里做以下两件事情就可以 第一件事：训练模型前，专门设计一个初始化阶段，把初始化后的模型存下来。之后的训练，一律不再初始化任何参数，而是加载已经落盘的初始化模型文件。 第二件事：提前生成好 数据集 每个epoch运行的 index文件 ，每一步都根据文件中的i"></head>
+<body><nav><a href="../../index.html">← 返回索引</a></nav>
+<header><h1>神经网络既然每次训练的结果都不一样，那岂不是可以编造数据？</h1><p class="muted">momo · 发布：<time>2024-09-25T14:07:20+00:00</time> · 更新：2024-09-25T14:07:20+00:00</p>
+<p><a href="https://www.zhihu.com/question/461272116/answer/3636180911" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><p>想要<span>神经网络</span>，每次训练结果都一样，一点都不难。</p><p>只要在流程里做以下两件事情就可以</p><p>第一件事：训练模型前，专门设计一个初始化阶段，把初始化后的模型存下来。之后的训练，一律不再初始化任何参数，而是加载已经落盘的初始化模型文件。</p><p>第二件事：提前生成好<span>数据集</span>每个epoch运行的<span>index文件</span>，每一步都根据文件中的index确定加载的样本。这样可以保证你无论模型训多少次，见到样本的顺序是一模一样的。</p><p>炼丹这么多年，我觉得这两件事都是非常重要的。可以很大的提高实验结果的可靠性，消除随机性因素。但不知道为什么没有成为整个社区通行的做法。</p></article>
+<footer>抓取时间：2026-11-06T15:58:59.593Z。外链媒体由原站提供，可能失效。</footer></body></html>

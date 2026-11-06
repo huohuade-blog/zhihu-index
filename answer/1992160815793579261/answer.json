@@ -1,0 +1,15 @@
+{
+  "id": "1992160815793579261",
+  "title": "有没有比残差连接更好的方案?",
+  "source_url": "https://www.zhihu.com/question/7071179876/answer/1992160815793579261",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-01-07T01:09:11+00:00",
+  "updated_at": "2026-01-07T01:14:16+00:00",
+  "votes": 170,
+  "captured_at": "2026-11-06T15:48:39.256Z",
+  "body_html": "<p>比<span>残差连接</span>更好的方案有</p><p>至少在<span>RWKV</span>-7的设计中，各种<span>超连接</span>基本都试过</p><p>最后真正的胜出者是<span>Value Residual Learning</span>，</p><p>这篇是真正的好工作，不该被忽略，我来推广一下</p><p><a href=\"https://link.zhihu.com/?target=https%3A//arxiv.org/abs/2410.17897\" rel=\"noopener noreferrer\"><span class=\"invisible\">https://</span><span class=\"visible\">arxiv.org/abs/2410.1789</span><span class=\"invisible\">7</span><span class=\"ellipsis\"></span></a></p><figure><div><img height=\"675\" loading=\"lazy\" src=\"https://picx.zhimg.com/v2-96d943053b411dd2b3b5e3aeff2f734f_r.jpg?source=2c26e567\" width=\"1170\"></div></figure><p></p>",
+  "body_text": "比 残差连接 更好的方案有 至少在 RWKV -7的设计中，各种 超连接 基本都试过 最后真正的胜出者是 Value Residual Learning ， 这篇是真正的好工作，不该被忽略，我来推广一下 https:// arxiv.org/abs/2410.1789 7"
+}

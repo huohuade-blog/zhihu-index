@@ -1,0 +1,15 @@
+{
+  "id": "1936025183430353214",
+  "title": "基于transformer的大模型的局限是否在于token量纲属性的缺失？",
+  "source_url": "https://www.zhihu.com/question/1935687695876743179/answer/1936025183430353214",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-08-05T03:26:13+00:00",
+  "updated_at": "2025-08-05T03:26:13+00:00",
+  "votes": 11,
+  "captured_at": "2026-11-06T15:55:37.588Z",
+  "body_html": "<p>信息量当然是学出来的</p><p>任何先验的信息量</p><p>例如你搞个tf-idf</p><p>都必然带来效果下降</p><p>另外，the和apple的问题</p><p>在远古就已经发现他们的</p><p>重要性或者信息量体现在模长中</p><p>the的模长是很短的</p><p>apple就会长一些</p><p>基本上正比于点互信息PMI</p><p>这是word2vec时代的主要目标函数</p><p></p>",
+  "body_text": "信息量当然是学出来的 任何先验的信息量 例如你搞个tf-idf 都必然带来效果下降 另外，the和apple的问题 在远古就已经发现他们的 重要性或者信息量体现在模长中 the的模长是很短的 apple就会长一些 基本上正比于点互信息PMI 这是word2vec时代的主要目标函数"
+}

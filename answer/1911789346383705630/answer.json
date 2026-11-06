@@ -1,0 +1,15 @@
+{
+  "id": "1911789346383705630",
+  "title": "Attention为什么非得做成全局注意力，不像Conv那样仅仅考虑局部感知域？",
+  "source_url": "https://www.zhihu.com/question/617024776/answer/1911789346383705630",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-05-30T06:21:39+00:00",
+  "updated_at": "2025-05-30T06:21:39+00:00",
+  "votes": 22,
+  "captured_at": "2026-11-06T15:56:19.853Z",
+  "body_html": "<p>事实证明总是追求局部是倒行逆施</p><p>追求long-context才是真正的科技进步</p>",
+  "body_text": "事实证明总是追求局部是倒行逆施 追求long-context才是真正的科技进步"
+}

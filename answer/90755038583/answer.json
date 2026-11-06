@@ -1,0 +1,15 @@
+{
+  "id": "90755038583",
+  "title": "为何俄语网页占比这么高？如何评价汉语网页占比与越南语网页相当？",
+  "source_url": "https://www.zhihu.com/question/427643027/answer/90755038583",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2025-02-01T09:09:06+00:00",
+  "updated_at": "2025-02-01T12:56:10+00:00",
+  "votes": 24,
+  "captured_at": "2026-11-06T15:57:12.624Z",
+  "body_html": "<p>common crawl有用language detection做过统计的</p><p>common crawl的原则很简单 </p><p>就是爬得到的网页</p><p>中文主流app里的页面基本都是不可能（简单）爬取到的</p><p>找到common crawl的统计页面了，非常不错。</p><div><a href=\"https://link.zhihu.com/?target=https%3A//commoncrawl.github.io/cc-crawl-statistics/plots/languages\" rel=\"noopener noreferrer\"><span class=\"LinkCard-image LinkCard-image--default\"></span><span class=\"LinkCard-contents\"><span class=\"LinkCard-title loading\"></span><span class=\"LinkCard-desc loading\"></span></span></a></div><p>没有1.5%这么低，每个包里5%左右是中文，当然这里没有区分简体中文还是繁体中文。</p><figure><div><img height=\"631\" loading=\"lazy\" src=\"https://pic1.zhimg.com/v2-c1b2794174a1f752ea3f1d79fc0dd40a_r.jpg?source=2c26e567\" width=\"686\"></div></figure><p>另外俄语也没那么高，占比6%左右。当然英语依然是绝对的主导地位，占比43%左右。</p>",
+  "body_text": "common crawl有用language detection做过统计的 common crawl的原则很简单 就是爬得到的网页 中文主流app里的页面基本都是不可能（简单）爬取到的 找到common crawl的统计页面了，非常不错。 没有1.5%这么低，每个包里5%左右是中文，当然这里没有区分简体中文还是繁体中文。 另外俄语也没那么高，占比6%左右。当然英语依然是绝对的主导地位，占比43%左右。"
+}
