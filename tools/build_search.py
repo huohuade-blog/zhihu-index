@@ -41,18 +41,25 @@ class ArticleText(HTMLParser):
         return re.sub(r'\s+', ' ', ''.join(self.parts[field])).strip()
 
 
-def collect(root=ROOT):
+def collect(root=ROOT, *, include_html=False):
     documents = []
     for kind in ('answer', 'article', 'pin'):
         for path in sorted((root / kind).glob('*/index.html')):
             if not path.parent.name.isdecimal():
                 continue
             parser = ArticleText()
-            parser.feed(path.read_text(encoding='utf-8'))
+            source = path.read_text(encoding='utf-8')
+            parser.feed(source)
             doc = dict(title=parser.text('title'), body=parser.text('article'), date=parser.text('time'),
                        type=kind, url=path.relative_to(root).as_posix())
             if not parser.has_article or not doc['title'] or not doc['date']:
                 raise ValueError(f'Missing title, article container or date: {path}')
+            if include_html:
+                # Archive pages wrap the original body in a single outer article element.
+                body_html = re.search(r'<article>(.*)</article>', source, re.S)
+                if body_html is None:
+                    raise ValueError(f'Missing archived HTML body: {path}')
+                doc['body_html'] = body_html[1]
             documents.append(doc)
     if not documents:
         raise ValueError('No article pages found')
