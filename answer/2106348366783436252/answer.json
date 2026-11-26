@@ -1,0 +1,15 @@
+{
+  "id": "2106348366783436252",
+  "title": "如何评价OpenAI 发布的 GPT-6.2 Astra 和 GPT-6.2 Sol？",
+  "source_url": "https://www.zhihu.com/answer/2106348366783436252",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-11-18T03:29:44+00:00",
+  "updated_at": "2026-11-18T03:29:44+00:00",
+  "votes": 478,
+  "captured_at": "2026-11-26T08:32:39.000Z",
+  "body_html": "<p>完全没有 Astra 刚出时候的惊艳感了。</p><p>那时候的 Astra 思维链超短，速度超快。</p><p>都说是用了 Loop Transformer。</p><p>极大地压缩了思维过程。</p><p>后面就降智了，现在这 6.2 也没有恢复之前的智商。</p><p>我强烈怀疑最初的 Astra 版本已经被下线了。</p><p>亦或没有下线，但是经历了非常残酷的量化。</p><p>变成了一个白痴版本。</p>",
+  "body_text": "完全没有 Astra 刚出时候的惊艳感了。 那时候的 Astra 思维链超短，速度超快。 都说是用了 Loop Transformer。 极大地压缩了思维过程。 后面就降智了，现在这 6.2 也没有恢复之前的智商。 我强烈怀疑最初的 Astra 版本已经被下线了。 亦或没有下线，但是经历了非常残酷的量化。 变成了一个白痴版本。"
+}

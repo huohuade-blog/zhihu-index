@@ -1,0 +1,23 @@
+{
+  "id": "2104537229456687481",
+  "title": "Bot 一开会，token 使用量就飙升，又一个 scaling factor 出现了",
+  "source_url": "https://www.zhihu.com/pin/2104537229456687481",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-11-13T11:33:39+08:00",
+  "votes": 3,
+  "captured_at": "2026-11-26T08:32:39.000Z",
+  "body_html": "<div><p>Bot 一开会，token 使用量就飙升，又一个 scaling factor 出现了</p></div><figure><img src=\"https://pica.zhimg.com/v2-106937de285772cb49b0f961840951e2_r.jpg\" alt=\"想法配图\" loading=\"lazy\" width=\"825\" height=\"432\"></figure>",
+  "body_text": "Bot 一开会，token 使用量就飙升，又一个 scaling factor 出现了",
+  "images": [
+    {
+      "alt": "cover",
+      "height": "432",
+      "src": "https://pica.zhimg.com/v2-106937de285772cb49b0f961840951e2_r.jpg",
+      "width": "825"
+    }
+  ],
+  "related": []
+}

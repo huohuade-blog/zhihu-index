@@ -4,11 +4,11 @@
 
 首页使用搜索列表，支持标题与正文搜索、多关键词（空格分隔且全部匹配）、命中摘要高亮、回答/文章/想法筛选、相关度/时间排序、分页和可分享的搜索链接。搜索完全在浏览器执行。
 
-- `answer/<编号>/index.html`、`article/<编号>/index.html`、`pin/<编号>/index.html`：2,847 条正文 HTML，直接存入仓库。
-- `answer/<编号>/answer.json`：知乎账号 `rwkv-56` 的 972 条回答，含正文 HTML、纯文本和来源信息。
-- `article/<编号>/article.json`：知乎账号 `rwkv-56` 的 37 篇文章，含正文 HTML、纯文本和来源信息。
-- `pin/<编号>/pin.json`：知乎账号 `rwkv-56` 的 660 条想法，含正文 HTML、纯文本、来源和附件信息。
-- `catalog.html`：2,855 条记录及其赞同数和日期。已归档记录链接到本站正文，8 条原页不存在记录保留外链。
+- `answer/<编号>/index.html`、`article/<编号>/index.html`、`pin/<编号>/index.html`：2,908 条正文 HTML，直接存入仓库。
+- `answer/<编号>/answer.json`：知乎账号 `rwkv-56` 的 1,008 条回答，含正文 HTML、纯文本和来源信息。
+- `article/<编号>/article.json`：知乎账号 `rwkv-56` 的 38 篇文章，含正文 HTML、纯文本和来源信息。
+- `pin/<编号>/pin.json`：知乎账号 `rwkv-56` 的 684 条想法，含正文 HTML、纯文本、来源和附件信息。
+- `catalog.html`：2,916 条记录及其赞同数和日期。已归档记录链接到本站正文，8 条原页不存在记录保留外链。
 - `archive-search/`：搜索脚本、样式与生成的全文数据。
 
 继续使用现有 GitHub Pages 发布设置；所有站点文件直接位于仓库，无 ZIP 解压或服务器依赖，也无需新增部署 workflow。
@@ -31,7 +31,7 @@ GitHub 仓库里的正文 HTML 是归档源。Supabase 保存可重建的只读�
 2. 安装 `psql`。从 Supabase 的 **Connect** 对话框复制 Direct connection 或 Session pooler 的连接参数（仅支持 IPv4 的网络使用 Session pooler）。在当前终端设置 `PGHOST`、`PGPORT`、`PGUSER`、`PGDATABASE` 和 `PGSSLMODE=require`，通过 libpq 密码文件提供数据库密码。密码文件放在仓库之外。
 3. 从完整的仓库检出运行 `python tools/sync_supabase.py`。脚本在同一个事务里插入新增记录、更新有变更的记录并移除已离开源归档的记录。更新 GitHub 归档后重跑同一命令即可。用 `python tools/sync_supabase.py --check` 可单独检查本地数据。
 
-首次也可以在空表上使用 Table Editor 的 CSV 导入。运行 `python tools/sync_supabase.py --csv <仓库外的新文件路径>`，然后在 `articles` 表中选择 **Insert → Import Data from CSV**。初次导入后，核对表内应有 2,847 条记录，其中 5 条的纯文本为空，但仍有 HTML。
+首次也可以在空表上使用 Table Editor 的 CSV 导入。运行 `python tools/sync_supabase.py --csv <仓库外的新文件路径>`，然后在 `articles` 表中选择 **Insert → Import Data from CSV**。初次导入后，核对表内应有 2,908 条记录，其中 6 条的纯文本为空，但仍有 HTML。
 
 部署文档见 [PGroonga](https://supabase.com/docs/guides/database/extensions/pgroonga)、[数据库连接](https://supabase.com/docs/guides/database/connecting-to-postgres)、[libpq 密码文件](https://www.postgresql.org/docs/current/libpq-pgpass.html)和 [CSV 导入](https://supabase.com/docs/guides/database/import-data)。
 

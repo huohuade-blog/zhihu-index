@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;none&#x27;; style-src &#x27;self&#x27;; img-src https:; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;; frame-src &#x27;none&#x27;"><meta name="referrer" content="no-referrer">
+<title>第一代深度学习模型是 encoder，可以理解为只有单次 forward，只有 prefill 没有 decod…</title><link rel="stylesheet" href="../../style.css"><link rel="canonical" href="https://www.zhihu.com/pin/2104546777038964303">
+<meta name="description" content="第一代深度学习模型是 encoder，可以理解为只有单次 forward，只有 prefill 没有 decode。token消耗量一般是几十到几百之间。 第二代深度学习模型是 Decoder。Prefill 之后直接输出。token消耗量一般是几百到一千多之间。 第三代是 Decoder+cot，prefill 之后"></head>
+<body><nav><a href="../../?type=pin">← 返回想法索引</a></nav>
+<header><h1>第一代深度学习模型是 encoder，可以理解为只有单次 forward，只有 prefill 没有 decod…</h1><p class="muted">momo · 发布：<time>2026-11-13T12:10:52+08:00</time></p>
+<p><a href="https://www.zhihu.com/pin/2104546777038964303" rel="noopener noreferrer">查看知乎原文</a></p></header>
+<article><div>第一代深度学习模型是 encoder，可以理解为只有单次 forward，只有 prefill 没有 decode。token消耗量一般是几十到几百之间。<br>第二代深度学习模型是 Decoder。Prefill 之后直接输出。token消耗量一般是几百到一千多之间。<br>第三代是 Decoder+cot，prefill 之后开始思考，然后输出，token消耗量一般在几千到上万。<br>第四代是多轮cot，thinking一步 action 一步，token 消耗量就爆发了，从几万到上百万上千万都有可能，主要看任务的长度。<br>之前我以为主动做任务或者例行任务会是新增量，但后来发现是线性增长。<br>第五代是多轮 cot+多智能体，agent 之间一旦开始开会，你一言我一语，token 消耗量又开始指数增长了</div></article>
+<footer>抓取时间：2026-11-26T08:32:39.000Z。外链媒体由原站提供，可能失效。</footer></body></html>
