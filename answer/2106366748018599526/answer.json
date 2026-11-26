@@ -1,0 +1,15 @@
+{
+  "id": "2106366748018599526",
+  "title": "2026年，你对「Attention Is All You Need」有了什么新的感触？",
+  "source_url": "https://www.zhihu.com/answer/2106366748018599526",
+  "author": {
+    "name": "momo",
+    "profile_url": "https://www.zhihu.com/people/rwkv-56"
+  },
+  "published_at": "2026-11-18T04:42:47+00:00",
+  "updated_at": "2026-11-18T04:42:47+00:00",
+  "votes": 61,
+  "captured_at": "2026-11-26T08:32:39.000Z",
+  "body_html": "<p>作为经历过那个时代的人。我确实最近有些感想。</p><p>首先是 Sequence to Sequence 早有了，Encoder Decoder 也早有了。</p><p>最早的实践是用 LSTM 编码完后， Encoder 里的最后一层 Token 全部保留。</p><p>然后呢，从 Decoder 层设计了一个简单的 attention 机制，每一步都会去 Encoder 层里面聚合一下信息。</p><p>我猜想 Attention is all you need 最开始应该是从 Encoder 开始改的。反正都是每个 Token 要聚合一下自己上下文的信息。</p><p>双向 LSTM 时代是，从前往后聚合一遍，再从后往前聚合一遍。其他 Token 都是加权的。只不过这个加权的过程被放在所谓的是 Forgetting Gate 里了。</p><p>Attention 简单的算个相似度作为权重。所有 Token 直接一次性 reduce 就好了。这样就没有了 LSTM 的串行依赖性。非常适合 GPU 并行。</p><p>然后改的 decoder，Decoder 最大的区别就是引入了 Mask。从此有了因果性。</p><p>至于后面的 Transformer 就是 GNN 一类的东西，显然都是后面的人附会上去的。原文里面提都没有提过 GNN 或者 Graph，相反一直在和 CNN 比。</p>",
+  "body_text": "作为经历过那个时代的人。我确实最近有些感想。 首先是 Sequence to Sequence 早有了，Encoder Decoder 也早有了。 最早的实践是用 LSTM 编码完后， Encoder 里的最后一层 Token 全部保留。 然后呢，从 Decoder 层设计了一个简单的 attention 机制，每一步都会去 Encoder 层里面聚合一下信息。 我猜想 Attention is all you need 最开始应该是从 Encoder 开始改的。反正都是每个 Token 要聚合一下自己上下文的信息。 双向 LSTM 时代是，从前往后聚合一遍，再从后往前聚合一遍。其他 Token 都是加权的。只不过这个加权的过程被放在所谓的是 Forgetting Gate 里了。 Attention 简单的算个相似度作为权重。所有 Token 直接一次性 reduce 就好了。这样就没有了 LSTM 的串行依赖性。非常适合 GPU 并行。 然后改的 decoder，Decoder 最大的区别就是引入了 Mask。从此有了因果性。 至于后面的 Transformer 就是 GNN 一类的东西，显然都是后面的人附会上去的。原文里面提都没有提过 GNN 或者 Graph，相反一直在和 CNN 比。"
+}
